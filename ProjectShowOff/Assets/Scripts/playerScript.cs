@@ -21,6 +21,10 @@ public class playerScript : MonoBehaviour, IDamageable
         get { return health; }
     }
 
+    public void takeDamage(int i)
+    {
+
+    }
 
     private void Awake()
     {
