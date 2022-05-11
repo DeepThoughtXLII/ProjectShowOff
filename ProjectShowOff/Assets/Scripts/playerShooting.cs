@@ -15,6 +15,8 @@ public class playerShooting : MonoBehaviour
 
     public string enemyTag = "enemyTag";
 
+    private ITargetable tempEnemy = null;
+
     private void Awake()
     {
         controls = new PlayerControls();
@@ -88,10 +90,16 @@ private void Start()
             target = nearestEnemy.transform;
             ITargetable newEnemy = target.GetComponent<ITargetable>();
             newEnemy.becomeTarget();
+            tempEnemy = newEnemy;
+            
         }
         else
         {
             target = null;
+            if(tempEnemy != null)
+            {
+                tempEnemy.loseTarget();
+            }
         }
     }
 

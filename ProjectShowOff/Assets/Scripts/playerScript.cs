@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerScript : MonoBehaviour
+public class playerScript : MonoBehaviour, IDamageable
 {
+
+    [SerializeField]
+    private int health = 0;
 
     PlayerControls controls;
 
     Vector2 move;
 
     public float speed = 5f;
+
+    public int Health
+    {
+        set { health = value; }
+        get { return health; }
+    }
+
 
     private void Awake()
     {
