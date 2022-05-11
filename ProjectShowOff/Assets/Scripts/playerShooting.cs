@@ -15,7 +15,7 @@ public class playerShooting : MonoBehaviour
 
     public string enemyTag = "enemyTag";
 
-    private ITargetable tempEnemy = null;
+    private GameObject tempEnemy = null;
 
     private void Awake()
     {
@@ -77,28 +77,28 @@ private void Start()
             {
                 shortestDistance = distance;
                 nearestEnemy = enemy;
+                tempEnemy = nearestEnemy;
             }
         }
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            if(target != null)
+            if (target != null)
             {
                 ITargetable oldEnemy = target.GetComponent<ITargetable>();
                 oldEnemy.loseTarget();
-            }           
+            }
             target = nearestEnemy.transform;
             ITargetable newEnemy = target.GetComponent<ITargetable>();
             newEnemy.becomeTarget();
-            tempEnemy = newEnemy;
-            
+
         }
         else
         {
             target = null;
-            if(tempEnemy != null)
-            {
-                tempEnemy.loseTarget();
+            if (tempEnemy != null)
+            { 
+                tempEnemy.GetComponent<ITargetable>().loseTarget();
             }
         }
     }
