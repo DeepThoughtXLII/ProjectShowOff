@@ -206,11 +206,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &703144627 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 8188903685618131194, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-  m_PrefabInstance: {fileID: 1784488006}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &729645558
 GameObject:
   m_ObjectHideFlags: 0
@@ -12197,65 +12192,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3189363260497577450, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: range
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131194, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: m_Color.b
-      value: 0.34901962
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131194, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: m_Color.g
-      value: 0.8196079
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131194, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: m_Color.r
-      value: 0.3019608
-      objectReference: {fileID: 0}
     - target: {fileID: 8188903685618131195, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: health
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerColour
-      value: 
-      objectReference: {fileID: 703144627}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.key0.b
-      value: 0.15686275
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.key0.g
-      value: 0.25882354
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.key0.r
-      value: 0.9450981
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.key1.b
-      value: 0.34901962
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.key1.g
-      value: 0.8196079
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.key1.r
-      value: 0.3019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188903685618131196, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
-      propertyPath: playerGradient.m_Mode
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8188903685618131197, guid: eb4d66a0b71b63f4d8e464ade535bce7, type: 3}
       propertyPath: m_RootOrder
