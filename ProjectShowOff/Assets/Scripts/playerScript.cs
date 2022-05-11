@@ -15,16 +15,22 @@ public class playerScript : MonoBehaviour, IDamageable
 
     public float speed = 5f;
 
+    public SpriteRenderer playerColour;
+    public Gradient playerGradient;
+
+    private int maxHealth = 0;
     public int Health
     {
         set { health = value; }
         get { return health; }
     }
 
-    public void takeDamage(int i)
+    public void takeDamage(int damage)
     {
-
+        health -= damage;
     }
+
+ 
 
     private void Awake()
     {
@@ -32,6 +38,8 @@ public class playerScript : MonoBehaviour, IDamageable
 
         controls.Gameplay.move.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.move.canceled += ctx => move = Vector2.zero;
+
+        maxHealth = Health;
     }
 
 
@@ -39,9 +47,13 @@ public class playerScript : MonoBehaviour, IDamageable
     {
         Vector2 m = new Vector2(move.x, move.y) * speed * Time.deltaTime;
         transform.Translate(m, Space.World);
+        SetColour(health);
     }
 
-
+    void SetColour(int heat)
+    {
+        playerColour.color = playerGradient.Evaluate((float)heat / maxHealth);
+    }
 
     private void OnEnable()
     {

@@ -9,6 +9,12 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     [SerializeField]
     private int health = 0;
 
+    public float attackSpeed = 0;
+    public int damage = 0;
+    public float attackRange = 0;
+
+    private float passedTime = 0;
+
     SpriteRenderer rend;
 
     Color defColor;
@@ -65,13 +71,42 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         if(player != null)
         {
             walkTowardsPlayer();
+            inRangeOfPlayer();
         }
     }
 
+    void inRangeOfPlayer()
+    {
+        Vector2 dir = player.position - transform.position;
+        float distanceThisFrame = speed * Time.deltaTime;
+
+        if(dir.magnitude <= attackRange)
+        {
+            if(passedTime <= 0)
+            {
+                AttackPlayer();
+                passedTime = attackSpeed;
+            }
+        }
+
+        passedTime -= Time.deltaTime;
+    }
+
+    public void AttackPlayer()
+    {
+        IDamageable playerDam = player.GetComponent<IDamageable>();
+        playerDam.takeDamage(damage);
+    }
 
     void walkTowardsPlayer()
     {
         Vector3 direction = player.position - transform.position;
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

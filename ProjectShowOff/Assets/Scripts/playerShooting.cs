@@ -43,10 +43,6 @@ private void Start()
     private void Update()
     {
         UpdateTarget();
-        if (target == null)
-        {
-            return;
-        }
     }
 
 
