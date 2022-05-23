@@ -1,53 +1,122 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class waveSpawner : MonoBehaviour
 {
-    public Transform Spawn1;
-    public Transform Spawn2;
+    public static int EnemiesAlive = 0;
+
+    public Wave[] waves;
+    public waveEnemy[] waveEnemies;
+    private int waveIndex = 0;
+    private int currentWaveDangerLevel;
+    private bool spawning = false;
+
+    private List<Transform> spawnpoints;
+    private int spawnPointAmount = 0;
 
     private int rand;
     private Transform currentSpawn;
 
-    public GameObject enemyPrefab;
+    public float TimeBetweenWaves = 0;
+    private float timeTillNextWave = 0;
 
-    public float TimeBetweenSpawns = 0;
-    private float timeTillSpawn = 0;
+    private int differentEnemies = 0;
+    private waveEnemy currentEnemy;
 
-    private GameObject _enemyPrefab;
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        spawnpoints = new List<Transform>();
+        foreach(waveEnemy enemy in waveEnemies)
+        {
+            differentEnemies++;
+        }
+
+        foreach(Transform child in transform)
+        {
+            spawnPointAmount++;
+            spawnpoints.Add(child);
+        }
+
+    }
+
     void Start()
     {
-        _enemyPrefab = enemyPrefab;
-        timeTillSpawn = TimeBetweenSpawns;
+        timeTillNextWave = TimeBetweenWaves;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        SpawnEnemies();
+        if (EnemiesAlive > 0 || spawning == true)
+        {
+            return;
+        }
+
+        if (timeTillNextWave < 0)
+        {
+            StartCoroutine(spawnWave());
+            timeTillNextWave = TimeBetweenWaves;
+        }
+
+        timeTillNextWave -= Time.deltaTime;
     }
 
-    void SpawnEnemies()
+
+    IEnumerator spawnWave()
     {
-        timeTillSpawn -= Time.deltaTime;
-        if(timeTillSpawn < 0)
+        Console.WriteLine("Wave Started");
+        currentWaveDangerLevel = waves[waveIndex].waveDangerLevel;
+        while (currentWaveDangerLevel > 0)
         {
-            rand = Random.Range(1, 3);
-
-            if(rand == 1)
+            spawning = true;
+            bool repeat = true;
+            while(repeat)
             {
-                currentSpawn = Spawn1;
-            }
-            else
-            {
-                currentSpawn = Spawn2;
+                try
+                {
+                    randomEnemy();
+                    if (currentWaveDangerLevel - currentEnemy.enemyDangerLevel >= 0)
+                    {
+                        currentWaveDangerLevel -= currentEnemy.enemyDangerLevel;
+                        Console.WriteLine("Current Remaining Danger Level:" + currentWaveDangerLevel);
+                    }
+                    else
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                    
+                    repeat = false;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Enemy Danger Level Too High, Rolling again");
+                    repeat = true;
+                }
             }
 
-            Instantiate(enemyPrefab, currentSpawn);
-            timeTillSpawn = TimeBetweenSpawns;
+            SpawnEnemies(currentEnemy.enemyPrefab);
+            EnemiesAlive++;
+            Console.WriteLine("Current Enemies Alive: " +EnemiesAlive);
+            yield return new WaitForSeconds(waves[waveIndex].spawnRate);
         }
+        
+        waveIndex++;
+        spawning = false;
+    }
+    void SpawnEnemies(GameObject enemyPrefab)
+    {
+
+        rand = UnityEngine.Random.Range(0, spawnPointAmount);
+        currentSpawn = spawnpoints[rand].transform;
+        Instantiate(enemyPrefab, currentSpawn);
+    }
+
+    void randomEnemy()
+    {
+        int randnum = UnityEngine.Random.Range(0, differentEnemies);
+        currentEnemy = waveEnemies[randnum];
+        Console.WriteLine("Random number generated: " + randnum);
     }
 }
 
