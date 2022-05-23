@@ -49,10 +49,7 @@ public class ControllerManager : MonoBehaviour
         Player player = playerManager.AddPlayer(pi.playerIndex);
         player.gameObject.SetActive(false);
 
-       /* if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
-        {
-            playerConfigs.Add(new PlayerConfiguration(pi));
-        }*/
+
     }
 
     private void Update()
