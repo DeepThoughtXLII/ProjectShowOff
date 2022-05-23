@@ -40,16 +40,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""move"",
                     ""type"": ""Value"",
                     ""id"": ""25128be2-a415-4c5c-a9fc-c03c5faca5e9"",
-                    ""expectedControlType"": ""Stick"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""rotate"",
-                    ""type"": ""Value"",
-                    ""id"": ""2a9946ef-8492-4aa8-9d67-89ee93c69737"",
-                    ""expectedControlType"": ""Stick"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -69,6 +60,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""99c5f867-383d-4364-bf9c-e18aa3c5a991"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""6e2ddefe-5179-4ec1-b291-e49e2f4482bb"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
@@ -79,15 +81,59 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""caa2ed97-dfa8-49ad-a49d-6229da8453e5"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""919481c8-eb57-4aa4-b324-c00309349802"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""rotate"",
-                    ""isComposite"": false,
+                    ""action"": ""move"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""614c60bc-3cf4-4a25-9f08-6b15d0bea19e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""da13e418-5c57-45c1-9b24-8663b89c3943"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a586ce8f-d5d4-49e9-8ac8-900085bf318a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""50e7f6c1-e10e-4fb5-a4fc-bf6efbfa13c1"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -98,7 +144,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_shoot = m_Gameplay.FindAction("shoot", throwIfNotFound: true);
         m_Gameplay_move = m_Gameplay.FindAction("move", throwIfNotFound: true);
-        m_Gameplay_rotate = m_Gameplay.FindAction("rotate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,14 +205,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_shoot;
     private readonly InputAction m_Gameplay_move;
-    private readonly InputAction m_Gameplay_rotate;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @shoot => m_Wrapper.m_Gameplay_shoot;
         public InputAction @move => m_Wrapper.m_Gameplay_move;
-        public InputAction @rotate => m_Wrapper.m_Gameplay_rotate;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -183,9 +226,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
-                @rotate.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotate;
-                @rotate.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotate;
-                @rotate.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotate;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -196,9 +236,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @move.started += instance.OnMove;
                 @move.performed += instance.OnMove;
                 @move.canceled += instance.OnMove;
-                @rotate.started += instance.OnRotate;
-                @rotate.performed += instance.OnRotate;
-                @rotate.canceled += instance.OnRotate;
             }
         }
     }
@@ -207,6 +244,5 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnShoot(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnRotate(InputAction.CallbackContext context);
     }
 }

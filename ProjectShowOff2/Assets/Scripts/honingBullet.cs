@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletScript : MonoBehaviour, IProjectile
+public class honingBullet : MonoBehaviour, IProjectile
 {
     private Transform _target;
     public float speed = 70f;
     public GameObject impactEffect;
     public int damage = 1;
 
-
-
+    public LayerMask obstacles;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +18,11 @@ public class bulletScript : MonoBehaviour, IProjectile
     }
 
     void Update()
+    {
+        
+    }
+
+    void FixedUpdate()
     {
         FlyTowardTarget();
     }
@@ -49,7 +53,6 @@ public class bulletScript : MonoBehaviour, IProjectile
     }
 
 
-
     public void HitTarget()
     {
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
@@ -59,7 +62,20 @@ public class bulletScript : MonoBehaviour, IProjectile
         Destroy(gameObject);
     }
 
-    
+    public void HitObstacle()
+    {
+        GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        Destroy(effectIns, 1f);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "obstacle" || collision.gameObject.name == "obstacleCircle")
+        {
+            HitObstacle();
+        }
+    }
 
 
 }

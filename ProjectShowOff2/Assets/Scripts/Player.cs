@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamageable
     private int id;
 
     PlayerControls controls;
+    InputActionMap myActionMap;
 
     Vector2 move;
 
@@ -22,14 +23,14 @@ public class Player : MonoBehaviour, IDamageable
 
     private int maxHealth = 0;
 
-    bool isUsingController = false;
+    public bool isUsingController = false;
 
     public bool IsUsingController
     {
         set { isUsingController = value; }
         get { return isUsingController; }
     }
-    
+
     public int Id
     {
         set { id = value; }
@@ -47,24 +48,33 @@ public class Player : MonoBehaviour, IDamageable
         health -= damage;
     }
 
- 
+
 
     private void Awake()
     {
         controls = new PlayerControls();
 
+        //myActionMap.devices.
+        //controls.Gameplay.move.;
         controls.Gameplay.move.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.move.canceled += ctx => move = Vector2.zero;
+
+        //InputSystem.GetDeviceById(id)
 
         maxHealth = Health;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (isUsingController)
+        if (!isUsingController)
         {
             Move(move);
         }
+    }
+
+    void keyMove(InputAction.CallbackContext context)
+    {
+       
     }
 
     void SetColour(int heat)

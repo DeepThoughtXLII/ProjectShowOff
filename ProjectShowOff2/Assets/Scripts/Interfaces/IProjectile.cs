@@ -13,6 +13,6 @@ public interface IProjectile
 
     void ReceiveTarget(Transform target);
 
-
+    void HitObstacle();
 
 }

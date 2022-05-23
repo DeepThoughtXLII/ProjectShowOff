@@ -18,12 +18,14 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     SpriteRenderer rend;
 
     Color defColor;
-    Color targetColor = Color.white;
+    public Color targetColor = Color.white;
 
     public string playerTag = "player";
     Transform player = null;
 
     public float speed = 3f;
+
+    bool isTarget = false;
 
     public int Health
     {
@@ -43,12 +45,18 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     public void becomeTarget()
     {
-        rend.color = targetColor;
+        if (isTarget == false)
+        {
+            rend.color = targetColor;
+            isTarget = true;
+        }
+
     }
 
     public void loseTarget()
     {
         rend.color = defColor;
+        isTarget = false;
     }
 
     private void Awake()
@@ -56,7 +64,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         rend = GetComponent<SpriteRenderer>();
         defColor = rend.color;
         player = GameObject.FindGameObjectWithTag(playerTag).transform;
-        
+        speed = Random.Range(speed - 1.2f, speed);
     }
 
     // Start is called before the first frame update
@@ -65,14 +73,19 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(player != null)
+        if (player != null)
         {
             walkTowardsPlayer();
             inRangeOfPlayer();
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
     }
 
     void inRangeOfPlayer()

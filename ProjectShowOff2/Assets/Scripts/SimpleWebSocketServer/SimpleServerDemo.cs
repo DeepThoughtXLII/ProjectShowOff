@@ -17,15 +17,15 @@ public class SimpleServerDemo : MonoBehaviour
     int idCount;
 
     PlayerManager playerManager;
-    Dictionary<int, int> controllers;
+
 
     WebsocketListener listener;
 
     //public GameObject circle;
-    public float speed;
+   
 
 
-    bool usingOnlineControllers = true;
+   
 
     private void Awake()
     {
@@ -34,17 +34,6 @@ public class SimpleServerDemo : MonoBehaviour
 
     void Start()
     {
-        int numberOfControllers = InputSystem.devices.OfType<Gamepad>().Count();
-        Debug.Log("controllers = " + numberOfControllers);
-        if (numberOfControllers > 0)
-        {
-            ControllerManagement(numberOfControllers);
-            usingOnlineControllers = false;
-            controllers = new Dictionary<int, int>();
-        }
-
-        if (usingOnlineControllers)
-        {
             // Create a server that listens for connection requests:
             listener = new WebsocketListener();
             listener.Start();
@@ -56,7 +45,7 @@ public class SimpleServerDemo : MonoBehaviour
             //circles = new Dictionary<int, GameObject>();
 
             faultyClients = new List<int>();
-        }
+        
             idCount = 0;
         
     }
@@ -64,8 +53,7 @@ public class SimpleServerDemo : MonoBehaviour
     void Update()
     {
 
-        if (usingOnlineControllers)
-        {
+        
             // Check for new connections:
             ProcessNewClients();
 
@@ -91,7 +79,7 @@ public class SimpleServerDemo : MonoBehaviour
                     //circles.Remove(id);
                 }
             }
-        }
+       
     }
 
     /// <summary>
@@ -165,7 +153,7 @@ public class SimpleServerDemo : MonoBehaviour
     //TEMPORARY
     void resolveJoystickInput(Vector2 input, int id)
     {
-        Vector2 m = new Vector2(input.x, input.y * -1) * speed * Time.deltaTime;
+        Vector2 m = new Vector2(input.x, input.y * -1);
         //circles[id].transform.Translate(m, Space.World);
         playerManager.MovePlayer(m, id);
     }
@@ -176,12 +164,5 @@ public class SimpleServerDemo : MonoBehaviour
         }
     }
 
-    void ControllerManagement(int playerCount)
-    {
-        Gamepad [] gamepads = InputSystem.devices.OfType<Gamepad>().ToArray();
-        for (int i = 0; i<playerCount; i++)
-        {
-            playerManager.AddPlayer(gamepads[i].deviceId);           
-        }       
-    }
+
 }

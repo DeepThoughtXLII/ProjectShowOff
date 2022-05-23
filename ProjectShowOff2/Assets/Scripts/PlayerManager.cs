@@ -56,6 +56,9 @@ public class PlayerManager : MonoBehaviour
         return playerList[pId];
     }
 
+
+
+
     public void RemovePlayer(int pId)
     {
         Player player = GetPlayer(pId);
