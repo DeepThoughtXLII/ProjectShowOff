@@ -24,7 +24,7 @@ public class ControllerManager : MonoBehaviour
         players = new Dictionary<int, playerInput>();
         playerUIs = new Image[4];
         state = gameState.LOBBY;
-
+        playerManager = GetComponent<PlayerManager>();
               
     }
 
@@ -41,7 +41,7 @@ public class ControllerManager : MonoBehaviour
         Debug.Log("player joined " + pi.playerIndex);
         pi.transform.SetParent(transform);
 
-        playerInput pIScript = pi.GetComponent<playerInput>();
+        playerInput pIScript = pi.transform.GetComponent<playerInput>();
         pIScript.Index = pi.playerIndex;
         pIScript.UIrep = playerUIs[pi.playerIndex];
 
