@@ -7717,6 +7717,12 @@ MonoBehaviour:
     spawnRate: 1
   - waveDangerLevel: 50
     spawnRate: 1
+  - waveDangerLevel: 50
+    spawnRate: 1
+  - waveDangerLevel: 50
+    spawnRate: 1
+  - waveDangerLevel: 50
+    spawnRate: 1
   waveEnemies:
   - enemyPrefab: {fileID: 1456903649132177477, guid: a490b0c5bb29ca64eba8ea59888102ae, type: 3}
     enemyDangerLevel: 1

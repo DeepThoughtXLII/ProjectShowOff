@@ -13,6 +13,9 @@ public class waveSpawner : MonoBehaviour
     private int currentWaveDangerLevel;
     private bool spawning = false;
 
+
+    private List<int> dangerLevels;
+
     private List<Transform> spawnpoints;
     private int spawnPointAmount = 0;
 
@@ -25,8 +28,10 @@ public class waveSpawner : MonoBehaviour
     private int differentEnemies = 0;
     private waveEnemy currentEnemy;
 
+    [ExecuteInEditMode]
     private void Awake()
     {
+        dangerLevels = new List<int>();
         spawnpoints = new List<Transform>();
         foreach(waveEnemy enemy in waveEnemies)
         {
@@ -117,6 +122,17 @@ public class waveSpawner : MonoBehaviour
         int randnum = UnityEngine.Random.Range(0, differentEnemies);
         currentEnemy = waveEnemies[randnum];
         Console.WriteLine("Random number generated: " + randnum);
+    }
+
+    
+    void enemyChance()
+    {
+        foreach(waveEnemy enemy in waveEnemies)
+        {
+            dangerLevels.Add(enemy.enemyDangerLevel);
+        }
+
+
     }
 }
 

@@ -39,6 +39,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         if (health <= 0)
         {
             waveSpawner.EnemiesAlive--;
+            Console.WriteLine("" + waveSpawner.EnemiesAlive);
             Destroy(gameObject);
             return;
         }
