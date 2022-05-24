@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d5483b0e69bd2144f828fdff9273f9f3
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 9f935c75ea281d84287ff1889db26fe1, type: 2}
+  _assetPath: Assets/Materials/Textures/marble.sbsar

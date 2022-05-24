@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 8cc851d011deac842896a32d0ce63621
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: a7406e0866b358a43987d42257d79ab0, type: 2}
+  _assetPath: Assets/Materials/Textures/grass.sbsar
