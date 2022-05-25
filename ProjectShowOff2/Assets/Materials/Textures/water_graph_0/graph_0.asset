@@ -142,7 +142,9 @@ MonoBehaviour:
     DefaultPreset: " <sbspreset pkgurl=\"pkg://water\" label=\"\" >\n  <presetinput
       identifier=\"$outputsize\" uid=\"1482955728\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
     CurrentStatePreset: " <sbspreset pkgurl=\"pkg://water\" label=\"\" >\n  <presetinput
-      identifier=\"$outputsize\" uid=\"1482955728\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
+      identifier=\"$outputsize\" uid=\"1482955728\" type=\"8\" value=\"10,10\" />\n 
+      <presetinput identifier=\"scale_1\" uid=\"882608709\" type=\"4\" value=\"1\"
+      />\n </sbspreset>\n"
     IsRuntimeOnly: 0
   RefreshMaterial: 1
   Name: graph_0
@@ -216,7 +218,7 @@ MonoBehaviour:
           Type: 4
           WidgetType: 1
         _Index: 2
-        _Data: 5
+        _Data: 1
         _isVisible: 1
         _GraphID: 0
         _NumericalDescription:
