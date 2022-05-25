@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d2e47b85ba23c1244822c516a180ed8b
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 0e4df98dbf754ca4d94687099d7bf36b, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/rocks.sbsar

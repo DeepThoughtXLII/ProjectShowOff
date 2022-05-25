@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 77301566a24c5414a936b1e901fa8c01
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: d4c91d8c72685114d916d7273cc9008c, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/rocks_hell.sbsar

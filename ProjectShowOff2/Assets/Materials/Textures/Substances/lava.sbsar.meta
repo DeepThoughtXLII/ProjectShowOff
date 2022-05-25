@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 5e5e84f4f4096494ea7cc0a8377d6776
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 2bf1b423ff664a447867489d36de8eb6, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/lava.sbsar

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 6adcb8dd93f1cd646a5a8d16d294241c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 0ecd3f571e1509741b42a425e6f7d34e, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/water.sbsar

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 611bf5e6fde8ebc4893f336b2e94935a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 87d91324b607374449b030b5796bb90b, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/skulls.sbsar

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: c4f5337cd43b4ac4c8ce652838be2f49
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: b88e40aa6700108458099ba4b268a7ee, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/obsidian.sbsar

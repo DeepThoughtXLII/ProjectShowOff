@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: a27309a94589970448b7f6a4acf826ca
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: faad78662b91d7a45947c2bcb86d7971, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/magma.sbsar

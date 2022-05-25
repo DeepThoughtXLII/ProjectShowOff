@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 6488a8eb73ddf0b40aa0ad13b9b93592
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 443f1c8e2717a7f44b5e57a2dd8bd0cc, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/middle_circle.sbsar

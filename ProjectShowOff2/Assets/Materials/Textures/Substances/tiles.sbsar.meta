@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: c663053426e083d47bfc8f4856ea2eb4
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 05ede83acfe5b66499f1ffefc35d52b8, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/tiles.sbsar
