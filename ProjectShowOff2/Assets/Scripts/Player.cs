@@ -37,6 +37,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float reviveTimer = 0;
     [SerializeField] private float reviveMultiplyer = 3f;
     [SerializeField] private LayerMask playerLayerMask;
+    [SerializeField] private bool OtherPlayerIsClose = false;
     [SerializeField] private float invincibilityInSec = 1f;
     
 
@@ -127,17 +128,42 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+
+    void playerProximityCheck()
+    {
+        int playerCount = 0;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, revivingRange);
+        foreach(Collider2D coll in colliders)
+        {
+            if (coll.gameObject.CompareTag("Player"))
+            {
+                playerCount++;
+            }
+        }
+        if(playerCount >= 1)
+        {
+            OtherPlayerIsClose = true;
+        }
+        else
+        {
+            OtherPlayerIsClose = false;
+        }
+    }
+
     void Reviving()
     {
-
+        playerProximityCheck();
         if(reviveTimer > 0)
         {
-            if(Physics2D.OverlapCircleAll(transform.position, revivingRange, playerLayerMask.value).Length > 1)
+            
+            if (OtherPlayerIsClose)
             {
+                
                 reviveTimer -= Time.deltaTime * reviveMultiplyer;
             }
             else
             {
+                
                 reviveTimer -= Time.deltaTime;
             }
             
