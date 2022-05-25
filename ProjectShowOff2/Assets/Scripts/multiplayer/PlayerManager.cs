@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]private Player playerPrefab = null;
 
-    Dictionary<int, Player> playerList = new Dictionary<int, Player>();
+    [SerializeField] Dictionary<int, Player> playerList = new Dictionary<int, Player>();
 
 
 
@@ -56,7 +56,10 @@ public class PlayerManager : MonoBehaviour
         return playerList[pId];
     }
 
-
+    public int GetPlayerCount()
+    {
+        return playerList.Count;
+    }
 
 
     public void RemovePlayer(int pId)

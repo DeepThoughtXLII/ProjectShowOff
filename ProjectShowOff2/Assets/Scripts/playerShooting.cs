@@ -22,10 +22,12 @@ public class playerShooting : MonoBehaviour
 
     public LayerMask targetable;
 
+    private Player player;
+
     private void Awake()
     {
         //controls = new PlayerControls();
-
+        player = GetComponent<Player>();
         //controls.Gameplay.shoot.performed += ctx => Shoot();
     }
 
@@ -52,10 +54,14 @@ private void Start()
 
     private void OnAction(InputAction.CallbackContext ctx)
     {
-        if(ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
+        if(player.State != Player.PlayerState.REVIVING)
         {
-            Shoot();
+            if (ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
+            {
+                Shoot();
+            }
         }
+        
     }
 
     private void Update()

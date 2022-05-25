@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 312031399871027614}
   - component: {fileID: 4408252553113940420}
   - component: {fileID: -8884839555255738079}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
+  pi: {fileID: 0}
   speed: 5
   playerColour: {fileID: 6339540946314994833}
   playerGradient:
@@ -133,7 +134,18 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  revivalColor: {r: 0, g: 1, b: 0.1387968, a: 0}
   isUsingController: 0
+  testingwithKeyboard: 1
+  state: 0
+  revivingRange: 3
+  reviveCooldown: 20
+  reviveTimer: 0
+  reviveMultiplyer: 3
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  invincibilityInSec: 1
 --- !u!114 &312031399871027614
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamageable
     private int id;
 
     PlayerControls controls;
+    
 
     Vector2 move;
 
@@ -29,11 +30,16 @@ public class Player : MonoBehaviour, IDamageable
 
     public bool testingwithKeyboard = true;
 
-    public enum PlayerState { ALIVE, DEAD, REVIVING }
+    public enum PlayerState { ALIVE, REVIVING, INVINCIBLE}
     [SerializeField] private PlayerState state = PlayerState.ALIVE;
     [SerializeField] private int revivingRange = 10;
     [SerializeField] private float reviveCooldown = 30f;
     [SerializeField] private float reviveTimer = 0;
+    [SerializeField] private float reviveMultiplyer = 3f;
+    [SerializeField] private LayerMask playerLayerMask;
+    [SerializeField] private float invincibilityInSec = 1f;
+    
+
 
     public bool IsUsingController
     {
@@ -53,6 +59,28 @@ public class Player : MonoBehaviour, IDamageable
         get { return health; }
     }
 
+    public int MaxHealth
+    {
+        set { maxHealth = value; }
+        get { return maxHealth; }
+    }
+
+    public PlayerState State
+    {
+        set { state = value; }
+        get { return state; }
+    }
+
+    public float ReviveTimer
+    {
+        get { return reviveTimer; }
+    }
+
+    public float ReviveCooldown
+    {
+        get { return reviveCooldown; }
+    }
+
     public void takeDamage(int damage)
     {
         if (state == PlayerState.ALIVE)
@@ -63,6 +91,14 @@ public class Player : MonoBehaviour, IDamageable
                 manageRevivalState();
             }
         }
+    }
+
+    IEnumerator Invincible()
+    {
+        state = PlayerState.INVINCIBLE;
+        manageRevivalState();
+        yield return new WaitForSeconds(invincibilityInSec);
+        state = PlayerState.ALIVE;
     }
 
     public void StateCheck()
@@ -78,15 +114,14 @@ public class Player : MonoBehaviour, IDamageable
         if (state == PlayerState.ALIVE)
         {
             state = PlayerState.REVIVING;
-            reviveTimer = Time.time + reviveCooldown;
+            reviveTimer = reviveCooldown;
             transform.GetComponent<BoxCollider2D>().enabled = false;
-            transform.GetComponent<playerShooting>().enabled = false;
+            move = Vector2.zero;
             playerColour.color = revivalColor;
         }
         else
         {
             transform.GetComponent<BoxCollider2D>().enabled = true;
-            transform.GetComponent<playerShooting>().enabled = true;
             health = maxHealth;
             SetColour(health);
         }
@@ -95,12 +130,21 @@ public class Player : MonoBehaviour, IDamageable
     void Reviving()
     {
 
-        if(Time.time > reviveTimer)
+        if(reviveTimer > 0)
         {
-            reviveTimer -= Time.deltaTime;
+            if(Physics2D.OverlapCircleAll(transform.position, revivingRange, playerLayerMask.value).Length > 1)
+            {
+                reviveTimer -= Time.deltaTime * reviveMultiplyer;
+            }
+            else
+            {
+                reviveTimer -= Time.deltaTime;
+            }
+            
         } else
         {
-            state = PlayerState.ALIVE;
+            Debug.Log("PLAYER ALIVE AGAIN");
+            StartCoroutine(Invincible());
         }
     }
 
@@ -133,11 +177,21 @@ public class Player : MonoBehaviour, IDamageable
 
     }
 
+    private void test(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Action");
+    }
+
+    
+
     private void OnAction(InputAction.CallbackContext ctx)
     {
-        if (ctx.action.name == "move")
+        Debug.Log("Action");
+        if (state != PlayerState.REVIVING)
+        {
+            if (ctx.action.name == "move")
             {
-                
+
                 if (ctx.action.phase == InputActionPhase.Performed)
                 {
                     move = ctx.ReadValue<Vector2>();
@@ -148,7 +202,7 @@ public class Player : MonoBehaviour, IDamageable
                 }
 
             }
-        
+        }
         //Debug.Log(ctx);
     }
 
@@ -172,6 +226,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnEnable()
     {
+        
         //controls.Gameplay.Enable();
     }
 
@@ -205,7 +260,7 @@ public class Player : MonoBehaviour, IDamageable
         SetColour(health);
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmos() {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, revivingRange);
     }

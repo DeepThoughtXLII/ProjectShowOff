@@ -45,7 +45,9 @@ public class enemyShooting : MonoBehaviour
         {
             if (Physics2D.OverlapCircle(new Vector2(player.transform.position.x, player.transform.position.y), range))
             {
-                targetsInRange.Add(player.transform);
+                
+                    targetsInRange.Add(player.transform);
+                
             }
         }
         if (targetsInRange.Count > 0)
