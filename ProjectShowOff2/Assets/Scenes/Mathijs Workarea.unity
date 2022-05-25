@@ -7713,7 +7713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - waveDangerLevel: 30
+  - waveDangerLevel: 20
     spawnRate: 1
   - waveDangerLevel: 50
     spawnRate: 1
