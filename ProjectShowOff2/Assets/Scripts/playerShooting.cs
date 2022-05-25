@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class playerShooting : MonoBehaviour
 {
 
-    PlayerControls controls;
+    //PlayerControls controls;
+
+    PlayerInput pi;
 
     public Transform target;
     public float range = 1.5f;
@@ -21,25 +24,38 @@ public class playerShooting : MonoBehaviour
 
     private void Awake()
     {
-        controls = new PlayerControls();
+        //controls = new PlayerControls();
 
-        controls.Gameplay.shoot.performed += ctx => Shoot();
+        //controls.Gameplay.shoot.performed += ctx => Shoot();
     }
 
     private void OnEnable()
     {
-        controls.Gameplay.Enable();
+        //controls.Gameplay.Enable();
     }
 
     private void OnDisable()
     {
-        controls.Gameplay.Disable();
+        //controls.Gameplay.Disable();
     }
 
 
 private void Start()
     {
+        pi = GetComponentInChildren<PlayerInput>();
+        if (pi != null)
+        {
+            pi.onActionTriggered += OnAction;
+        }
         //InvokeRepeating("UpdateTarget", 0f, 0.5f);
+    }
+
+    private void OnAction(InputAction.CallbackContext ctx)
+    {
+        if(ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
+        {
+            Shoot();
+        }
     }
 
     private void Update()

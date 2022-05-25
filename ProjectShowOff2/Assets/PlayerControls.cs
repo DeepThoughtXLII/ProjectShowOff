@@ -53,7 +53,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""gamepad"",
                     ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -61,10 +61,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""99c5f867-383d-4364-bf9c-e18aa3c5a991"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""keyboard"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe80dc48-d84a-4e51-8567-28ae032e71fb"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard2"",
                     ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -75,7 +86,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""gamepad"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -97,7 +108,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""keyboard"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -108,7 +119,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""keyboard"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -119,7 +130,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""keyboard"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -130,20 +141,162 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
+                    ""groups"": ""keyboard"",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""725ce329-63f7-4636-8bc6-0f95ad3893db"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""bb87507e-0c3d-4577-b07d-d0f40cc592a6"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard2"",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""60c89669-29ee-4f21-b8b6-4afcf9f2c847"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard2"",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""70c48ee4-f46e-471f-abaf-a586ec3004b6"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard2"",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0a53caca-174c-4288-ad18-15c7e56a1be0"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard2"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Lobby"",
+            ""id"": ""69b50f74-11fa-4321-ad06-969407db5d7c"",
+            ""actions"": [
+                {
+                    ""name"": ""startGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7b4c267-17bb-4221-8ae6-953979bd002e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fa0f882b-5f55-416e-89c9-5fdef129bd1e"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""startGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""379735fc-01c2-4a12-8b1c-d17e3122a3f7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""startGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2e62a9a-d50c-438e-a3a7-655d75ad597e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard"",
+                    ""action"": ""startGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""gamepad"",
+            ""bindingGroup"": ""gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""keyboard"",
+            ""bindingGroup"": ""keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""keyboard2"",
+            ""bindingGroup"": ""keyboard2"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_shoot = m_Gameplay.FindAction("shoot", throwIfNotFound: true);
         m_Gameplay_move = m_Gameplay.FindAction("move", throwIfNotFound: true);
+        // Lobby
+        m_Lobby = asset.FindActionMap("Lobby", throwIfNotFound: true);
+        m_Lobby_startGame = m_Lobby.FindAction("startGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -240,9 +393,73 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Lobby
+    private readonly InputActionMap m_Lobby;
+    private ILobbyActions m_LobbyActionsCallbackInterface;
+    private readonly InputAction m_Lobby_startGame;
+    public struct LobbyActions
+    {
+        private @PlayerControls m_Wrapper;
+        public LobbyActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @startGame => m_Wrapper.m_Lobby_startGame;
+        public InputActionMap Get() { return m_Wrapper.m_Lobby; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LobbyActions set) { return set.Get(); }
+        public void SetCallbacks(ILobbyActions instance)
+        {
+            if (m_Wrapper.m_LobbyActionsCallbackInterface != null)
+            {
+                @startGame.started -= m_Wrapper.m_LobbyActionsCallbackInterface.OnStartGame;
+                @startGame.performed -= m_Wrapper.m_LobbyActionsCallbackInterface.OnStartGame;
+                @startGame.canceled -= m_Wrapper.m_LobbyActionsCallbackInterface.OnStartGame;
+            }
+            m_Wrapper.m_LobbyActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @startGame.started += instance.OnStartGame;
+                @startGame.performed += instance.OnStartGame;
+                @startGame.canceled += instance.OnStartGame;
+            }
+        }
+    }
+    public LobbyActions @Lobby => new LobbyActions(this);
+    private int m_gamepadSchemeIndex = -1;
+    public InputControlScheme gamepadScheme
+    {
+        get
+        {
+            if (m_gamepadSchemeIndex == -1) m_gamepadSchemeIndex = asset.FindControlSchemeIndex("gamepad");
+            return asset.controlSchemes[m_gamepadSchemeIndex];
+        }
+    }
+    private int m_keyboardSchemeIndex = -1;
+    public InputControlScheme keyboardScheme
+    {
+        get
+        {
+            if (m_keyboardSchemeIndex == -1) m_keyboardSchemeIndex = asset.FindControlSchemeIndex("keyboard");
+            return asset.controlSchemes[m_keyboardSchemeIndex];
+        }
+    }
+    private int m_keyboard2SchemeIndex = -1;
+    public InputControlScheme keyboard2Scheme
+    {
+        get
+        {
+            if (m_keyboard2SchemeIndex == -1) m_keyboard2SchemeIndex = asset.FindControlSchemeIndex("keyboard2");
+            return asset.controlSchemes[m_keyboard2SchemeIndex];
+        }
+    }
     public interface IGameplayActions
     {
         void OnShoot(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface ILobbyActions
+    {
+        void OnStartGame(InputAction.CallbackContext context);
     }
 }

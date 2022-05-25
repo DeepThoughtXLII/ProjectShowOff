@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.Linq;
-using WebSockets;
+using WebSockets;                                                                                                                                                                                                                               
 using UnityEngine.InputSystem;
 using System;
 
-public class SimpleServerDemo : MonoBehaviour
+public class OnlineControllerManager : MonoBehaviour
 {
     //List<WebSocketConnection> clients;
     Dictionary<int, WebSocketConnection> clients;
@@ -19,7 +19,7 @@ public class SimpleServerDemo : MonoBehaviour
     PlayerManager playerManager;
 
 
-    WebsocketListener listener;
+    WebsocketListener listener;                                                                                     
 
     //public GameObject circle;
    

@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class playerInput : MonoBehaviour
 {
+
+    PlayerControls controls;
+
     [SerializeField] Image ui;
 
     [SerializeField]int index = 0;
@@ -24,10 +27,17 @@ public class playerInput : MonoBehaviour
 
     private void Start()
     {
+        controls = new PlayerControls();
+        controls.Lobby.Enable();
+
+        controls.Lobby.startGame.performed += ctx => GetComponentInParent<Server>().StartGame();
         ui.color = Color.green;
     }
 
+    private void OnDisable()
+    {
+        controls.Lobby.Disable();
+    }
 
-
-
+    
 }
