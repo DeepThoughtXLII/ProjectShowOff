@@ -147,7 +147,11 @@ MonoBehaviour:
     DefaultPreset: " <sbspreset pkgurl=\"pkg://skulls\" label=\"\" >\n  <presetinput
       identifier=\"$outputsize\" uid=\"4177976344\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
     CurrentStatePreset: " <sbspreset pkgurl=\"pkg://skulls\" label=\"\" >\n  <presetinput
-      identifier=\"$outputsize\" uid=\"4177976344\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
+      identifier=\"$outputsize\" uid=\"4177976344\" type=\"8\" value=\"10,10\" />\n 
+      <presetinput identifier=\"x_amount\" uid=\"2516030108\" type=\"4\" value=\"12\"
+      />\n  <presetinput identifier=\"x_amount_1\" uid=\"2516033094\" type=\"4\"
+      value=\"31\" />\n  <presetinput identifier=\"x_amount_2\" uid=\"2516032056\"
+      type=\"4\" value=\"27\" />\n </sbspreset>\n"
     IsRuntimeOnly: 0
   RefreshMaterial: 1
   Name: graph_0
@@ -221,7 +225,7 @@ MonoBehaviour:
           Type: 4
           WidgetType: 1
         _Index: 2
-        _Data: 5
+        _Data: 12
         _isVisible: 1
         _GraphID: 0
         _NumericalDescription:
@@ -248,7 +252,7 @@ MonoBehaviour:
           Type: 4
           WidgetType: 1
         _Index: 3
-        _Data: 15
+        _Data: 31
         _isVisible: 1
         _GraphID: 0
         _NumericalDescription:
@@ -275,7 +279,7 @@ MonoBehaviour:
           Type: 4
           WidgetType: 1
         _Index: 4
-        _Data: 15
+        _Data: 27
         _isVisible: 1
         _GraphID: 0
         _NumericalDescription:

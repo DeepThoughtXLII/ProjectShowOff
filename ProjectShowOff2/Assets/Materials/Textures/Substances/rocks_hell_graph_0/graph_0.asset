@@ -144,6 +144,7 @@ MonoBehaviour:
       identifier=\"$outputsize\" uid=\"3723389989\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
     CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Rocks_hell\" label=\"\" >\n 
       <presetinput identifier=\"$outputsize\" uid=\"3723389989\" type=\"8\" value=\"10,10\"
+      />\n  <presetinput identifier=\"x_amount\" uid=\"2970741028\" type=\"4\" value=\"7\"
       />\n </sbspreset>\n"
     IsRuntimeOnly: 0
   RefreshMaterial: 1
@@ -218,7 +219,7 @@ MonoBehaviour:
           Type: 4
           WidgetType: 1
         _Index: 2
-        _Data: 5
+        _Data: 7
         _isVisible: 1
         _GraphID: 0
         _NumericalDescription:

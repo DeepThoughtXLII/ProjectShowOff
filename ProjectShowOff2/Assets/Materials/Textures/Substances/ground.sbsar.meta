@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 4cd58fe3d2adda84ca6e2db0fe5fe1bc
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: 00ffa625cccd27e4eaf1e662c6f3b9c5, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/ground.sbsar
