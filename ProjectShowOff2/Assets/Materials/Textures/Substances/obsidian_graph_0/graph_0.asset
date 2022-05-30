@@ -145,8 +145,8 @@ MonoBehaviour:
       identifier=\"$outputsize\" uid=\"3035665988\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
     CurrentStatePreset: " <sbspreset pkgurl=\"pkg://obsidian\" label=\"\" >\n  <presetinput
       identifier=\"$outputsize\" uid=\"3035665988\" type=\"8\" value=\"10,10\" />\n 
-      <presetinput identifier=\"x_amount\" uid=\"3624860100\" type=\"4\" value=\"18\"
-      />\n  <presetinput identifier=\"y_amount\" uid=\"3624858191\" type=\"4\" value=\"17\"
+      <presetinput identifier=\"x_amount\" uid=\"3624860100\" type=\"4\" value=\"25\"
+      />\n  <presetinput identifier=\"y_amount\" uid=\"3624858191\" type=\"4\" value=\"25\"
       />\n </sbspreset>\n"
     IsRuntimeOnly: 0
   RefreshMaterial: 1
@@ -221,7 +221,7 @@ MonoBehaviour:
           Type: 4
           WidgetType: 1
         _Index: 2
-        _Data: 18
+        _Data: 25
         _isVisible: 1
         _GraphID: 0
         _NumericalDescription:
@@ -248,7 +248,7 @@ MonoBehaviour:
           Type: 4
           WidgetType: 1
         _Index: 3
-        _Data: 17
+        _Data: 25
         _isVisible: 1
         _GraphID: 0
         _NumericalDescription:

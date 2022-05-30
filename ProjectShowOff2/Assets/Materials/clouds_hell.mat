@@ -47,13 +47,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Base_Scale: 0.09
+    - _Base_Scale: -0.05
     - _Base_Speed: 0.1
     - _Base_Strenght: 4.25
     - _Big_Noise: 5
-    - _Cloud_Height: 3
+    - _Cloud_Height: 2.15
     - _Clouds_Speed: 0.3
-    - _Noise_Power: 1.38
+    - _Noise_Power: 1.46
     - _Noise_Scale: 0.18
     - _QueueControl: 0
     - _QueueOffset: 0

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: ee5ca2358c6278f43b6e09b007c9a9f8
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: dda12f74ff9116a42b23482252b2c482, type: 3}
+  _instancesCopy:
+  - {fileID: 11400000, guid: eb211238aff807a49993ca5073a1437d, type: 2}
+  _assetPath: Assets/Materials/Textures/Substances/middle_circle_heaven.sbsar
