@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 924684509664056131}
   - component: {fileID: 4239635615416892891}
   - component: {fileID: 8606838728313119713}
+  - component: {fileID: -4592722244351603048}
   - component: {fileID: 8032830822421680088}
   m_Layer: 7
   m_Name: Enemy 1 but yellow
@@ -145,6 +146,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4592722244351603048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456903649132177477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac39cb4e627cea24d904008eb83b8b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpGains: 5
 --- !u!114 &8032830822421680088
 MonoBehaviour:
   m_ObjectHideFlags: 0

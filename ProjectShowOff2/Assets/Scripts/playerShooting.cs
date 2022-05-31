@@ -78,7 +78,7 @@ private void Start()
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             if (projectile != null)
             {
-                projectile.ReceiveTarget(target);
+                projectile.ReceiveTarget(target, player.Id);
             }
         }
     }

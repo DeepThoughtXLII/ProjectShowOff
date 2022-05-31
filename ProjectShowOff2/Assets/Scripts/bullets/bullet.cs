@@ -19,6 +19,13 @@ public class bullet : MonoBehaviour, IProjectile
 
     public LayerMask obstacles;
 
+    private int ownerId = 0;
+
+    public int OwnerId
+    {
+        set { ownerId = value; }
+        get { return ownerId; }
+    }
    
     void Update()
     {
@@ -32,8 +39,9 @@ public class bullet : MonoBehaviour, IProjectile
     }
 
 
-    public void ReceiveTarget(Transform target)
+    public void ReceiveTarget(Transform target, int pOwnerId = -1)
     {
+        ownerId = pOwnerId;
         _target = target;
     }
 
@@ -49,6 +57,13 @@ public class bullet : MonoBehaviour, IProjectile
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         IDamageable target = _target.GetComponent<IDamageable>();
         target.takeDamage(damage);
+        if(target.Health <= damage)
+        {
+            if(_target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
+            {
+                toBeDead.SetKiller(ownerId);
+            }
+        }
         Destroy(effectIns, 2f);
         Destroy(gameObject);
     }

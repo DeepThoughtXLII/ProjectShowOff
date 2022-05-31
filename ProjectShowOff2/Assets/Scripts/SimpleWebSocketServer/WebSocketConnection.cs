@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Net; // For IPEndPoint
+using System.Text;
 
 namespace WebSockets {
 	public enum ConnectionStatus { Connecting, Connected, Disconnected };
@@ -46,6 +47,13 @@ namespace WebSockets {
 			client = pClient;
 			OnPacketReceive = callback;
 			Status = ConnectionStatus.Connected;
+			Console.WriteLine(""+client);
+		}
+
+		public void SendMessage(string msg)
+        {
+			byte [] bytes = Encoding.UTF8.GetBytes(msg);
+			Send(new NetworkPacket(bytes));
 		}
 
 		/// <summary>
@@ -158,7 +166,7 @@ namespace WebSockets {
 			byte[] data;
 			NetworkStream stream = client.GetStream();
 
-			Console.WriteLine("Reading (masked) frame of length {0} Available: {1}", msglen, client.Available);
+			//Console.WriteLine("Reading (masked) frame of length {0} Available: {1}", msglen, client.Available);
 
 			data = new byte[msglen + 4];
 			stream.Read(data, 0, msglen + 4);
@@ -215,5 +223,10 @@ namespace WebSockets {
 			Status = ConnectionStatus.Disconnected;
 			if (OnDisconnect != null) OnDisconnect(this);
 		}
+
+		public TcpClient GetClient()
+        {
+			return client;
+        }
 	}
 }

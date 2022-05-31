@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2378911180978187698}
   - component: {fileID: 6339540946314994833}
   - component: {fileID: 1151330868817163921}
+  - component: {fileID: 842493421824216360}
   - component: {fileID: 312031399871027614}
   - component: {fileID: 4408252553113940420}
   - component: {fileID: -8884839555255738079}
@@ -135,8 +136,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   revivalColor: {r: 0, g: 1, b: 0.1387968, a: 0}
-  isUsingController: 0
-  testingwithKeyboard: 1
+  isUsingInput: 0
   state: 0
   revivingRange: 3
   reviveCooldown: 20
@@ -145,7 +145,20 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  OtherPlayerIsClose: 0
   invincibilityInSec: 1
+--- !u!114 &842493421824216360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963670211329705918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6135241151575df4b8f69f6c4832f7a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &312031399871027614
 MonoBehaviour:
   m_ObjectHideFlags: 0

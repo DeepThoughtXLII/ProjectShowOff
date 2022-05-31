@@ -14,32 +14,62 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] Dictionary<int, Player> playerList = new Dictionary<int, Player>();
 
+    public Transform[] spawnpoints;
 
+    Server server;
 
 
     private void Start()
     {
+        spawnpoints = new Transform[4];
+
+        server = GetComponent<Server>();
         int numberOfControllers = InputSystem.devices.OfType<Gamepad>().Count();
         Debug.Log("controllers = " + numberOfControllers);
         if (numberOfControllers > 0)
         {
 
         }
+
+        switch (server.UsesControls)
+        {
+            case Server.Controls.ONLINE:
+                playerPrefab.IsUsingInput = Player.Input.ONLINE;
+
+                break;
+            case Server.Controls.GAMEPAD:
+                playerPrefab.IsUsingInput = Player.Input.GAMEPAD;
+
+                break;
+            case Server.Controls.KEYBOARD:
+                playerPrefab.IsUsingInput = Player.Input.KEYBOARD;
+
+                break;
+        }
     }
 
-    public Player AddPlayer(int pId)
+    public Player AddPlayer(int pId, string name = null)
     {
         if (HasPlayerAlready(pId))
         {
-            throw new ArgumentException($"Cannot add AvatarView with id {pId}, already exists.");
+            throw new ArgumentException($"Cannot add player with id {pId}, already exists.");
+        }
+        if(name == null)
+        {
+            name = "Player" + pId;
+        }
+        if(spawnpoints[0] == null)
+        {
+           
         }
 
         //create a new view with ourselves as the transform parent
         Player player = Instantiate<Player>(playerPrefab, transform);
         playerList[pId] = player;
+        player.name = name;
         player.Id = pId;
+        //player.Spawn = new Vector2(spawnpoints[pId].position.x, spawnpoints[pId].position.x);
         return player;
-
     }
 
     public bool HasPlayerAlready(int pId)
@@ -74,4 +104,6 @@ public class PlayerManager : MonoBehaviour
         Player player = GetPlayer(pId);
         player.Move(direction);
     }
+
+   
 }

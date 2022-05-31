@@ -5,13 +5,13 @@ using UnityEngine;
 public interface IProjectile 
 {
 
-
+    public int OwnerId { get; set; }
 
     void FlyTowardTarget();
 
     void HitTarget();
 
-    void ReceiveTarget(Transform target);
+    void ReceiveTarget(Transform target, int pOwnerId = -1);
 
     void HitObstacle();
 

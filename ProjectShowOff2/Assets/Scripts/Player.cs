@@ -12,6 +12,8 @@ public class Player : MonoBehaviour, IDamageable
     private int id;
 
     PlayerControls controls;
+
+    Vector2 spawn;
     
 
     Vector2 move;
@@ -26,9 +28,12 @@ public class Player : MonoBehaviour, IDamageable
 
     private int maxHealth = 0;
 
-    public bool isUsingController = false;
+    public enum Input {KEYBOARD, GAMEPAD, ONLINE}
+    public Input isUsingInput = Input.KEYBOARD;
 
-    public bool testingwithKeyboard = true;
+    private bool isMoving = false;
+    private Vector2 direction;
+
 
     public enum PlayerState { ALIVE, REVIVING, INVINCIBLE}
     [SerializeField] private PlayerState state = PlayerState.ALIVE;
@@ -39,13 +44,15 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private bool OtherPlayerIsClose = false;
     [SerializeField] private float invincibilityInSec = 1f;
-    
+
+    private Rigidbody2D rb;
 
 
-    public bool IsUsingController
+
+    public Input IsUsingInput
     {
-        set { isUsingController = value; }
-        get { return isUsingController; }
+        set { isUsingInput = value; }
+        get { return isUsingInput; }
     }
 
     public int Id
@@ -82,12 +89,65 @@ public class Player : MonoBehaviour, IDamageable
         get { return reviveCooldown; }
     }
 
+    public Vector2 Spawn
+    {
+        set { spawn = value; }
+        get { return spawn; }
+    }
+
+   
+
+
+    private void Awake()
+    {
+
+
+
+        //controls = new PlayerControls();
+
+        //myActionMap.devices.
+        //controls.Gameplay.move.;
+        //controls.Gameplay.move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        //controls.Gameplay.move.canceled += ctx => move = Vector2.zero;
+
+        //InputSystem.GetDeviceById(id)
+
+        maxHealth = Health;
+    }
+
+    void Start()
+    {
+        if (isUsingInput != Input.ONLINE)
+        {
+            pi = GetComponentInChildren<PlayerInput>();
+            if (pi != null)
+            {
+                Debug.Log("subscribed");
+                if (isUsingInput == Input.GAMEPAD)
+                {
+                    pi.onActionTriggered += OnAction;
+                }else
+                {
+                    pi.onActionTriggered += OnAction2;
+
+                }
+            }
+        }
+
+        
+        rb = GetComponent<Rigidbody2D>();
+
+
+
+    }
+
+
     public void takeDamage(int damage)
     {
         if (state == PlayerState.ALIVE)
         {
             health -= damage;
-            if(health <= 0)
+            if (health <= 0)
             {
                 manageRevivalState();
             }
@@ -133,14 +193,14 @@ public class Player : MonoBehaviour, IDamageable
     {
         int playerCount = 0;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, revivingRange);
-        foreach(Collider2D coll in colliders)
+        foreach (Collider2D coll in colliders)
         {
             if (coll.gameObject.CompareTag("Player"))
             {
                 playerCount++;
             }
         }
-        if(playerCount >= 1)
+        if (playerCount >= 1)
         {
             OtherPlayerIsClose = true;
         }
@@ -153,80 +213,69 @@ public class Player : MonoBehaviour, IDamageable
     void Reviving()
     {
         playerProximityCheck();
-        if(reviveTimer > 0)
+        if (reviveTimer > 0)
         {
-            
+
             if (OtherPlayerIsClose)
             {
-                
+
                 reviveTimer -= Time.deltaTime * reviveMultiplyer;
             }
             else
             {
-                
+
                 reviveTimer -= Time.deltaTime;
             }
-            
-        } else
+
+        }
+        else
         {
             Debug.Log("PLAYER ALIVE AGAIN");
             StartCoroutine(Invincible());
         }
     }
 
-
-    private void Awake()
-    {
-
-
-
-        //controls = new PlayerControls();
-
-        //myActionMap.devices.
-        //controls.Gameplay.move.;
-        //controls.Gameplay.move.performed += ctx => move = ctx.ReadValue<Vector2>();
-        //controls.Gameplay.move.canceled += ctx => move = Vector2.zero;
-
-        //InputSystem.GetDeviceById(id)
-
-        maxHealth = Health;
-    }
-
-    void Start()
-    {
-        pi = GetComponentInChildren<PlayerInput>();
-        if (pi != null)
-        {
-            Debug.Log("subscribed");
-            pi.onActionTriggered += OnAction;
-        }
-
-    }
-
-    private void test(InputAction.CallbackContext ctx)
-    {
-        Debug.Log("Action");
-    }
-
     
 
     private void OnAction(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Action");
         if (state != PlayerState.REVIVING)
         {
             if (ctx.action.name == "move")
             {
-
                 if (ctx.action.phase == InputActionPhase.Performed)
                 {
-                    move = ctx.ReadValue<Vector2>();
+                    Move(ctx.ReadValue<Vector2>());
                 }
                 else if (ctx.action.phase == InputActionPhase.Canceled)
                 {
-                    move = Vector2.zero;
+                    //move = Vector2.zero;
                 }
+            }
+        }
+        //Debug.Log(ctx);
+    }
 
+    private void OnAction2(InputAction.CallbackContext ctx)
+    {
+     
+        if (state != PlayerState.REVIVING)
+        {
+            if (ctx.action.name == "move")
+            {
+                if (ctx.action.phase == InputActionPhase.Performed)
+                {
+                    if(direction != ctx.ReadValue<Vector2>())
+                    direction += ctx.ReadValue<Vector2>();
+                    direction.Normalize();
+                    isMoving = true;
+                }
+                else if (ctx.action.phase == InputActionPhase.Canceled)
+                {
+                    isMoving = false;
+                    direction = Vector2.zero;
+                }
+                //  Move(ctx.ReadValue<Vector2>());
             }
         }
         //Debug.Log(ctx);
@@ -234,10 +283,12 @@ public class Player : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
-        if (!isUsingController)
+        if(IsUsingInput == Input.KEYBOARD && isMoving)
         {
-            Move(move);
+            Move(direction);
         }
+        rb.MovePosition(move);
+        
     }
 
     void Update()
@@ -250,17 +301,6 @@ public class Player : MonoBehaviour, IDamageable
         playerColour.color = playerGradient.Evaluate((float)heat / maxHealth);
     }
 
-    private void OnEnable()
-    {
-        
-        //controls.Gameplay.Enable();
-    }
-
-    private void OnDisable()
-    {
-        //controls.Gameplay.Disable();
-    }
-
 
     public void Remove()
     {
@@ -269,8 +309,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Move(Vector2 direction)
     {
-        Vector2 m = new Vector2(direction.x, direction.y) * speed * Time.deltaTime;
-        transform.Translate(m, Space.World);
+        move = rb.position + direction * speed * Time.fixedDeltaTime;
+      
         SetColour(health);
     }
 
@@ -279,8 +319,7 @@ public class Player : MonoBehaviour, IDamageable
         Vector2 move = Vector2.zero;
         if (context.performed)
         {
-            move = context.ReadValue<Vector2>() * speed * Time.deltaTime;
-
+            move = context.ReadValue<Vector2>() * speed * Time.fixedDeltaTime;
         }
         transform.Translate(move, Space.World);
         SetColour(health);

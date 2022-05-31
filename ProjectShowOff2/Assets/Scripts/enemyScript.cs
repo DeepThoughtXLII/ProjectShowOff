@@ -9,6 +9,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     [SerializeField]
     private int health = 0;
 
+
     public float attackSpeed = 0;
     public int damage = 0;
     public float attackRange = 0;
@@ -38,12 +39,19 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         health -= damage;
         if (health <= 0)
         {
-            waveSpawner.EnemiesAlive--;
-            Console.WriteLine("" + waveSpawner.EnemiesAlive);
+           
+          
             Destroy(gameObject);
             return;
         }
     }
+
+    void OnDestroy()
+    {
+        waveSpawner.EnemiesAlive--;
+          Console.WriteLine("" + waveSpawner.EnemiesAlive);
+    }
+
 
     public void becomeTarget()
     {
