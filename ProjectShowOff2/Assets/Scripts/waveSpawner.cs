@@ -13,6 +13,8 @@ public class waveSpawner : MonoBehaviour
     private int currentWaveDangerLevel;
     private bool spawning = false;
 
+    private spawnChances spawnChances;
+
 
     private List<int> dangerLevels;
 
@@ -28,7 +30,7 @@ public class waveSpawner : MonoBehaviour
     private int differentEnemies = 0;
     private waveEnemy currentEnemy;
 
-    [ExecuteInEditMode]
+    
     private void Awake()
     {
         dangerLevels = new List<int>();
@@ -95,7 +97,7 @@ public class waveSpawner : MonoBehaviour
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("Enemy Danger Level Too High, Rolling again");
+                    Console.WriteLine("Enemy Danger Level Too High, Rolling again -------- " + e);
                     repeat = true;
                 }
             }
