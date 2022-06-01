@@ -29,7 +29,7 @@ public class PlayerUI : MonoBehaviour
         nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         levelText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         levelable = player.gameObject.GetComponent<ILevelable>();
-        displayedLevel = levelable.Level.id + 1;
+        displayedLevel = levelable.Level.id;
         levelText.text = "level: " + displayedLevel;
         MaxHpRecalc();
     }
@@ -128,9 +128,9 @@ public class PlayerUI : MonoBehaviour
 
     private void levelUpdate()
     {
-        if (levelable.Level.id+1 > displayedLevel)
+        if (levelable.Level.id > displayedLevel)
         {
-            displayedLevel = levelable.Level.id + 1;
+            displayedLevel = levelable.Level.id;
             levelText.text = "level: " + displayedLevel;
         }
     }

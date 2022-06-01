@@ -21,6 +21,8 @@ public class bullet : MonoBehaviour, IProjectile
 
     private int ownerId = 0;
 
+    public float aliveForSeconds = 7f;
+
     public int OwnerId
     {
         set { ownerId = value; }
@@ -43,6 +45,7 @@ public class bullet : MonoBehaviour, IProjectile
     {
         ownerId = pOwnerId;
         _target = target;
+        StartCoroutine(lifeTime());
     }
 
     public void FlyTowardTarget()
@@ -85,5 +88,24 @@ public class bullet : MonoBehaviour, IProjectile
         {
             HitTarget();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "obstacle")
+        {
+            HitObstacle();
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            HitTarget();
+        }
+    }
+
+
+    public IEnumerator lifeTime()
+    {
+        yield return new WaitForSeconds(aliveForSeconds);
+        HitObstacle();
     }
 }

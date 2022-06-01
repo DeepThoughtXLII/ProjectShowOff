@@ -28,6 +28,9 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     bool isTarget = false;
 
+
+    Rigidbody2D rb;
+
     public int Health
     {
         set { health = value; }
@@ -74,7 +77,8 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         rend = GetComponent<SpriteRenderer>();
         defColor = rend.color;
         player = GameObject.FindGameObjectWithTag(playerTag).transform;
-        speed = Random.Range(speed - 1.2f, speed);
+        speed = Random.Range(0.3f, speed);
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
@@ -123,8 +127,9 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     void walkTowardsPlayer()
     {
-        Vector3 direction = player.position - transform.position;
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        Vector2 direction = player.position - transform.position;
+        //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
     private void OnDrawGizmosSelected()

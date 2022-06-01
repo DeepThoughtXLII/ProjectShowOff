@@ -15,4 +15,7 @@ public interface IProjectile
 
     void HitObstacle();
 
+
+    public IEnumerator lifeTime();
+
 }

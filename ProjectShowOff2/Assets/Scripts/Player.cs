@@ -31,8 +31,8 @@ public class Player : MonoBehaviour, IDamageable
     public enum Input {KEYBOARD, GAMEPAD, ONLINE}
     public Input isUsingInput = Input.KEYBOARD;
 
-    private bool isMoving = false;
-    private Vector2 direction;
+    public bool isMoving = false;
+    public Vector2 direction;
 
 
     public enum PlayerState { ALIVE, REVIVING, INVINCIBLE}
@@ -179,6 +179,10 @@ public class Player : MonoBehaviour, IDamageable
             transform.GetComponent<BoxCollider2D>().enabled = false;
             move = Vector2.zero;
             playerColour.color = revivalColor;
+            if(isUsingInput == Input.KEYBOARD)
+            {
+                direction = Vector2.zero;
+            }
         }
         else
         {
@@ -283,12 +287,14 @@ public class Player : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
-        if(IsUsingInput == Input.KEYBOARD && isMoving)
+        if (state != PlayerState.REVIVING)
         {
-            Move(direction);
+            if (IsUsingInput == Input.KEYBOARD && isMoving)
+            {
+                Move(direction);
+            }
+            rb.MovePosition(move);
         }
-        rb.MovePosition(move);
-        
     }
 
     void Update()

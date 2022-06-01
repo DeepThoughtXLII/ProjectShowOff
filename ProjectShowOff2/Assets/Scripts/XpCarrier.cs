@@ -25,6 +25,9 @@ public class XpCarrier : MonoBehaviour
 
     private void OnDestroy()
     {
-        killer.GainXP(xpGains);
+        if(killer != null)
+        {
+            killer.GainXP(xpGains);
+        }
     }
 }

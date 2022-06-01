@@ -13,6 +13,8 @@ public class honingBullet : MonoBehaviour, IProjectile
 
     private int ownerId = 0;
 
+    public float aliveForSeconds = 7f;
+
     public int OwnerId
     {
         set { ownerId = value; }
@@ -39,6 +41,8 @@ public class honingBullet : MonoBehaviour, IProjectile
     {
         ownerId = pOwnerId;
         _target = target;
+        StartCoroutine(lifeTime());
+
     }
 
     public void FlyTowardTarget()
@@ -93,5 +97,17 @@ public class honingBullet : MonoBehaviour, IProjectile
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "obstacle" || collision.gameObject.name == "obstacleCircle")
+        {
+            HitObstacle();
+        }
+    }
 
+    public IEnumerator lifeTime()
+    {
+        yield return new WaitForSeconds(aliveForSeconds);
+        HitObstacle();
+    }
 }

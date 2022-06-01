@@ -8,10 +8,13 @@ public class OnlinePlayerInput : MonoBehaviour
 {
 
     [SerializeField] Image ui;
-    private Color def;
+    private Color notReady;
     [SerializeField] int index = 0;
     public TextMeshProUGUI playerName;
     private string pname = null;
+
+    Image bg;
+    Image character;
 
     public int Index
     {
@@ -33,21 +36,21 @@ public class OnlinePlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        
+        bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
+        character = ui.gameObject.transform.GetChild(1).GetComponent<Image>();
+        playerName = ui.gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
-        playerName = ui.transform.GetComponentInChildren<TextMeshProUGUI>();
-        def = ui.color;
+        notReady = new Color(255, 255, 255, 127);
         Connected();
-        
-       
     }
 
     public void Connected()
     {
-        ui.color = Color.green;
+        bg.color = Color.white;
+        character.enabled = true;
         if (pname != null)
         {
             UpdateName();
@@ -56,7 +59,7 @@ public class OnlinePlayerInput : MonoBehaviour
 
     public void Disconnected()
     {
-        ui.color = def;
+        bg.color = notReady;
         pname = "no player";
         UpdateName();
         Destroy(this);
