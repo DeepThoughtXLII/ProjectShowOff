@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2963670211329705918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.525811, y: -2.0416625, z: 0}
-  m_LocalScale: {x: 0.4244945, y: 0.37326843, z: 1}
+  m_LocalScale: {x: 27.858412, y: 27.858412, z: 27.858412}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2375337715335319800}
@@ -137,6 +137,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   revivalColor: {r: 0, g: 1, b: 0.1387968, a: 0}
   isUsingInput: 0
+  isMoving: 0
+  direction: {x: 0, y: 0}
   state: 0
   revivingRange: 3
   reviveCooldown: 20
@@ -159,6 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135241151575df4b8f69f6c4832f7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level:
+    id: 0
+    xpNeeded: 0
+    hasUpgrade: 0
+  xp: 0
+  nextLevelAt: 0
 --- !u!114 &312031399871027614
 MonoBehaviour:
   m_ObjectHideFlags: 0

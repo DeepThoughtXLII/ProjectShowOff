@@ -105,5 +105,15 @@ public class PlayerManager : MonoBehaviour
         player.Move(direction);
     }
 
-   
+    public bool PlayersAllDead()
+    {
+        foreach (KeyValuePair < int, Player> p in playerList)
+        {
+            if(p.Value.State != Player.PlayerState.REVIVING)//if any of the players are not revivng/not dead
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

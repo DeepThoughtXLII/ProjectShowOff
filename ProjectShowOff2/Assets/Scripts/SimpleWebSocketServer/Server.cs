@@ -12,7 +12,7 @@ public class Server : MonoBehaviour
 
     public static Server instance;
 
-    public enum gameState { LOBBY, INGAME }
+    public enum gameState { LOBBY, INGAME, GAMEOVER }
     gameState state;
 
     public enum Controls { ONLINE, GAMEPAD, KEYBOARD}
@@ -23,7 +23,7 @@ public class Server : MonoBehaviour
     [SerializeField] Image[] playerUIs;
     public Image body;
 
-
+    private int GameOverScreenTime = 10;
    
 
     PlayerManager playerManager;
@@ -108,12 +108,37 @@ public class Server : MonoBehaviour
         {
            
         }
-        if (state == gameState.INGAME)
+        else if (state == gameState.INGAME)
         {
-
+            if (playerManager.PlayersAllDead())
+            {
+                state = gameState.GAMEOVER;
+            }
+        }
+        else if(state == gameState.GAMEOVER)
+        {
+            SceneManager.LoadScene(2);
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+            StartCoroutine(BackToLobby());
         }
     }
 
+    IEnumerator BackToLobby()
+    {
+        yield return new WaitForSeconds(GameOverScreenTime);
+        Destroy(this);
+    }
+
+    public void OnDestroy()
+    {
+        if(instance == this)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
 
     public Image GetPlayerUILobby(int id)
     {

@@ -8,7 +8,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     [SerializeField]
     private int health = 0;
-
+    
 
     public float attackSpeed = 0;
     public int damage = 0;
@@ -22,12 +22,13 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     public Color targetColor = Color.white;
 
     public string playerTag = "player";
-    Transform player = null;
+    Player player = null;
 
     public float speed = 3f;
 
     bool isTarget = false;
 
+    public TargetingManager targetingManager;
 
     Rigidbody2D rb;
 
@@ -42,11 +43,10 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         health -= damage;
         if (health <= 0)
         {
-           
-          
             Destroy(gameObject);
             return;
         }
+        player = targetingManager.GetTarget(transform);
     }
 
     void OnDestroy()
@@ -76,23 +76,31 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     {
         rend = GetComponent<SpriteRenderer>();
         defColor = rend.color;
-        player = GameObject.FindGameObjectWithTag(playerTag).transform;
+        //player = GameObject.FindGameObjectWithTag(playerTag).transform;
         speed = Random.Range(0.3f, speed);
         rb = GetComponent<Rigidbody2D>();
+        targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = targetingManager.GetTarget(transform);
     }
 
     void FixedUpdate()
     {
         if (player != null)
         {
-            walkTowardsPlayer();
-            inRangeOfPlayer();
+            if(player.State != Player.PlayerState.REVIVING)
+            {
+                walkTowardsPlayer();
+                inRangeOfPlayer();
+            } else
+            {
+                player = targetingManager.GetTarget(transform);
+            }
+
         }
     }
 
@@ -104,7 +112,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     void inRangeOfPlayer()
     {
-        Vector2 dir = player.position - transform.position;
+        Vector2 dir = player.transform.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if(dir.magnitude <= attackRange)
@@ -127,7 +135,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     void walkTowardsPlayer()
     {
-        Vector2 direction = player.position - transform.position;
+        Vector2 direction = player.transform.position - transform.position;
         //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }

@@ -30,6 +30,8 @@ public class waveSpawner : MonoBehaviour
     private int differentEnemies = 0;
     private waveEnemy currentEnemy;
 
+    TargetingManager targetingManager;
+
     
     private void Awake()
     {
@@ -45,7 +47,7 @@ public class waveSpawner : MonoBehaviour
             spawnPointAmount++;
             spawnpoints.Add(child);
         }
-
+        targetingManager = GetComponent<TargetingManager>();
     }
 
     void Start()

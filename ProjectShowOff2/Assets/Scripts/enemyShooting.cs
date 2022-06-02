@@ -16,9 +16,12 @@ public class enemyShooting : MonoBehaviour
     public float firerate = 0.2f;
     bool readyToShoot = true;
 
+    TargetingManager targetingManager;
+
     private void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        // players = GameObject.FindGameObjectsWithTag("Player");
+        targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
     }
 
 
@@ -41,30 +44,7 @@ public class enemyShooting : MonoBehaviour
 
     void getTarget()
     {
-        foreach (GameObject player in players)
-        {
-            if (Physics2D.OverlapCircle(new Vector2(player.transform.position.x, player.transform.position.y), range))
-            {
-                
-                    targetsInRange.Add(player.transform);
-                
-            }
-        }
-        if (targetsInRange.Count > 0)
-        {
-
-            float shortestDistance = range;
-            foreach (Transform target in targetsInRange)
-            {
-                float dist = Vector3.Distance(target.position, transform.position);
-                if (dist < shortestDistance)
-                {
-                    shortestDistance = dist;
-                    this.target = target;
-                }
-            }
-           
-        }
+        target = targetingManager.GetTargetInShootingRange(transform, range).transform;
         if(target != null)
         {
             updateTarget();
