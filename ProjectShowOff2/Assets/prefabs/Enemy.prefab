@@ -103,10 +103,11 @@ MonoBehaviour:
   health: 1
   attackSpeed: 1
   damage: 1
-  attackRange: 1
+  attackRange: 10
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   playerTag: Player
   speed: 1
+  targetingManager: {fileID: 0}
 --- !u!50 &5342786594540471084
 Rigidbody2D:
   serializedVersion: 4

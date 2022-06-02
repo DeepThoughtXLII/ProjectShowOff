@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2963670211329705918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.525811, y: -2.0416625, z: 0}
-  m_LocalScale: {x: 27.858412, y: 27.858412, z: 27.858412}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2375337715335319800}
@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1b462636d773d4f8fca1fce0b9c0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
+  health: 100
   pi: {fileID: 0}
-  speed: 5
+  speed: 20
   playerColour: {fileID: 6339540946314994833}
   playerGradient:
     serializedVersion: 2
@@ -140,7 +140,7 @@ MonoBehaviour:
   isMoving: 0
   direction: {x: 0, y: 0}
   state: 0
-  revivingRange: 3
+  revivingRange: 4
   reviveCooldown: 20
   reviveTimer: 0
   reviveMultiplyer: 3
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  range: 5
+  range: 37.65
   bulletPrefab: {fileID: 8978377680057926006, guid: fa75608e24f363842900056f25dd7091, type: 3}
   firepoint: {fileID: 2375337715335319800}
   enemyTag: enemy

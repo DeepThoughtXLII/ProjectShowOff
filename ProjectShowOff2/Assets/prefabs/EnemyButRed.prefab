@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7261108951645099698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,10 +103,11 @@ MonoBehaviour:
   health: 1
   attackSpeed: 1
   damage: 1
-  attackRange: 1
+  attackRange: 10
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   playerTag: Player
   speed: 1
+  targetingManager: {fileID: 0}
 --- !u!50 &5342786594540471084
 Rigidbody2D:
   serializedVersion: 4

@@ -49,20 +49,62 @@ MonoBehaviour:
     xpNeeded: 5
     hasUpgrade: 0
   - id: 2
-    xpNeeded: 10
-    hasUpgrade: 1
-  - id: 3
-    xpNeeded: 15
+    xpNeeded: 11
     hasUpgrade: 0
+  - id: 3
+    xpNeeded: 30
+    hasUpgrade: 1
   - id: 4
-    xpNeeded: 20
+    xpNeeded: 47
     hasUpgrade: 0
   - id: 5
-    xpNeeded: 25
+    xpNeeded: 62
     hasUpgrade: 0
   - id: 6
-    xpNeeded: 30
+    xpNeeded: 82
     hasUpgrade: 0
+  - id: 7
+    xpNeeded: 140
+    hasUpgrade: 1
+  - id: 8
+    xpNeeded: 205
+    hasUpgrade: 0
+  - id: 9
+    xpNeeded: 290
+    hasUpgrade: 0
+  - id: 10
+    xpNeeded: 350
+    hasUpgrade: 0
+  - id: 11
+    xpNeeded: 520
+    hasUpgrade: 1
+  - id: 12
+    xpNeeded: 704
+    hasUpgrade: 0
+  - id: 13
+    xpNeeded: 810
+    hasUpgrade: 1
+  - id: 14
+    xpNeeded: 908
+    hasUpgrade: 0
+  - id: 15
+    xpNeeded: 1316
+    hasUpgrade: 1
+  - id: 16
+    xpNeeded: 1909
+    hasUpgrade: 0
+  - id: 17
+    xpNeeded: 2768
+    hasUpgrade: 1
+  - id: 18
+    xpNeeded: 4014
+    hasUpgrade: 1
+  - id: 19
+    xpNeeded: 5820
+    hasUpgrade: 1
+  - id: 20
+    xpNeeded: 8439
+    hasUpgrade: 1
 --- !u!1 &8414478469655773434
 GameObject:
   m_ObjectHideFlags: 0
