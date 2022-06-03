@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a3f84c99ecc7c46ba6f324efc15727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 19.27
+  speed: 80.26
   impactEffect: {fileID: 8758826720671989179, guid: beea681a4eda70b4a9f0bf5962a79461, type: 3}
   damage: 1
   obstacles:

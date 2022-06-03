@@ -348,7 +348,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.1
+  m_fontSize: 25.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2963,7 +2963,7 @@ Camera:
   far clip plane: 995.9
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 109.31
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2987,7 +2987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713635694}
   m_LocalRotation: {x: -0.36921293, y: -0, z: -0, w: 0.9293449}
-  m_LocalPosition: {x: -108, y: -95.4, z: -130.4}
+  m_LocalPosition: {x: -108, y: -201.3, z: -242.6}
   m_LocalScale: {x: 0.88509, y: 0.88509, z: 0.88509}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3006,8 +3006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ab1c0bd16c0ff4d91d4a60247a219f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 0.125
-  distanceDamp: 0.5
+  smoothSpeed: 1.27
+  distanceDamp: 0.52
+  minZoom: 30
+  maxZoom: 100
 --- !u!1 &761232043
 GameObject:
   m_ObjectHideFlags: 0
@@ -4399,7 +4401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1167698755
 Transform:
   m_ObjectHideFlags: 0
@@ -4717,7 +4719,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.1
+  m_fontSize: 25.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5826,7 +5828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4723942408950057520, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4723942408950057522, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
       propertyPath: m_RootOrder
@@ -6573,7 +6575,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.1
+  m_fontSize: 25.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7252,7 +7254,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.1
+  m_fontSize: 25.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

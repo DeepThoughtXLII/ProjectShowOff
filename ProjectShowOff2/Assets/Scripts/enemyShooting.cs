@@ -44,8 +44,13 @@ public class enemyShooting : MonoBehaviour
 
     void getTarget()
     {
-        target = targetingManager.GetTargetInShootingRange(transform, range).transform;
-        if(target != null)
+        Player p = targetingManager.GetTargetInShootingRange(transform, range);
+        if(p != null)
+        {
+            target = p.transform;
+
+        }
+        if (target != null)
         {
             updateTarget();
         }

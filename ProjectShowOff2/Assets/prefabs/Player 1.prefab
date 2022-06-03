@@ -135,12 +135,12 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  revivalColor: {r: 0, g: 1, b: 0.1387968, a: 0}
+  revivalColor: {r: 0, g: 1, b: 0.1387968, a: 1}
   isUsingInput: 0
   isMoving: 0
   direction: {x: 0, y: 0}
   state: 0
-  revivingRange: 4
+  revivingRange: 12
   reviveCooldown: 20
   reviveTimer: 0
   reviveMultiplyer: 3
