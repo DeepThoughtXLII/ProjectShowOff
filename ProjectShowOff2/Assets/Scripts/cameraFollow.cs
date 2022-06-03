@@ -20,6 +20,8 @@ public class cameraFollow : MonoBehaviour
 
     Camera cam;
 
+    float offset = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +62,10 @@ public class cameraFollow : MonoBehaviour
 
     void getMidpointOfTargets()
     {
+        if (targets.Length == 1)
+        {
+            targetMidpoint = targets[0].position;
+        }
         if (targets.Length == 2)
         {
             //Vector3 dist = targets[0].position - targets[1].position;

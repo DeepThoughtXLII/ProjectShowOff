@@ -36,13 +36,14 @@ public class OnlinePlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
-        character = ui.gameObject.transform.GetChild(1).GetComponent<Image>();
-        playerName = ui.gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        
     }
 
     private void Start()
     {
+        bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
+        character = ui.gameObject.transform.GetChild(1).GetComponent<Image>();
+        playerName = ui.gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         notReady = new Color(255, 255, 255, 127);
         Connected();
     }

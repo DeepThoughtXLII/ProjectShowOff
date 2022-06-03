@@ -70,7 +70,7 @@ private void Start()
     }
 
 
-    void Shoot()
+    public void Shoot()
     {
         if (target != null)
         {

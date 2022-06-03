@@ -33,6 +33,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     Server server;
 
+    
    
 
     private void Awake()
@@ -181,7 +182,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                     int cmd1 = text.IndexOf('!');
                     string text2 = text.Remove(0, cmd1 + 1);
                     Console.WriteLine(text2);
-                    addClient(id, text2);
+                    addClient(clients.Count, text2);
                 }
                 else
                 {
@@ -205,10 +206,15 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             }
             else if (text.Contains("shoot"))
             {
-
+                Shoot(id);
             }
         }
          
+    }
+
+    void Shoot(int id)
+    {
+        playerManager.PlayerShoot(id);
     }
 
     Vector2 parseInput(string text)

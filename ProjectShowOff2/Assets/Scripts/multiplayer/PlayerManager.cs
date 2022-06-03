@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] Dictionary<int, Player> playerList = new Dictionary<int, Player>();
 
+    [SerializeField] Dictionary<int, playerShooting> playerShot = new Dictionary<int, playerShooting>();
+
     public Transform[] spawnpoints;
 
     Server server;
@@ -35,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         {
             case Server.Controls.ONLINE:
                 playerPrefab.IsUsingInput = Player.Input.ONLINE;
-
+ 
                 break;
             case Server.Controls.GAMEPAD:
                 playerPrefab.IsUsingInput = Player.Input.GAMEPAD;
@@ -66,6 +68,7 @@ public class PlayerManager : MonoBehaviour
         //create a new view with ourselves as the transform parent
         Player player = Instantiate<Player>(playerPrefab, transform);
         playerList[pId] = player;
+        playerShot.Add(pId, player.GetComponent<playerShooting>());
         player.name = name;
         player.Id = pId;
         //player.Spawn = new Vector2(spawnpoints[pId].position.x, spawnpoints[pId].position.x);
@@ -103,6 +106,12 @@ public class PlayerManager : MonoBehaviour
     {
         Player player = GetPlayer(pId);
         player.Move(direction);
+    }
+
+
+    public void PlayerShoot(int id)
+    {
+        playerShot[id].Shoot();
     }
 
     public bool PlayersAllDead()
