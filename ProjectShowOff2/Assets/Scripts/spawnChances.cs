@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[System.Serializable]
-[ExecuteInEditMode]
+//[System.Serializable]
+//[ExecuteInEditMode]
 public class spawnChances : MonoBehaviour
 {
     public waveSpawner _waveSpawner;
