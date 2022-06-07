@@ -30,7 +30,7 @@ public class animatePlayer : MonoBehaviour
     {
         direction = p.direction;
         isMoving = p.isMoving;
-        if(direction.x > 0)
+        if(direction.x > 0.26)
         {
             anim.SetBool("walkingRight", true);
 
@@ -40,7 +40,7 @@ public class animatePlayer : MonoBehaviour
             anim.SetBool("walkingRight", false);
         }
 
-        if (direction.x < 0)
+        if (direction.x < -0.26)
         {
             anim.SetBool("walkingLeft", true);
 
@@ -50,7 +50,7 @@ public class animatePlayer : MonoBehaviour
             anim.SetBool("walkingLeft", false);
         }
 
-        if (direction.y < 0)
+        if (direction.y < -0.26)
         {
             anim.SetBool("walkingDown", true);
 
@@ -60,7 +60,7 @@ public class animatePlayer : MonoBehaviour
             anim.SetBool("walkingDown", false);
         }
 
-        if (direction.y > 0)
+        if (direction.y > 0.26)
         {
             anim.SetBool("walkingUp", true);
 
