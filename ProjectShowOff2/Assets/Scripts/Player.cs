@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     PlayerControls controls;
 
     Vector2 spawn;
-    
+
 
     Vector2 move;
 
@@ -35,14 +35,15 @@ public class Player : MonoBehaviour, IDamageable
 
     [SerializeField] private int maxHealth = 0;
 
-    public enum Input {KEYBOARD, GAMEPAD, ONLINE}
+    public enum Input { KEYBOARD, GAMEPAD, ONLINE }
     public Input isUsingInput = Input.KEYBOARD;
 
     public bool isMoving = false;
     public Vector2 direction;
+    private Vector2 lastDir;
 
 
-    public enum PlayerState { ALIVE, REVIVING, INVINCIBLE}
+    public enum PlayerState { ALIVE, REVIVING, INVINCIBLE }
     [SerializeField] private PlayerState state = PlayerState.ALIVE;
     [SerializeField] private int revivingRange = 10;
     [SerializeField] private float reviveCooldown = 30f;
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour, IDamageable
         get { return spawn; }
     }
 
-   
+
 
 
     private void Awake()
@@ -135,8 +136,9 @@ public class Player : MonoBehaviour, IDamageable
                 Debug.Log("subscribed");
                 if (isUsingInput == Input.GAMEPAD)
                 {
-                    pi.onActionTriggered += OnAction;
-                }else
+                    pi.onActionTriggered += OnAction2;
+                }
+                else
                 {
                     pi.onActionTriggered += OnAction2;
 
@@ -144,7 +146,7 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
 
-        
+
         rb = GetComponent<Rigidbody2D>();
 
         maxHealth = health;
@@ -190,7 +192,7 @@ public class Player : MonoBehaviour, IDamageable
             transform.GetComponent<BoxCollider2D>().enabled = false;
             move = Vector2.zero;
             playerColour.color = revivalColor;
-            if(isUsingInput == Input.KEYBOARD)
+            if (isUsingInput == Input.KEYBOARD)
             {
                 direction = Vector2.zero;
             }
@@ -250,7 +252,7 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    
+
 
     private void OnAction(InputAction.CallbackContext ctx)
     {
@@ -260,7 +262,7 @@ public class Player : MonoBehaviour, IDamageable
             {
                 if (ctx.action.phase == InputActionPhase.Performed)
                 {
-                    Move(ctx.ReadValue<Vector2>());
+                    direction = ctx.ReadValue<Vector2>();
                 }
                 else if (ctx.action.phase == InputActionPhase.Canceled)
                 {
@@ -273,16 +275,21 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnAction2(InputAction.CallbackContext ctx)
     {
-     
+
         if (state != PlayerState.REVIVING)
         {
             if (ctx.action.name == "move")
             {
                 if (ctx.action.phase == InputActionPhase.Performed)
                 {
-                    if(direction != ctx.ReadValue<Vector2>())
-                    direction += ctx.ReadValue<Vector2>();
-                    direction.Normalize();
+                    if (direction != ctx.ReadValue<Vector2>())
+                    {
+                        lastDir = direction;
+                        direction -= lastDir;
+                        direction += (ctx.ReadValue<Vector2>());
+                        direction.Normalize();
+                    }
+
                     isMoving = true;
                 }
                 else if (ctx.action.phase == InputActionPhase.Canceled)
@@ -300,10 +307,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (state != PlayerState.REVIVING)
         {
-            if (IsUsingInput == Input.KEYBOARD && isMoving)
-            {
-                Move(direction);
-            }
+            Move(direction);
             rb.MovePosition(move);
         }
     }
@@ -327,7 +331,7 @@ public class Player : MonoBehaviour, IDamageable
     public void Move(Vector2 direction)
     {
         move = rb.position + direction * speed * Time.fixedDeltaTime;
-      
+
         SetColour(health);
     }
 
@@ -342,7 +346,8 @@ public class Player : MonoBehaviour, IDamageable
         SetColour(health);
     }
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, revivingRange);
     }
