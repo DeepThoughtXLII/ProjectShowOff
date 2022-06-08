@@ -77,10 +77,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public int MaxHealth
     {
-        set
-        {
-            health += value - maxHealth;
-            maxHealth = value;
+        set {
+            maxHealth = value; 
         }
         get { return maxHealth; }
     }
@@ -300,6 +298,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         //Debug.Log(ctx);
     }
+
 
     void FixedUpdate()
     {

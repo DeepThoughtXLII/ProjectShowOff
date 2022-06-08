@@ -136,7 +136,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   revivalColor: {r: 0, g: 1, b: 0.1387968, a: 1}
-  isUsingInput: 0
+  maxHealth: 0
+  isUsingInput: 2
   isMoving: 0
   direction: {x: 0, y: 0}
   state: 0
@@ -165,8 +166,14 @@ MonoBehaviour:
     id: 0
     xpNeeded: 0
     hasUpgrade: 0
+    upgrade:
+      typeChosen: 3
+      AttackValue: 0
+      SpeedValue: 0
+      HealthValue: 0
   xp: 0
   nextLevelAt: 0
+  upgradesAvailable: 0
 --- !u!114 &312031399871027614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +194,7 @@ MonoBehaviour:
   targetable:
     serializedVersion: 2
     m_Bits: 128
+  dmg: 20
 --- !u!50 &4408252553113940420
 Rigidbody2D:
   serializedVersion: 4

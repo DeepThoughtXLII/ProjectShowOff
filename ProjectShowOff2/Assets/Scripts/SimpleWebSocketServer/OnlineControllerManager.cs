@@ -206,10 +206,6 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                 server.StartGame();
 
             }
-            else if (text.Contains("upgrade"))
-            {
-                parseUpgrades(text, id);
-            }
         }
         else if (server.State == Server.gameState.INGAME)
         {
@@ -223,6 +219,10 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             else if (text.Contains("shoot"))
             {
                 Shoot(id);
+            }
+            else if (text.Contains("upgrade"))
+            {
+                parseUpgrades(text, id);
             }
         }
 

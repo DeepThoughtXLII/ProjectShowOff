@@ -14,7 +14,7 @@ public interface IProjectile
 
     void HitTarget();
 
-    void ReceiveTarget(Transform target, int pOwnerId = -1);
+    void ReceiveTarget(Transform target, int dmg, int pOwnerId = -1);
 
     void HitObstacle();
 

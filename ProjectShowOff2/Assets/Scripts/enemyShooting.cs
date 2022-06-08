@@ -16,6 +16,8 @@ public class enemyShooting : MonoBehaviour
     public float firerate = 0.2f;
     bool readyToShoot = true;
 
+    public int bulletDamage;
+
     TargetingManager targetingManager;
 
     private void Start()
@@ -64,7 +66,7 @@ public class enemyShooting : MonoBehaviour
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             if (projectile != null)
             {
-                projectile.ReceiveTarget(target);
+                projectile.ReceiveTarget(target, bulletDamage);
             }
         }
         readyToShoot = false;

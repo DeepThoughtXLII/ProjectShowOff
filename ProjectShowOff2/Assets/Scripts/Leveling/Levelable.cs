@@ -85,8 +85,10 @@ public class Levelable : MonoBehaviour, ILevelable
                 Debug.Log("dmg upgrade");
                 break;
             case Upgrade.UpgradeType.HEALTH:
+                Debug.Log("health before: "+player.Health + "max health before:  " + player.MaxHealth + "upgrade Value: "+upgrade.HealthValue);
+                player.Health += upgrade.HealthValue;
                 player.MaxHealth += upgrade.HealthValue;
-                Debug.Log("health upgrade");
+                Debug.Log("health after: " + player.Health + "max health after:  " + player.MaxHealth);
                 break;
             case Upgrade.UpgradeType.SPEED:
                 player.speed += upgrade.SpeedValue;
@@ -100,8 +102,13 @@ public class Levelable : MonoBehaviour, ILevelable
 
     public void ChooseUpgrade(Upgrade.UpgradeType type)
     {
-        level.upgrade.ChoseType(type);
-        ApplyUpgrade(level.upgrade);
+        if(UpgradesToTake.Count > 0)
+        {
+            UpgradesToTake[0].ChoseType(type);
+            ApplyUpgrade(UpgradesToTake[0]);
+            UpgradesToTake.RemoveAt(0);
+        }
+
     }
 
 }

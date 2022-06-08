@@ -33,7 +33,7 @@ public class playerShooting : MonoBehaviour
         player = GetComponent<Player>();
         //controls.Gameplay.shoot.performed += ctx => Shoot();
         bulletScriptPrefab = bulletPrefab.GetComponent<IProjectile>();
-        dmg = bulletScriptPrefab.Damage;
+        //dmg = bulletScriptPrefab.Damage;
 
         Levelable.onUpgradeChosen += checkDamageValues; 
     }
@@ -93,7 +93,7 @@ private void Start()
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             if (projectile != null)
             {
-                projectile.ReceiveTarget(target, player.Id);
+                projectile.ReceiveTarget(target, dmg, player.Id);
             }
         }
     }

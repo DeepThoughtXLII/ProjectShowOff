@@ -47,10 +47,11 @@ public class bullet : MonoBehaviour, IProjectile
     }
 
 
-    public void ReceiveTarget(Transform target, int pOwnerId = -1)
+    public void ReceiveTarget(Transform target, int dmg, int pOwnerId = -1)
     {
         ownerId = pOwnerId;
         _target = target;
+        damage = dmg;
         StartCoroutine(lifeTime());
     }
 
