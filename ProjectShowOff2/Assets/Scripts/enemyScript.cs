@@ -52,7 +52,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     void OnDestroy()
     {
         waveSpawner.EnemiesAlive--;
-          Console.WriteLine("" + waveSpawner.EnemiesAlive);
+          //Console.WriteLine("" + waveSpawner.EnemiesAlive);
     }
 
 

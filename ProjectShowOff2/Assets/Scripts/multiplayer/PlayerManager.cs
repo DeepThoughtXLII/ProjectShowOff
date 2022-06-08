@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] Dictionary<int, playerShooting> playerShot = new Dictionary<int, playerShooting>();
 
+    Dictionary<int, Levelable> playerLevel = new Dictionary<int, Levelable>();
+
     public Transform[] spawnpoints;
 
     Server server;
@@ -23,6 +25,9 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        
+
+
         spawnpoints = new Transform[4];
 
         server = GetComponent<Server>();
@@ -69,6 +74,7 @@ public class PlayerManager : MonoBehaviour
         Player player = Instantiate<Player>(playerPrefab, transform);
         playerList[pId] = player;
         playerShot.Add(pId, player.GetComponent<playerShooting>());
+        playerLevel.Add(pId, player.GetComponent<Levelable>());
         player.name = name;
         player.Id = pId;
         //player.Spawn = new Vector2(spawnpoints[pId].position.x, spawnpoints[pId].position.x);
@@ -125,4 +131,20 @@ public class PlayerManager : MonoBehaviour
         }
         return true;
     }
+
+
+    public bool checkForPlayerUpgrades(int pId)
+    {
+        if (playerLevel[pId].upgradesAvailable)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void changeUpgradeType(int pId, Upgrade.UpgradeType type)
+    {
+        playerLevel[pId].ChooseUpgrade(type);
+    }
+    
 }

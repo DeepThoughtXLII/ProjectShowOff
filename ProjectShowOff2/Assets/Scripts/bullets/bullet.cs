@@ -28,7 +28,13 @@ public class bullet : MonoBehaviour, IProjectile
         set { ownerId = value; }
         get { return ownerId; }
     }
-   
+
+    public int Damage
+    {
+        set { damage = value; }
+        get { return damage; }
+    }
+
     void Update()
     {
         if (isFlying)

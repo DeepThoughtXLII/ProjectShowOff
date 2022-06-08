@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class Player : MonoBehaviour, IDamageable
 {
+
+    public static event Action onMaxHealthChange;
+    public static event Action onDamageTaken;
+    
+
 
     [SerializeField]
     private int health = 0;
@@ -26,7 +32,8 @@ public class Player : MonoBehaviour, IDamageable
     public Gradient playerGradient;
     public Color revivalColor;
 
-    private int maxHealth = 0;
+
+    [SerializeField] private int maxHealth = 0;
 
     public enum Input {KEYBOARD, GAMEPAD, ONLINE}
     public Input isUsingInput = Input.KEYBOARD;
@@ -69,7 +76,10 @@ public class Player : MonoBehaviour, IDamageable
 
     public int MaxHealth
     {
-        set { maxHealth = value; }
+        set {
+            health += value - maxHealth;
+            maxHealth = value; 
+        }
         get { return maxHealth; }
     }
 
@@ -112,7 +122,7 @@ public class Player : MonoBehaviour, IDamageable
 
         //InputSystem.GetDeviceById(id)
 
-        maxHealth = Health;
+
     }
 
     void Start()
@@ -137,8 +147,8 @@ public class Player : MonoBehaviour, IDamageable
         
         rb = GetComponent<Rigidbody2D>();
 
-
-
+        maxHealth = health;
+        
     }
 
 
@@ -147,6 +157,7 @@ public class Player : MonoBehaviour, IDamageable
         if (state == PlayerState.ALIVE)
         {
             health -= damage;
+            
             if (health <= 0)
             {
                 manageRevivalState();

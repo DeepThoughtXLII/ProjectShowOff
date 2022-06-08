@@ -337,6 +337,7 @@ MonoBehaviour:
   targetable:
     serializedVersion: 2
     m_Bits: 128
+  dmg: 0
 --- !u!114 &635014738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,8 +354,14 @@ MonoBehaviour:
     id: 0
     xpNeeded: 0
     hasUpgrade: 0
+    upgrade:
+      typeChosen: 3
+      AttackValue: 0
+      SpeedValue: 0
+      HealthValue: 0
   xp: 0
   nextLevelAt: 0
+  upgradesAvailable: 0
 --- !u!114 &635014739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,6 +746,7 @@ MonoBehaviour:
   targetable:
     serializedVersion: 2
     m_Bits: 128
+  dmg: 0
 --- !u!61 &338532481514810537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -781,8 +789,14 @@ MonoBehaviour:
     id: 0
     xpNeeded: 0
     hasUpgrade: 0
+    upgrade:
+      typeChosen: 3
+      AttackValue: 0
+      SpeedValue: 0
+      HealthValue: 0
   xp: 0
   nextLevelAt: 0
+  upgradesAvailable: 0
 --- !u!114 &924684509678073402
 MonoBehaviour:
   m_ObjectHideFlags: 0

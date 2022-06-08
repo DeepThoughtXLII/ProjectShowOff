@@ -642,7 +642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.7462501, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.000076294, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418850286
@@ -1486,7 +1486,7 @@ PrefabInstance:
       objectReference: {fileID: 1690258265}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: usesControls
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773319, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: m_RootOrder
@@ -1535,6 +1535,38 @@ PrefabInstance:
     - target: {fileID: 8414478469655773434, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: m_Name
       value: server
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[1].hasUpgrade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[1].upgrade.value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[1].upgrade.SpeedValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[6].upgrade.SpeedValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[1].upgrade.AttackValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[1].upgrade.HealthValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[6].upgrade.AttackValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[6].upgrade.HealthValue
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
@@ -1860,7 +1892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.17125, y: 0}
   m_AnchorMax: {x: 0.81624997, y: 1}
-  m_AnchoredPosition: {x: 1.1369629, y: -0.4999504}
+  m_AnchoredPosition: {x: 1.1369629, y: -0.4999466}
   m_SizeDelta: {x: 2.2965698, y: -0.038002014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314437015

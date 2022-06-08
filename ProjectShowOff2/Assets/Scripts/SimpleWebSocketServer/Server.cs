@@ -33,6 +33,8 @@ public class Server : MonoBehaviour
 
     public int minAmountOfPlayers = 1;
 
+    public bool testing = true;
+
     public gameState State
     {
         get { return state; }
@@ -110,7 +112,7 @@ public class Server : MonoBehaviour
         }
         else if (state == gameState.INGAME)
         {
-            if (playerManager.PlayersAllDead())
+            if (playerManager.PlayersAllDead() && !testing)
             {
                 state = gameState.GAMEOVER;
             }

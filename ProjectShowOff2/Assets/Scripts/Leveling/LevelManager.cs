@@ -64,6 +64,20 @@ public class Level
 [System.Serializable]
 public class Upgrade
 {
+    public enum UpgradeType { ATTACK, SPEED, HEALTH, UNDEFINED }
+    public UpgradeType typeChosen = UpgradeType.UNDEFINED;
 
+    public int AttackValue = 0;
+    public int SpeedValue = 0;
+    public int HealthValue = 0;
 
+    public Upgrade()
+    {
+        
+    }
+
+    public void ChoseType(UpgradeType type)
+    {
+        typeChosen = type;
+    }
 }

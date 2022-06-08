@@ -14,6 +14,7 @@ public class playerShooting : MonoBehaviour
     public float range = 1.5f;
 
     public GameObject bulletPrefab;
+    public IProjectile bulletScriptPrefab;
     public Transform firepoint;
 
     public string enemyTag = "enemyTag";
@@ -24,11 +25,25 @@ public class playerShooting : MonoBehaviour
 
     private Player player;
 
+    public int dmg = 0;
+
     private void Awake()
     {
         //controls = new PlayerControls();
         player = GetComponent<Player>();
         //controls.Gameplay.shoot.performed += ctx => Shoot();
+        bulletScriptPrefab = bulletPrefab.GetComponent<IProjectile>();
+        dmg = bulletScriptPrefab.Damage;
+
+        Levelable.onUpgradeChosen += checkDamageValues; 
+    }
+
+    private void checkDamageValues()
+    {
+        if(dmg != bulletScriptPrefab.Damage)
+        {
+            bulletScriptPrefab.Damage = dmg;
+        }
     }
 
     private void OnEnable()

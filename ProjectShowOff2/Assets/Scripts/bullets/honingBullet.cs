@@ -21,6 +21,13 @@ public class honingBullet : MonoBehaviour, IProjectile
         get { return ownerId; }
     }
 
+
+    public int Damage
+    {
+        set { damage = value; }
+        get { return damage; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

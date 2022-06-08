@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.Linq;
-using WebSockets;                                                                                                                                                                                                                               
+using WebSockets;
 using UnityEngine.InputSystem;
 using System;
 using System.Net.Sockets;
@@ -22,7 +22,6 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     Dictionary<int, OnlinePlayerInput> controllers;
 
-    Dictionary<TcpClient, int> oldClients;
 
     PlayerManager playerManager;
 
@@ -33,46 +32,56 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     Server server;
 
-    
+
+
+
+
+
+    void Start()
+    {
+
+
+        Debug.Log("Start 1");
+        // Create a server that listens for connection requests:
+        listener = new WebsocketListener();
+        listener.Start();
+
+
    
 
-    private void Awake()
-    {
+
+        Levelable.onUpgrade += onUpgrade;
+
+        // Create a list of active connections:
+        //clients = new List<WebSocketConnection>();
+        clients = new Dictionary<int, WebSocketConnection>();
+        clients2 = new Dictionary<WebSocketConnection, int>();
+        //circles = new Dictionary<int, GameObject>();
+
+        faultyClients = new List<int>();
+
+        idCount = 0;
+
+
         playerManager = GetComponent<PlayerManager>();
         server = GetComponent<Server>();
         controllers = new Dictionary<int, OnlinePlayerInput>();
         onWaitlist = new Dictionary<int, WebSocketConnection>();
-        Debug.Log("awake");
-    }
 
-    void Start()
-    {
-            // Create a server that listens for connection requests:
-            listener = new WebsocketListener();
-            listener.Start();
-
-            // Create a list of active connections:
-            //clients = new List<WebSocketConnection>();
-            clients = new Dictionary<int, WebSocketConnection>();
-            clients2 = new Dictionary<WebSocketConnection, int>();
-            //circles = new Dictionary<int, GameObject>();
-
-            faultyClients = new List<int>();
-            oldClients = new Dictionary<TcpClient, int>();
-        
-            idCount = 0;
-        
     }
 
     void Update()
     {
-            // Check for new connections:
-            ProcessNewClients();
-            ProcessCurrentClients();
-            detectFaultyClients();
+        // Check for new connections:
+        ProcessNewClients();
+        ProcessCurrentClients();
+        detectFaultyClients();
     }
 
-
+    private void OnDestroy()
+    {
+        Levelable.onUpgrade -= onUpgrade;
+    }
 
     /// <summary>
     /// This method is called by WebSocketConnections when their Update method is called and a packet comes in.
@@ -80,7 +89,8 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///   (parse the (string) package data, and depending on contents, call other methods, implement game play rules, etc). 
     /// Currently it only does some very simple string processing, and echoes and broadcasts a message.
     /// </summary>
-    void OnPacketReceive(NetworkPacket packet, WebSocketConnection connection) {
+    void OnPacketReceive(NetworkPacket packet, WebSocketConnection connection)
+    {
 
         string text = Encoding.UTF8.GetString(packet.Data);
         Console.WriteLine("Received a packet: {0}", text);
@@ -97,13 +107,13 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         bytes = Encoding.UTF8.GetBytes(response);
         connection.Send(new NetworkPacket(bytes));*/
 
-       /* //// broadcast:
-        string message = connection.RemoteEndPoint.ToString() + " says: " + text;
-        bytes = Encoding.UTF8.GetBytes(message);
-        Broadcast(new NetworkPacket(bytes));*/
+        /* //// broadcast:
+         string message = connection.RemoteEndPoint.ToString() + " says: " + text;
+         bytes = Encoding.UTF8.GetBytes(message);
+         Broadcast(new NetworkPacket(bytes));*/
     }
 
-  
+
 
 
     void ProcessNewClients()
@@ -126,9 +136,9 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     void ProcessCurrentClients()
     {
-        if(onWaitlist.Count > 0)
+        if (onWaitlist.Count > 0)
         {
-            foreach(KeyValuePair<int, WebSocketConnection> client in onWaitlist)
+            foreach (KeyValuePair<int, WebSocketConnection> client in onWaitlist)
             {
                 if (client.Value.Status == ConnectionStatus.Connected)
                 {
@@ -141,6 +151,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             if (client.Value.Status == ConnectionStatus.Connected)
             {
                 client.Value.Update();
+
             }
         }
     }
@@ -157,7 +168,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         OnlinePlayerInput pIScript = pi.GetComponent<OnlinePlayerInput>();
         pIScript.Index = id;
         pIScript.UIrep = server.GetPlayerUILobby(id);
-        if(name != null)
+        if (name != null)
         {
             pIScript.Name = name;
         }
@@ -165,7 +176,8 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         if (id != 0)
         {
             clients[id].SendMessage("nameAccepted");
-        }else
+        }
+        else
         {
             clients[id].SendMessage("gameLeader");
         }
@@ -173,7 +185,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     void parseCommand(string text, int id)
     {
-        if(server.State == Server.gameState.LOBBY)
+        if (server.State == Server.gameState.LOBBY)
         {
             if (text.Contains("playerName"))
             {
@@ -192,10 +204,14 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             else if (text.Contains("startGame"))
             {
                 server.StartGame();
-               
+
             }
-        } 
-        else if(server.State == Server.gameState.INGAME)
+            else if (text.Contains("upgrade"))
+            {
+                parseUpgrades(text, id);
+            }
+        }
+        else if (server.State == Server.gameState.INGAME)
         {
             if (text.Contains("newInput"))
             {
@@ -209,7 +225,25 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                 Shoot(id);
             }
         }
-         
+
+    }
+
+    void parseUpgrades(string text, int id)
+    {
+        int cmd1 = text.IndexOf('!');
+        text = text.Remove(0, cmd1 + 1);
+        switch (text)
+        {
+            case "Health":
+                playerManager.changeUpgradeType(id, Upgrade.UpgradeType.HEALTH);
+                break;
+            case "Attack":
+                playerManager.changeUpgradeType(id, Upgrade.UpgradeType.ATTACK);
+                break;
+            case "Speed":
+                playerManager.changeUpgradeType(id, Upgrade.UpgradeType.SPEED);
+                break;
+        }
     }
 
     void Shoot(int id)
@@ -228,13 +262,28 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     void resolveJoystickInput(Vector2 input, int id)
     {
         Vector2 m = new Vector2(input.x, input.y * -1);
+        m.Normalize();
         //circles[id].transform.Translate(m, Space.World);
         playerManager.MovePlayer(m, id);
     }
 
-    void Broadcast(string msg) {
-        foreach (KeyValuePair<int,WebSocketConnection> cl in clients) {
+    void Broadcast(string msg)
+    {
+        foreach (KeyValuePair<int, WebSocketConnection> cl in clients)
+        {
             cl.Value.SendMessage(msg);
+        }
+    }
+
+    private void onUpgrade()
+    {
+        foreach (KeyValuePair<int, WebSocketConnection> client in clients)
+        {
+            if (server.State == Server.gameState.INGAME && playerManager.checkForPlayerUpgrades(client.Key))
+            {
+                client.Value.SendMessage("upgrade");
+                Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHHHH UPGRADE YIPPIEYAYYOOOOOOOO");
+            }
         }
     }
 
@@ -245,7 +294,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     public void OnGameStart()
     {
-        foreach(KeyValuePair<int, OnlinePlayerInput> player in controllers)
+        foreach (KeyValuePair<int, OnlinePlayerInput> player in controllers)
         {
             clients[player.Key].SendMessage("gameStart");
             player.Value.UIrep = null;
@@ -256,7 +305,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             player.Value.gameObject.SetActive(false);
             //p.transform.SetParent(player.Value.transform);
         }
-       
+
     }
 
     private void detectFaultyClients()
@@ -281,7 +330,6 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         {
             foreach (int id in faultyClients)
             {
-                oldClients.Add(clients[id].GetClient(), id);
                 clients.Remove(id);
                 controllers[id].Disconnected();
                 controllers.Remove(id);
@@ -293,10 +341,10 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     void addClient(int id, string name)
     {
-            clients.Add(id, onWaitlist[id]);
-            //clients2.Add(onWaitlist[id], id);
-            InstantiateClient(id, name);
-            Console.WriteLine("Accepted new client with id: " + id);
+        clients.Add(id, onWaitlist[id]);
+        //clients2.Add(onWaitlist[id], id);
+        InstantiateClient(id, name);
+        Console.WriteLine("Accepted new client with id: " + id);
     }
 
 

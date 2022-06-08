@@ -7,6 +7,9 @@ public interface IProjectile
 
     public int OwnerId { get; set; }
 
+    public int Damage { get; set; }
+
+
     void FlyTowardTarget();
 
     void HitTarget();

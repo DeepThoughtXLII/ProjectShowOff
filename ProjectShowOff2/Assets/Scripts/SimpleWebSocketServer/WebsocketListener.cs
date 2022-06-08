@@ -25,8 +25,14 @@ namespace WebSockets {
 			ready = new List<TcpClient>();
 		}
 
+        public TcpListener getListener()
+        {
+            return listener;
+        }
+
 		public void Start() {
 			listener.Start();
+            Console.WriteLine("START");
 		}
 
         public bool Pending() {

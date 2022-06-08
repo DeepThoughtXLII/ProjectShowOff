@@ -1,19 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Levelable : MonoBehaviour, ILevelable
 {
+
+
+    public static event Action onUpgrade;
+    public static event Action onUpgradeChosen;
+
+
     [SerializeField]private Level level;
 
     [SerializeField] private int xp = 0;
 
     [SerializeField] private int nextLevelAt = 0;
 
+    private List<Upgrade> UpgradesToTake;
+    private List<Upgrade> UpgradesTaken;
+
     private LevelManager lvlManager;
+
+    private Player player;
+    private playerShooting playerShot;
+
+
+    public bool upgradesAvailable;
 
     private void Start()
     {
+        player = GetComponent<Player>();
+        playerShot = GetComponent<playerShooting>();
+        UpgradesToTake = new List<Upgrade>();
+        UpgradesTaken = new List<Upgrade>();
+
         lvlManager = transform.parent.GetComponentInChildren<LevelManager>();//GetComponentInSibling<LevelManager>();
         level = lvlManager.GetLevel(1);
         nextLevelAt = level.xpNeeded;
@@ -42,9 +63,45 @@ public class Levelable : MonoBehaviour, ILevelable
         xp += pXp;
         if(xp >= nextLevelAt)
         {
-            Debug.Log("LEVEL UP YAY!");
+            //Debug.Log("LEVEL UP YAY!");
             LevelUp(lvlManager.GetNextLevel(level));
+            if (level.hasUpgrade)
+            {
+                UpgradesToTake.Add(level.upgrade);
+                upgradesAvailable = true;
+                Debug.Log("upgrade booyaaa");
+                onUpgrade();
+
+            }
         }
+    }
+
+    public void ApplyUpgrade(Upgrade upgrade)
+    {
+        switch (upgrade.typeChosen)
+        {
+            case Upgrade.UpgradeType.ATTACK:
+                playerShot.dmg += upgrade.AttackValue;
+                Debug.Log("dmg upgrade");
+                break;
+            case Upgrade.UpgradeType.HEALTH:
+                player.MaxHealth += upgrade.HealthValue;
+                Debug.Log("health upgrade");
+                break;
+            case Upgrade.UpgradeType.SPEED:
+                player.speed += upgrade.SpeedValue;
+                Debug.Log("speed upgrade");
+                break;
+            case Upgrade.UpgradeType.UNDEFINED:
+                
+                break;
+        }
+    }
+
+    public void ChooseUpgrade(Upgrade.UpgradeType type)
+    {
+        level.upgrade.ChoseType(type);
+        ApplyUpgrade(level.upgrade);
     }
 
 }
