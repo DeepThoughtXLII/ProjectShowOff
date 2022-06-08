@@ -115,14 +115,6 @@ public class PlayerManager : MonoBehaviour
     public void MovePlayer(Vector2 direction, int pId)
     {
         Player player = GetPlayer(pId);
-        if(curDir != direction)
-        {
-            lastDir = curDir;
-            curDir -= lastDir;
-            curDir += direction;
-            curDir.Normalize();
-        }
-
         player.Move(direction);
     }
 

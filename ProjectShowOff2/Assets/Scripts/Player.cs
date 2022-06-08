@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public static event Action onMaxHealthChange;
     public static event Action onDamageTaken;
-    
+
 
 
     [SerializeField]
@@ -77,9 +77,10 @@ public class Player : MonoBehaviour, IDamageable
 
     public int MaxHealth
     {
-        set {
+        set
+        {
             health += value - maxHealth;
-            maxHealth = value; 
+            maxHealth = value;
         }
         get { return maxHealth; }
     }
@@ -150,7 +151,7 @@ public class Player : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
 
         maxHealth = health;
-        
+
     }
 
 
@@ -159,7 +160,7 @@ public class Player : MonoBehaviour, IDamageable
         if (state == PlayerState.ALIVE)
         {
             health -= damage;
-            
+
             if (health <= 0)
             {
                 manageRevivalState();
@@ -284,10 +285,7 @@ public class Player : MonoBehaviour, IDamageable
                 {
                     if (direction != ctx.ReadValue<Vector2>())
                     {
-                        lastDir = direction;
-                        direction -= lastDir;
-                        direction += (ctx.ReadValue<Vector2>());
-                        direction.Normalize();
+                        direction = ctx.ReadValue<Vector2>();
                     }
 
                     isMoving = true;
@@ -328,8 +326,16 @@ public class Player : MonoBehaviour, IDamageable
         Destroy(this);
     }
 
-    public void Move(Vector2 direction)
+    public void Move(Vector2 moveDirection)
     {
+        if (state != PlayerState.REVIVING)
+        {
+            lastDir = direction;
+            direction -= lastDir;
+            direction += (moveDirection);
+            direction.Normalize();
+        }
+
         move = rb.position + direction * speed * Time.fixedDeltaTime;
 
         SetColour(health);
