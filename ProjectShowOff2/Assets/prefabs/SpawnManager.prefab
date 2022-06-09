@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68fe595b975c81545a9af8b9633bd897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawn1: {fileID: 0}
-  Spawn2: {fileID: 0}
-  enemyPrefab: {fileID: 7261108951645099698, guid: 3884927fd327d7e4098b60632ae7c8ee, type: 3}
-  TimeBetweenSpawns: 1
+  waves: []
+  waveEnemies:
+  - enemyPrefab: {fileID: 1456903649132177477, guid: a490b0c5bb29ca64eba8ea59888102ae, type: 3}
+    enemyDangerLevel: 1
+  - enemyPrefab: {fileID: 1456903649132177477, guid: 218f07c4fe7df9247b3ea2a570541eca, type: 3}
+    enemyDangerLevel: 5
+  TimeBetweenWaves: 0

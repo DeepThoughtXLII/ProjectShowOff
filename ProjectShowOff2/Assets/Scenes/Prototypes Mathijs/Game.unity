@@ -348,7 +348,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.9
+  m_fontSize: 25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4719,7 +4719,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.9
+  m_fontSize: 25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5939,10 +5939,6 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4723942408950057523, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
-      propertyPath: waveEnemies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723942408950057523, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
       propertyPath: waves.Array.data[0].spawnRate
       value: 1
       objectReference: {fileID: 0}
@@ -5981,22 +5977,6 @@ PrefabInstance:
     - target: {fileID: 4723942408950057523, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
       propertyPath: waves.Array.data[4].waveDangerLevel
       value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723942408950057523, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
-      propertyPath: waveEnemies.Array.data[0].enemyPrefab
-      value: 
-      objectReference: {fileID: 1456903649132177477, guid: a490b0c5bb29ca64eba8ea59888102ae, type: 3}
-    - target: {fileID: 4723942408950057523, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
-      propertyPath: waveEnemies.Array.data[1].enemyPrefab
-      value: 
-      objectReference: {fileID: 1456903649132177477, guid: 218f07c4fe7df9247b3ea2a570541eca, type: 3}
-    - target: {fileID: 4723942408950057523, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
-      propertyPath: waveEnemies.Array.data[0].enemyDangerLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723942408950057523, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
-      propertyPath: waveEnemies.Array.data[1].enemyDangerLevel
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d05dbc313a1bf44a9b8d178cab77ff1, type: 3}
@@ -6795,7 +6775,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.9
+  m_fontSize: 25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7474,7 +7454,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.9
+  m_fontSize: 25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

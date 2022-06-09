@@ -14,6 +14,8 @@ public class enemyShooting : MonoBehaviour
     public Transform firepoint;
 
     public float firerate = 0.2f;
+    public int damage = 1;
+
     bool readyToShoot = true;
 
     public int bulletDamage;

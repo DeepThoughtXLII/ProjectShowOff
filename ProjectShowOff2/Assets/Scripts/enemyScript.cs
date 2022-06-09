@@ -8,13 +8,6 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     [SerializeField]
     private int health = 0;
-    
-
-    public float attackSpeed = 0;
-    public int damage = 0;
-    public float attackRange = 0;
-
-    private float passedTime = 0;
 
     SpriteRenderer rend;
 
@@ -95,7 +88,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
             if(player.State != Player.PlayerState.REVIVING)
             {
                 walkTowardsPlayer();
-                inRangeOfPlayer();
+                //inRangeOfPlayer();
             } else
             {
                 player = targetingManager.GetTarget(transform);
@@ -110,28 +103,11 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
        
     }
 
-    void inRangeOfPlayer()
-    {
-        Vector2 dir = player.transform.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
-
-        if(dir.magnitude <= attackRange)
-        {
-            if(passedTime <= 0)
-            {
-                AttackPlayer();
-                passedTime = attackSpeed;
-            }
-        }
-
-        passedTime -= Time.deltaTime;
-    }
-
-    public void AttackPlayer()
-    {
-        IDamageable playerDam = player.GetComponent<IDamageable>();
-        playerDam.takeDamage(damage);
-    }
+    //public void AttackPlayer()
+    //{
+    //    IDamageable playerDam = player.GetComponent<IDamageable>();
+    //    playerDam.takeDamage(damage);
+    //}
 
     void walkTowardsPlayer()
     {
@@ -140,9 +116,4 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
 }
