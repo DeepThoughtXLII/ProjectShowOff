@@ -408,6 +408,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   revivalColor: {r: 0, g: 1, b: 0.1387968, a: 0}
+  maxHealth: 0
   isUsingInput: 0
   isMoving: 0
   direction: {x: 0, y: 0}
@@ -863,6 +864,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   revivalColor: {r: 0, g: 1, b: 0.1387968, a: 0}
+  maxHealth: 0
   isUsingInput: 0
   isMoving: 0
   direction: {x: 0, y: 0}
@@ -1196,6 +1198,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1640329167883588167, guid: 5c77c40d69f5f6b4d81563c25d30449a, type: 3}
   firepoint: {fileID: 6311797072242728867}
   firerate: 1.25
+  bulletDamage: 0
 --- !u!1 &8212733444456594902
 GameObject:
   m_ObjectHideFlags: 0

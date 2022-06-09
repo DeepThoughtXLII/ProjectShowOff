@@ -74,6 +74,7 @@ private void Start()
             if (ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
             {
                 Shoot();
+                FindObjectOfType<SoundManager>().Play("playerShoot");
             }
         }
         

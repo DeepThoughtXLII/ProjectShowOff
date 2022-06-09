@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2059556446646124757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2059556446646124747}
+  - component: {fileID: 2059556446646124746}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2059556446646124747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059556446646124757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.8999996, y: 6.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2059556446646124746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059556446646124757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e99e3713c7444c06a92b523ccc8b608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: bossMusic
+    clip: {fileID: 8300000, guid: 163a40da7a6184d498333218d70c83d1, type: 3}
+    volume: 0.173
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: ingameMusic
+    clip: {fileID: 8300000, guid: 0c56da6216bb7c241b26ee8ab0717583, type: 3}
+    volume: 0.142
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: playerWalk
+    clip: {fileID: 8300000, guid: 634a27dd603ee75498e28abf22caad68, type: 3}
+    volume: 0.755
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: playerShoot
+    clip: {fileID: 8300000, guid: f321e42350a7bb7468996703f97aa320, type: 3}
+    volume: 0.051
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: playerRevive
+    clip: {fileID: 8300000, guid: 627f73e4c11dfd94c9b4dc6b9aed7a3a, type: 3}
+    volume: 0.197
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: playerDamageVoice
+    clip: {fileID: 8300000, guid: 767ffbb43e8962a44b79747cb87a3150, type: 3}
+    volume: 0.081
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: playerDeath
+    clip: {fileID: 8300000, guid: 7f94f1f36dffd594283e341ca7c93e41, type: 3}
+    volume: 0.155
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: playerLevelUp
+    clip: {fileID: 8300000, guid: 524b4dfa8d044664b8143a02dffc15b2, type: 3}
+    volume: 0.13
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: corruptedAngel
+    clip: {fileID: 8300000, guid: ba29110865d75964dbc94641e5ffd398, type: 3}
+    volume: 0.167
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: archAngel
+    clip: {fileID: 8300000, guid: b22a4c3ed5f2dc24db111f21c52b8be2, type: 3}
+    volume: 0.204
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: angelica
+    clip: {fileID: 8300000, guid: b83ec141676bb4d4b9e1eb1f7418e571, type: 3}
+    volume: 0.228
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: shadowAngel
+    clip: {fileID: 8300000, guid: 81cfc09cc3efd7e4d9b630e7a23d916f, type: 3}
+    volume: 0.302
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemyDeath
+    clip: {fileID: 8300000, guid: 49bed4da118ddad4cacf7a672ee463aa, type: 3}
+    volume: 0.13
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: windAmbience
+    clip: {fileID: 8300000, guid: 0f4205dbe3dc0a948b4dd1cbeba879c0, type: 3}
+    volume: 0.075
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: finalBossAmbience
+    clip: {fileID: 8300000, guid: 445db914ac6f02948be4fc6263584bd1, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  mixer: {fileID: 24300002, guid: 7e58c89ebaa76a340a45ce144ea8d7b8, type: 2}

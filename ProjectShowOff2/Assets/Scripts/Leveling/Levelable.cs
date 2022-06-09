@@ -56,6 +56,7 @@ public class Levelable : MonoBehaviour, ILevelable
     {
         level = lvl;
         nextLevelAt = lvl.xpNeeded;
+        FindObjectOfType<SoundManager>().Play("playerLevelUp");
     }
 
     public void GainXP(int pXp)

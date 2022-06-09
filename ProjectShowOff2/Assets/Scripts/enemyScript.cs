@@ -37,6 +37,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         if (health <= 0)
         {
             Destroy(gameObject);
+            FindObjectOfType<SoundManager>().Play("enemyDeath");
             return;
         }
         player = targetingManager.GetTarget(transform);

@@ -158,10 +158,12 @@ public class Player : MonoBehaviour, IDamageable
         if (state == PlayerState.ALIVE)
         {
             health -= damage;
+            FindObjectOfType<SoundManager>().Play("playerDamageVoice");
 
             if (health <= 0)
             {
                 manageRevivalState();
+                FindObjectOfType<SoundManager>().Play("playerDeath");
             }
         }
     }
@@ -172,6 +174,7 @@ public class Player : MonoBehaviour, IDamageable
         manageRevivalState();
         yield return new WaitForSeconds(invincibilityInSec);
         state = PlayerState.ALIVE;
+        FindObjectOfType<SoundManager>().Play("playerRevive");
     }
 
     public void StateCheck()
@@ -333,6 +336,9 @@ public class Player : MonoBehaviour, IDamageable
             direction -= lastDir;
             direction += (moveDirection);
             direction.Normalize();
+
+            FindObjectOfType<SoundManager>().Play("playerWalk");
+
         }
 
         move = rb.position + direction * speed * Time.fixedDeltaTime;
@@ -346,6 +352,7 @@ public class Player : MonoBehaviour, IDamageable
         if (context.performed)
         {
             move = context.ReadValue<Vector2>() * speed * Time.fixedDeltaTime;
+            FindObjectOfType<SoundManager>().Play("playerWalk");
         }
         transform.Translate(move, Space.World);
         SetColour(health);
