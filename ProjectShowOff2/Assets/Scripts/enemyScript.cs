@@ -10,6 +10,8 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     private int health = 0;
 
     public string damageSound;
+    public enum pathingType { SIMPLE, SHADOW, SMART }
+    [SerializeField] private pathingType pathing = pathingType.SIMPLE;
 
     SpriteRenderer rend;
 
@@ -20,17 +22,35 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     Player player = null;
 
     public float speed = 3f;
+    private CircleCollider2D collisionBox;
+    [Header("Shadow Pathing")]
+    public float EmergeSpeed;
+    public int EmergeDamage;
+    public float MeleeRange;
+    public float TimeBeforeDissapear;
 
     bool isTarget = false;
+
+    bool _emerging = false;
 
     public TargetingManager targetingManager;
 
     Rigidbody2D rb;
 
+
+    //Temp sprite renderer colour change
+    public SpriteRenderer spriteColour;
+
     public int Health
     {
         set { health = value; }
         get { return health; }
+    }
+
+    public pathingType State
+    {
+        set { pathing = value; }
+        get { return pathing; }
     }
 
     public void takeDamage(int damage)
@@ -49,7 +69,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     void OnDestroy()
     {
         waveSpawner.EnemiesAlive--;
-          //Console.WriteLine("" + waveSpawner.EnemiesAlive);
+        //Console.WriteLine("" + waveSpawner.EnemiesAlive);
     }
 
 
@@ -77,23 +97,55 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         speed = Random.Range(0.3f, speed);
         rb = GetComponent<Rigidbody2D>();
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
+        collisionBox = gameObject.GetComponent<CircleCollider2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         player = targetingManager.GetTarget(transform);
+        spriteColour.color = Color.gray;
+        if (pathing == pathingType.SHADOW)
+        {
+            collisionBox.enabled = false;
+        }
     }
 
     void FixedUpdate()
     {
         if (player != null)
         {
-            if(player.State != Player.PlayerState.REVIVING)
+            if (player.State != Player.PlayerState.REVIVING)
             {
-                walkTowardsPlayer();
+                if (pathing == pathingType.SIMPLE)
+                {
+                    walkTowardsPlayer();
+                }
+                else if (pathing == pathingType.SHADOW)
+                {
+                    if (_emerging == false)
+                    {
+                        walkTowardsPlayer();
+                        if (Vector2.Distance(player.transform.position, transform.position) < 0.1)
+                        {
+                            _emerging = true;
+                            spriteColour.color = Color.yellow;
+                        }
+
+                    }
+                    else if (_emerging == true)
+                    {
+                        StartCoroutine(Emerging());
+                    }
+
+                }
+                else if (pathing == pathingType.SMART)
+                {
+
+                }
                 //inRangeOfPlayer();
-            } else
+            }
+            else
             {
                 player = targetingManager.GetTarget(transform);
             }
@@ -104,14 +156,29 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 
-    //public void AttackPlayer()
-    //{
-    //    IDamageable playerDam = player.GetComponent<IDamageable>();
-    //    playerDam.takeDamage(damage);
-    //}
+    public void AttackPlayer()
+    {
+        if (Vector2.Distance(player.transform.position, transform.position) < MeleeRange)
+        {
+            IDamageable playerDam = player.GetComponent<IDamageable>();
+            playerDam.takeDamage(EmergeDamage);
+        }
+    }
+
+    public IEnumerator Emerging()
+    {
+        yield return new WaitForSeconds(EmergeSpeed);
+        AttackPlayer();
+        collisionBox.enabled = true;
+        yield return new WaitForSeconds(TimeBeforeDissapear);
+        collisionBox.enabled = false;
+        _emerging = false;
+        spriteColour.color = Color.gray;
+
+    }
 
     void walkTowardsPlayer()
     {
