@@ -142,7 +142,8 @@ MonoBehaviour:
     DefaultPreset: " <sbspreset pkgurl=\"pkg://marble\" label=\"\" >\n  <presetinput
       identifier=\"$outputsize\" uid=\"3925280688\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
     CurrentStatePreset: " <sbspreset pkgurl=\"pkg://marble\" label=\"\" >\n  <presetinput
-      identifier=\"$outputsize\" uid=\"3925280688\" type=\"8\" value=\"10,10\" />\n</sbspreset>\n"
+      identifier=\"$outputsize\" uid=\"3925280688\" type=\"8\" value=\"10,10\" />\n
+      </sbspreset>\n"
     IsRuntimeOnly: 0
   RefreshMaterial: 1
   Name: graph_0

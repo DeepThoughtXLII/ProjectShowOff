@@ -55,12 +55,12 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     public void takeDamage(int damage)
     {
-        FindObjectOfType<SoundManager>().Play(damageSound);
+        //FindObjectOfType<SoundManager>().Play(damageSound);
         health -= damage;
         if (health <= 0)
         {
             Destroy(gameObject);
-            FindObjectOfType<SoundManager>().Play("enemyDeath");
+            //FindObjectOfType<SoundManager>().Play("enemyDeath");
             return;
         }
         player = targetingManager.GetTarget(transform);
@@ -103,6 +103,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     // Start is called before the first frame update
     void Start()
     {
+        spriteColour = rend;
         player = targetingManager.GetTarget(transform);
         spriteColour.color = Color.gray;
         if (pathing == pathingType.SHADOW)

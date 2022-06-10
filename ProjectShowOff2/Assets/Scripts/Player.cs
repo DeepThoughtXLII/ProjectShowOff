@@ -6,10 +6,7 @@ using System;
 
 public class Player : MonoBehaviour, IDamageable
 {
-
-    public static event Action onMaxHealthChange;
-    public static event Action onDamageTaken;
-
+    public static event Action onBossDeath;
 
 
     [SerializeField]
@@ -43,7 +40,7 @@ public class Player : MonoBehaviour, IDamageable
     private Vector2 lastDir;
 
 
-    public enum PlayerState { ALIVE, REVIVING, INVINCIBLE }
+    public enum PlayerState { ALIVE, REVIVING, INVINCIBLE, BOSS }
     [SerializeField] private PlayerState state = PlayerState.ALIVE;
     [SerializeField] private int revivingRange = 10;
     [SerializeField] private float reviveCooldown = 30f;
@@ -155,18 +152,28 @@ public class Player : MonoBehaviour, IDamageable
 
     public void takeDamage(int damage)
     {
-        if (state == PlayerState.ALIVE)
+        if (state == PlayerState.ALIVE || state == PlayerState.BOSS)
         {
+            Debug.Log("DAMAGEEEEEEE");
             health -= damage;
             FindObjectOfType<SoundManager>().Play("playerDamageVoice");
 
             if (health <= 0)
             {
-                manageRevivalState();
-                FindObjectOfType<SoundManager>().Play("playerDeath");
-            }
+                if (state != PlayerState.BOSS)
+                {
+                    manageRevivalState();
+                    FindObjectOfType<SoundManager>().Play("playerDeath");
+                }else
+                {
+                    onBossDeath();
+                }
+                
+            } 
         }
     }
+
+
 
     IEnumerator Invincible()
     {
@@ -206,6 +213,7 @@ public class Player : MonoBehaviour, IDamageable
             SetColour(health);
         }
     }
+
 
 
     void playerProximityCheck()
@@ -357,6 +365,18 @@ public class Player : MonoBehaviour, IDamageable
         transform.Translate(move, Space.World);
         SetColour(health);
     }
+
+    public void bossMode()
+    {
+        Debug.Log("boosmOde");
+        gameObject.tag = "enemy";
+        state = PlayerState.BOSS;
+        transform.localScale *= 2;
+        maxHealth *= 2;
+        health = maxHealth;
+        speed *= 1.5f;
+    }
+
 
     private void OnDrawGizmos()
     {

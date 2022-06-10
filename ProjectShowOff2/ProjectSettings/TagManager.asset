@@ -9,6 +9,7 @@ TagManager:
   - server
   - spawnPoints
   - targetManager
+  - Boss
   layers:
   - Default
   - TransparentFX

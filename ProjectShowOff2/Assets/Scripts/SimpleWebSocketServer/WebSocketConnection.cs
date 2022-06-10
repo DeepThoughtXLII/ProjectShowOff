@@ -218,7 +218,7 @@ namespace WebSockets {
 			}
 		}
 
-		void Close() {
+		public void Close() {
 			client.Close();
 			Status = ConnectionStatus.Disconnected;
 			if (OnDisconnect != null) OnDisconnect(this);

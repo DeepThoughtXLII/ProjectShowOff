@@ -12,13 +12,17 @@ public class Server : MonoBehaviour
 
     public static Server instance;
 
-    public enum gameState { LOBBY, INGAME, GAMEOVER }
+    public static event Action onGameOver;
+
+    public enum gameState { LOBBY, INGAME, BOSS, GAMEOVER }
     gameState state;
+
+    
 
     public enum Controls { ONLINE, GAMEPAD, KEYBOARD}
 
     [SerializeField]
-    private Controls usesControls = Controls.KEYBOARD;
+    private Controls usesControls = Controls.ONLINE;
 
     [SerializeField] Image[] playerUIs;
     public Image body;
@@ -43,6 +47,7 @@ public class Server : MonoBehaviour
     public Controls UsesControls
     {
         get { return usesControls; }
+        set { usesControls = value; }
     }
 
 
@@ -83,7 +88,8 @@ public class Server : MonoBehaviour
             GetComponent<ControllerManager>().enabled = true;
         }
 
-       
+        waveSpawner.onBossWave += bossFight;
+        Player.onBossDeath += GameOver;
     }
 
     private void Start()
@@ -119,13 +125,18 @@ public class Server : MonoBehaviour
         }
         else if(state == gameState.GAMEOVER)
         {
-            SceneManager.LoadScene(2);
-            foreach (Transform child in transform)
-            {
-                Destroy(child.gameObject);
-            }
-            StartCoroutine(BackToLobby());
+
+            Destroy(this);
+            
+            //StartCoroutine(BackToLobby());
         }
+    }
+
+
+    private void bossFight()
+    {
+        SceneManager.LoadScene(2);
+        playerManager.HeavenFallsNextBoss();
     }
 
     IEnumerator BackToLobby()
@@ -134,12 +145,21 @@ public class Server : MonoBehaviour
         Destroy(this);
     }
 
+    void GameOver()
+    {
+        //SceneManager.LoadScene(0);
+        state = gameState.GAMEOVER;
+    }
+
     public void OnDestroy()
     {
         if(instance == this)
         {
             SceneManager.LoadScene(0);
+            onGameOver();
         }
+        waveSpawner.onBossWave -= bossFight;
+        Player.onBossDeath -= GameOver;
     }
 
     public Image GetPlayerUILobby(int id)

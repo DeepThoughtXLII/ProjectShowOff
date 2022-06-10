@@ -18,6 +18,10 @@ public class PlayerManager : MonoBehaviour
 
     Dictionary<int, Levelable> playerLevel = new Dictionary<int, Levelable>();
 
+    Player Boss = null;
+    Boss BossShoot = null;
+    public GameObject bossBulletPrefab;
+
     public Transform[] spawnpoints;
 
     private Vector2 lastDir;
@@ -121,14 +125,22 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerShoot(int id)
     {
-        playerShot[id].Shoot();
+        if(GetPlayer(id).State != Player.PlayerState.BOSS)
+        {
+            playerShot[id].Shoot();
+        } else
+        {
+            Debug.Log("shootttt");
+            BossShoot.CanShoot();
+        }
+
     }
 
     public bool PlayersAllDead()
     {
         foreach (KeyValuePair < int, Player> p in playerList)
         {
-            if(p.Value.State != Player.PlayerState.REVIVING)//if any of the players are not revivng/not dead
+            if(p.Value.State != Player.PlayerState.REVIVING && p.Value.State != Player.PlayerState.BOSS)//if any of the players are not revivng/not dead
             {
                 return false;
             }
@@ -149,6 +161,26 @@ public class PlayerManager : MonoBehaviour
     public void changeUpgradeType(int pId, Upgrade.UpgradeType type)
     {
         playerLevel[pId].ChooseUpgrade(type);
+    }
+
+    public void HeavenFallsNextBoss()
+    {
+        int highestLevel = 0;
+        int potentialBoss = -1;
+        foreach (KeyValuePair<int, Levelable> player in playerLevel)
+        {
+            if(potentialBoss == -1 || player.Value.Level.id > highestLevel)
+            {
+                highestLevel = player.Value.Level.id;
+                potentialBoss = player.Key;
+            }          
+        }
+        Boss = GetPlayer(potentialBoss);
+        BossShoot = Boss.gameObject.AddComponent<Boss>();
+        Boss.bossMode();
+        Boss.gameObject.GetComponent<playerShooting>().enabled = false;
+        BossShoot.bulletPrefab = bossBulletPrefab;
+        //playerList.Remove(potentialBoss);
     }
     
 }

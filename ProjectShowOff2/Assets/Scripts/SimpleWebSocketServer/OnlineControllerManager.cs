@@ -33,13 +33,16 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     Server server;
 
 
-
+    int[] ids = new int[4];
 
 
 
     void Start()
     {
-
+        for(int i = 0; i < 4; i++)
+        {
+            ids[i] = i;
+        }
 
         Debug.Log("Start 1");
         // Create a server that listens for connection requests:
@@ -122,10 +125,12 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         while (listener.Pending())
         {
             WebSocketConnection ws = listener.AcceptConnection(OnPacketReceive);
-            onWaitlist.Add(idCount, ws);
-            clients2.Add(ws, idCount);
-            idCount++;
-            Console.WriteLine("added " + idCount + " to waitlist");
+                onWaitlist.Add(idCount, ws);
+                clients2.Add(ws, idCount);
+                idCount++;
+                Console.WriteLine("added " + idCount + " to waitlist");
+            
+            
             /*
             if (!IsClientIsNew(ws))
             {
@@ -194,7 +199,15 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                     int cmd1 = text.IndexOf('!');
                     string text2 = text.Remove(0, cmd1 + 1);
                     Console.WriteLine(text2);
-                    addClient(clients.Count, text2);
+                    if(clients.Count < 4)
+                    {
+                        addClient(getFreeID(),id, text2);
+                    }
+                    else
+                    {
+                        onWaitlist.Remove(id);
+                    }
+                    
                 }
                 else
                 {
@@ -226,6 +239,18 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             }
         }
 
+    }
+
+
+    int getFreeID()
+    {
+        foreach (int id in ids)
+        {
+            if (!clients.ContainsKey(id)) {
+                return id;
+            }
+        }
+        return -1;
     }
 
     void parseUpgrades(string text, int id)
@@ -330,6 +355,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         {
             foreach (int id in faultyClients)
             {
+                clients[id].Close();
                 clients.Remove(id);
                 controllers[id].Disconnected();
                 controllers.Remove(id);
@@ -339,9 +365,9 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         }
     }
 
-    void addClient(int id, string name)
+    void addClient(int id, int waitId, string name)
     {
-        clients.Add(id, onWaitlist[id]);
+        clients.Add(id, onWaitlist[waitId]);
         //clients2.Add(onWaitlist[id], id);
         InstantiateClient(id, name);
         Console.WriteLine("Accepted new client with id: " + id);

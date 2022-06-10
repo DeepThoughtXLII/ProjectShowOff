@@ -8,7 +8,7 @@ public class OnlinePlayerInput : MonoBehaviour
 {
 
     [SerializeField] Image ui;
-    private Color notReady;
+    public Color notReady;
     [SerializeField] int index = 0;
     public TextMeshProUGUI playerName;
     private string pname = null;
@@ -61,8 +61,9 @@ public class OnlinePlayerInput : MonoBehaviour
     public void Disconnected()
     {
         bg.color = notReady;
-        pname = "no player";
+        pname = "not ready";
         UpdateName();
+        character.enabled = false;
         Destroy(this);
     }
 

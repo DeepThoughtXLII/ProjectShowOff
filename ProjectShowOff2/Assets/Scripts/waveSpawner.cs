@@ -5,6 +5,8 @@ using System;
 
 public class waveSpawner : MonoBehaviour
 {
+    public static event Action onBossWave;
+
     public static int EnemiesAlive = 0;
 
     public Wave[] waves;
@@ -69,6 +71,11 @@ public class waveSpawner : MonoBehaviour
         }
 
         timeTillNextWave -= Time.deltaTime;
+
+        if(waveIndex >= 3)
+        {
+            onBossWave();
+        }
     }
 
 

@@ -60,20 +60,42 @@ public class cameraFollow : MonoBehaviour
         }
     }
 
-    void getMidpointOfTargets()
+
+
+    void getMidpoint(int playerCount)
     {
-        if (targets.Length == 1)
+        if(playerCount > 1)
+        {
+            var bound = new Bounds(targets[0].position, Vector3.zero);
+            for (int i = 1; i < targets.Length; i++)
+            {
+                bound.Encapsulate(targets[i].position);
+            }
+            targetMidpoint = bound.center;
+        }
+        else
         {
             targetMidpoint = targets[0].position;
         }
-        if (targets.Length == 2)
-        {
-            //Vector3 dist = targets[0].position - targets[1].position;
-            //targetMidpoint = targets[0].position - dist / 2;
-            //Vector3 direction = (targets[0].position - targets[1].position).normalized;
-            //targetMidpoint = direction * (Vector3.Distance(targets[0].position, targets[1].position)/2);
-            targetMidpoint = Vector3.Lerp(targets[0].position, targets[1].position, 0.5f);
-        }
+
+    }
+
+    void getMidpointOfTargets()
+    {
+        /*  if (targets.Length == 1)
+          {
+              targetMidpoint = targets[0].position;
+          }
+          if (targets.Length == 2)
+          {
+              //Vector3 dist = targets[0].position - targets[1].position;
+              //targetMidpoint = targets[0].position - dist / 2;
+              //Vector3 direction = (targets[0].position - targets[1].position).normalized;
+              //targetMidpoint = direction * (Vector3.Distance(targets[0].position, targets[1].position)/2);
+              targetMidpoint = Vector3.Lerp(targets[0].position, targets[1].position, 0.5f);
+          }*/
+
+        getMidpoint(targets.Length);
 
         float camDist = Vector3.Distance(targetMidpoint, targets[0].position);
         if (camDist > cam.orthographicSize && cam.orthographicSize <= maxZoom)

@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour, IProjectile
+public class bossBullet : MonoBehaviour, IProjectile
 {
-
-
     private Transform _target;
     private Vector3 targetDirection;
 
-    
+
 
     public float speed = 70f;
     public GameObject impactEffect;
@@ -21,7 +19,9 @@ public class bullet : MonoBehaviour, IProjectile
 
     private int ownerId = 0;
 
-    public float aliveForSeconds = 7f;
+    public float aliveForSeconds = 7;
+
+    Rigidbody2D rb;
 
     public int OwnerId
     {
@@ -35,28 +35,18 @@ public class bullet : MonoBehaviour, IProjectile
         get { return damage; }
     }
 
-
-    Rigidbody2D rb;
-
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if (isFlying)
-        {
-            targetDirection.Normalize();
-            Vector2 direc = new Vector2(targetDirection.x, targetDirection.y);
-            Vector2 move = rb.position + direc * speed * Time.fixedDeltaTime;
-            //  transform.Translate(targetDirection.normalized * speed * Time.deltaTime, Space.World);
-            rb.MovePosition(move);
-           // transform.Translate(targetDirection.normalized * speed * Time.deltaTime, Space.World);
-        } else
-        {
-            FlyTowardTarget();
-        }
+        targetDirection.Normalize();
+        Vector2 direc = new Vector2(targetDirection.x, targetDirection.y);
+        Vector2 move = rb.position +  direc * speed * Time.fixedDeltaTime;
+        //  transform.Translate(targetDirection.normalized * speed * Time.deltaTime, Space.World);
+        rb.MovePosition(move);
     }
 
 
@@ -68,22 +58,31 @@ public class bullet : MonoBehaviour, IProjectile
         StartCoroutine(lifeTime());
     }
 
+    public void ReceiveDirection(Vector3 direction, int dmg, int pOwnerId = -1)
+    {
+        ownerId = pOwnerId;
+        targetDirection = direction;
+        damage = dmg;
+        StartCoroutine(lifeTime());
+        isFlying = true;
+    }
+
     public void FlyTowardTarget()
     {
         targetDirection = _target.position - transform.position;
-
         isFlying = true;
     }
 
 
     public void HitTarget(IDamageable target)
     {
+        Debug.Log("take damage for fucks sake i beg you boss version");
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         //IDamageable target = _target.GetComponent<IDamageable>();
         target.takeDamage(damage);
-        if(target.Health <= damage)
+        if (target.Health <= damage)
         {
-            if(_target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
+            if (_target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
             {
                 toBeDead.SetKiller(ownerId);
             }
@@ -97,14 +96,6 @@ public class bullet : MonoBehaviour, IProjectile
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 1f);
         Destroy(gameObject);
-    }
-
-    public void ReceiveDirection(Vector3 direction, int dmg, int pOwnerId = -1)
-    {
-        ownerId = pOwnerId;
-        targetDirection = direction;
-        damage = dmg;
-        StartCoroutine(lifeTime());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

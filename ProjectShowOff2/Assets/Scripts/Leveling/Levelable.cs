@@ -59,6 +59,8 @@ public class Levelable : MonoBehaviour, ILevelable
         FindObjectOfType<SoundManager>().Play("playerLevelUp");
     }
 
+
+
     public void GainXP(int pXp)
     {
         xp += pXp;
@@ -66,7 +68,7 @@ public class Levelable : MonoBehaviour, ILevelable
         {
             //Debug.Log("LEVEL UP YAY!");
             LevelUp(lvlManager.GetNextLevel(level));
-            if (level.hasUpgrade)
+            if (level.hasUpgrade && player.IsUsingInput == Player.Input.ONLINE)
             {
                 UpgradesToTake.Add(level.upgrade);
                 upgradesAvailable = true;

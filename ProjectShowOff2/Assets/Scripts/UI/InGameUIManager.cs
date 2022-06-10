@@ -7,14 +7,30 @@ public class InGameUIManager : MonoBehaviour
 {
     PlayerManager playerManager;
     [SerializeField] PlayerUI [] playerUI = new PlayerUI[4];
+    
+
+
+
 
     private void Awake()
     {
         findPlayerUI();
         playerManager = GameObject.FindGameObjectWithTag("server").GetComponent<PlayerManager>();
+
+        int uiCount = 0;
         for(int i = 0; i < playerManager.GetPlayerCount(); i++)
         {
-            playerUI[i].Player = playerManager.GetPlayer(i);
+            Player p = playerManager.GetPlayer(i);
+            if(p.State != Player.PlayerState.BOSS)
+            {
+                playerUI[uiCount].Player = p;
+                uiCount++;
+            }
+            else
+            {
+                transform.parent.GetComponentInChildren<BossUI>().Player = p;
+            }
+
            // playerUI[i].MaxHpRecalc();
         }
         foreach(PlayerUI ui in playerUI)

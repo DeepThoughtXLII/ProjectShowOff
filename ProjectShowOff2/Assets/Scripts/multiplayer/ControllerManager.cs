@@ -65,14 +65,17 @@ public class ControllerManager : MonoBehaviour, IControllerManager
 
     public void AddInput(PlayerInput pi)
     {
-        if (!players.ContainsKey(pi.playerIndex))
+        if (pi != null)
         {
-            playerInput pIScript = pi.transform.GetComponent<playerInput>();
-            pi.transform.position = Vector3.zero;
-            pIScript.Index = pi.playerIndex;
-            pIScript.UIrep = server.GetPlayerUILobby(pi.playerIndex); 
+            if (!players.ContainsKey(pi.playerIndex))
+            {
+                playerInput pIScript = pi.transform.GetComponent<playerInput>();
+                pi.transform.position = Vector3.zero;
+                pIScript.Index = pi.playerIndex;
+                pIScript.UIrep = server.GetPlayerUILobby(pi.playerIndex);
 
-            players.Add(pi.playerIndex, pIScript);
+                players.Add(pi.playerIndex, pIScript);
+            }
         }
     }
 
@@ -85,6 +88,7 @@ public class ControllerManager : MonoBehaviour, IControllerManager
             Player p = playerManager.AddPlayer(player.Key);
             p.transform.position = Vector3.zero;
             player.Value.transform.SetParent(p.transform);
+            player.Value.transform.SetAsLastSibling();
             p.GetComponent<Player>().enabled = true;
             //p.transform.SetParent(player.Value.transform);
         }

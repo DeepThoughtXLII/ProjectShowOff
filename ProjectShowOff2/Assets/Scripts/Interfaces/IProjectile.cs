@@ -12,11 +12,15 @@ public interface IProjectile
 
     void FlyTowardTarget();
 
-    void HitTarget();
+    void HitTarget(IDamageable target);
 
     void ReceiveTarget(Transform target, int dmg, int pOwnerId = -1);
 
+    void ReceiveDirection(Vector3 direction, int dmg, int pOwnerId = -1);
+
     void HitObstacle();
+
+
 
 
     public IEnumerator lifeTime();

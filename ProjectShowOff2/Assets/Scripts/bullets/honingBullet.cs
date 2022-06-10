@@ -28,10 +28,12 @@ public class honingBullet : MonoBehaviour, IProjectile
         get { return damage; }
     }
 
+    Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -44,6 +46,8 @@ public class honingBullet : MonoBehaviour, IProjectile
         FlyTowardTarget();
     }
 
+
+
     public void ReceiveTarget(Transform target, int dmg, int pOwnerId = -1)
     {
         ownerId = pOwnerId;
@@ -51,6 +55,11 @@ public class honingBullet : MonoBehaviour, IProjectile
         damage = dmg;
         StartCoroutine(lifeTime());
 
+    }
+
+    public void ReceiveDirection(Vector3 direction, int dmg, int pOwnerId = -1)
+    {
+       
     }
 
     public void FlyTowardTarget()
@@ -61,23 +70,29 @@ public class honingBullet : MonoBehaviour, IProjectile
             return;
         }
 
+
         Vector2 dir = _target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        Vector2 move = rb.position + dir.normalized * speed * Time.fixedDeltaTime;
+
+        float distanceThisFrame = speed * Time.fixedDeltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
         {
-            HitTarget();
+            HitTarget(_target.GetComponent<IDamageable>());
             return;
         }
 
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        rb.MovePosition(move);
+        //transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
 
 
-    public void HitTarget()
+    public void HitTarget(IDamageable target)
     {
+       
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        IDamageable target = _target.GetComponent<IDamageable>();
+        Debug.Log(target);
+        //target = _target.GetComponent<IDamageable>();
         target.takeDamage(damage);
         if (target.Health <= damage)
         {
