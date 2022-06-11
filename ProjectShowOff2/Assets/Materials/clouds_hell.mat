@@ -63,5 +63,5 @@ Material:
     - _Color_1: {r: 0.24891421, g: 0.27733853, b: 0.3018868, a: 1}
     - _Color_2: {r: 0.754717, g: 0.5628603, b: 0.53684586, a: 1}
     - _Noise_Remap: {r: 0, g: 1, b: -1, a: 1}
-    - _Rotate_Projection: {r: 1, g: 0, b: 0, a: 90}
+    - _Rotate_Projection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
