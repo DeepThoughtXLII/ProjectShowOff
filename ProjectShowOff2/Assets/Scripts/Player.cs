@@ -156,7 +156,6 @@ public class Player : MonoBehaviour, IDamageable
         {
             Debug.Log("DAMAGEEEEEEE");
             health -= damage;
-            FindObjectOfType<SoundManager>().Play("playerDamageVoice");
 
             if (health <= 0)
             {
@@ -306,7 +305,6 @@ public class Player : MonoBehaviour, IDamageable
                     {
                         direction = ctx.ReadValue<Vector2>();
                     }
-
                     isMoving = true;
                 }
                 else if (ctx.action.phase == InputActionPhase.Canceled)
@@ -354,13 +352,9 @@ public class Player : MonoBehaviour, IDamageable
             direction -= lastDir;
             direction += (moveDirection);
             direction.Normalize();
-
-            FindObjectOfType<SoundManager>().Play("playerWalk");
-
         }
 
         move = rb.position + direction * speed * Time.fixedDeltaTime;
-
         SetColour(health);
     }
 
@@ -370,7 +364,6 @@ public class Player : MonoBehaviour, IDamageable
         if (context.performed)
         {
             move = context.ReadValue<Vector2>() * speed * Time.fixedDeltaTime;
-            FindObjectOfType<SoundManager>().Play("playerWalk");
         }
         transform.Translate(move, Space.World);
         SetColour(health);
