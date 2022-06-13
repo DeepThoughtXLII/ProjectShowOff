@@ -15,6 +15,8 @@ public class PlayerUI : MonoBehaviour
      float healthUnit;
     int currentMaxHealth;
 
+    [SerializeField] Image xp;
+
     [SerializeField] TextMeshProUGUI levelText;
 
     [SerializeField] TextMeshProUGUI nameText;
@@ -30,7 +32,8 @@ public class PlayerUI : MonoBehaviour
         health = transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
         healthText = transform.GetChild(1).transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        levelText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        xp = transform.GetChild(2).transform.GetChild(0).GetComponent<Image>();
+        levelText = transform.GetChild(2).transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         levelable = player.gameObject.GetComponent<ILevelable>();
         displayedLevel = levelable.Level.id;
         levelText.text = "level: " + displayedLevel;
@@ -140,6 +143,7 @@ public class PlayerUI : MonoBehaviour
         if (levelable.Level.id > displayedLevel)
         {
             displayedLevel = levelable.Level.id;
+            xp.fillAmount = levelable.Level.xpNeeded * displayedLevel;
             levelText.text = "level: " + displayedLevel;
         }
     }
