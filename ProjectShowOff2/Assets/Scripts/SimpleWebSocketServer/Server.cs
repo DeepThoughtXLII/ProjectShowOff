@@ -136,6 +136,7 @@ public class Server : MonoBehaviour
     {
         SceneManager.LoadScene(2);
         playerManager.HeavenFallsNextBoss();
+        //start bossfigth 
     }
 
     IEnumerator BackToLobby()
@@ -150,7 +151,7 @@ public class Server : MonoBehaviour
         controllerManager.ResetControllers();
         playerManager.PlayersReset();
         ResetServer();
-       
+       //end boss fight back to lobby
         //state = gameState.GAMEOVER;
         
     }
