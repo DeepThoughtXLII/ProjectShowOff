@@ -74,7 +74,7 @@ private void Start()
             if (ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
             {
                 Shoot();
-                FindObjectOfType<SoundManager>().Play("playerShoot");
+                
             }
         }
         
@@ -92,6 +92,7 @@ private void Start()
         {
             GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
+            FindObjectOfType<SoundManager>().Play("playerShoot");
             if (projectile != null)
             {
                 projectile.ReceiveTarget(target, dmg, player.Id);

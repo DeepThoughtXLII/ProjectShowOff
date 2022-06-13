@@ -72,7 +72,7 @@ public class waveSpawner : MonoBehaviour
 
         timeTillNextWave -= Time.deltaTime;
 
-        if(waveIndex >= 3)
+        if(waveIndex >= 1)
         {
             onBossWave();
         }

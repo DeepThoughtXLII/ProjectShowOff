@@ -137,7 +137,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   revivalColor: {r: 0, g: 1, b: 0.1387968, a: 1}
   maxHealth: 0
-  isUsingInput: 2
+  isUsingInput: 0
   isMoving: 0
   direction: {x: 0, y: 0}
   state: 0
@@ -207,7 +207,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

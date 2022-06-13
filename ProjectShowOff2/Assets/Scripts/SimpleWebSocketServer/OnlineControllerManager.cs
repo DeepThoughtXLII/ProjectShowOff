@@ -28,14 +28,18 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     WebsocketListener listener;
 
+    List<int> ascendedToClient;
+
     //public GameObject circle;
 
     Server server;
 
+    bool readyToPollAgain = true;
+
 
     int[] ids = new int[4];
 
-
+    [SerializeField] int GameCount = 0;
 
     void Start()
     {
@@ -44,13 +48,13 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             ids[i] = i;
         }
 
-        Debug.Log("Start 1");
-        // Create a server that listens for connection requests:
-        listener = new WebsocketListener();
-        listener.Start();
+        Debug.Log("we do start again");
+            // Create a server that listens for connection requests:
+            listener = new WebsocketListener();
+            listener.Start();
+           // GameCount--;
+        
 
-
-   
 
 
         Levelable.onUpgrade += onUpgrade;
@@ -70,6 +74,8 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
         server = GetComponent<Server>();
         controllers = new Dictionary<int, OnlinePlayerInput>();
         onWaitlist = new Dictionary<int, WebSocketConnection>();
+        ascendedToClient = new List<int>();
+        
 
     }
 
@@ -96,7 +102,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     {
 
         string text = Encoding.UTF8.GetString(packet.Data);
-        Console.WriteLine("Received a packet: {0}", text);
+        //Console.WriteLine("Received a packet: {0}", text);
 
         parseCommand(text, clients2[connection]);
 
@@ -151,6 +157,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                 }
             }
         }
+        updateWaitlist();
         foreach (KeyValuePair<int, WebSocketConnection> client in clients)
         {
             if (client.Value.Status == ConnectionStatus.Connected)
@@ -158,6 +165,18 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                 client.Value.Update();
 
             }
+        }
+    }
+
+    void updateWaitlist()
+    {
+        if (ascendedToClient.Count > 0)
+        {
+            foreach (int client in ascendedToClient)
+            {
+                onWaitlist.Remove(client);
+            }
+            ascendedToClient.Clear();
         }
     }
 
@@ -199,15 +218,15 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                     int cmd1 = text.IndexOf('!');
                     string text2 = text.Remove(0, cmd1 + 1);
                     Console.WriteLine(text2);
-                    if(clients.Count < 4)
+                    if (clients.Count < 4)
                     {
-                        addClient(getFreeID(),id, text2);
+                        addClient(getFreeID(), id, text2);
                     }
                     else
                     {
                         onWaitlist.Remove(id);
                     }
-                    
+
                 }
                 else
                 {
@@ -237,10 +256,33 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             {
                 parseUpgrades(text, id);
             }
+            else if (text.Contains("playerName"))
+            {
+                if (onWaitlist.ContainsKey(id))
+                {
+                    int cmd1 = text.IndexOf('!');
+                    string text2 = text.Remove(0, cmd1 + 1);
+                    Console.WriteLine(text2);
+                    if (playerManager.IsOldPlayer(text2))
+                    {
+                        Debug.Log("trying to connect old player");
+                        clients2.Remove(onWaitlist[id]);
+                        ascendedToClient.Add(id);
+                        reconnectClient(onWaitlist[id], playerManager.getOldPlayerID(text2));
+                        
+                    }
+                }
+            }
         }
-
     }
 
+    void reconnectClient(WebSocketConnection client, int id)
+    {
+        clients.Add(id, client);
+        clients2.Add(client, id);
+        clients[id].SendMessage("gameStart");
+        playerManager.ReconnectPlayer(id);
+    }
 
     int getFreeID()
     {
@@ -279,7 +321,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     Vector2 parseInput(string text)
     {
         string[] inputTxt = text.Split('!');
-        Console.WriteLine("x= " + inputTxt[0] + " y= " + inputTxt[1]);
+        //Console.WriteLine("x= " + inputTxt[0] + " y= " + inputTxt[1]);
         return new Vector2(float.Parse(inputTxt[0]), float.Parse(inputTxt[1]));
     }
 
@@ -333,44 +375,83 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     }
 
-    private void detectFaultyClients()
+    IEnumerator pollClient()
     {
-        List<int> faultyClients = new List<int>();
         foreach (KeyValuePair<int, WebSocketConnection> client in clients)
         {
             try
             {
                 client.Value.SendMessage("");
-                //SendMsg(client.Value.GetStream(), "");
-            }
-            catch { }
+            }catch
+            {
 
+            }
             if (client.Value.Status != ConnectionStatus.Connected)
             {
                 faultyClients.Add(client.Key);
                 //client.Value.Close();
             }
         }
+        readyToPollAgain = false;
+        yield return new WaitForSeconds(0.5f);
+        readyToPollAgain = true;
+    }
+
+    private void detectFaultyClients()
+    {
+        /*List<int> faultyClients = new List<int>();
+        foreach (KeyValuePair<int, WebSocketConnection> client in clients)
+        {
+            
+
+            if (client.Value.Status != ConnectionStatus.Connected)
+            {
+                faultyClients.Add(client.Key);
+                //client.Value.Close();
+            }
+        }*/
+        if (readyToPollAgain)
+        {
+            StartCoroutine(pollClient());
+        }
         if (faultyClients.Count > 0)
         {
             foreach (int id in faultyClients)
             {
-                clients[id].Close();
+                //clients[id].Close();
                 clients.Remove(id);
-                controllers[id].Disconnected();
-                controllers.Remove(id);
+                if (controllers[id].gameObject.activeSelf) {
+                    controllers[id].Disconnected();
+                    controllers.Remove(id);
+                }
+                if(server.State != Server.gameState.LOBBY)
+                {
+                    playerManager.DisconnectPlayer(id);
+                }
+                
                 Console.WriteLine(id + " was removed.");
             }
-
+            faultyClients.Clear();
         }
     }
 
     void addClient(int id, int waitId, string name)
     {
         clients.Add(id, onWaitlist[waitId]);
-        //clients2.Add(onWaitlist[id], id);
+        ascendedToClient.Add(waitId);
+        clients2.Remove(onWaitlist[waitId]);
+        clients2.Add(clients[id], id);
         InstantiateClient(id, name);
         Console.WriteLine("Accepted new client with id: " + id);
+    }
+
+    public void ResetControllers()
+    {
+        clients.Clear();
+        onWaitlist.Clear();
+        controllers.Clear();
+        faultyClients.Clear();
+        
     }
 
 

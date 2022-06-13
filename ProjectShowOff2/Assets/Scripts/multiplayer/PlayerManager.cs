@@ -18,15 +18,14 @@ public class PlayerManager : MonoBehaviour
 
     Dictionary<int, Levelable> playerLevel = new Dictionary<int, Levelable>();
 
+   // List<string> disconnectedPlayers = new List<string>();
+    Dictionary<string, int> disconnectedPlayers = new Dictionary<string, int>();
+
     Player Boss = null;
     Boss BossShoot = null;
     public GameObject bossBulletPrefab;
 
     public Transform[] spawnpoints;
-
-    private Vector2 lastDir;
-
-    private Vector2 curDir;
 
     Server server;
 
@@ -39,12 +38,7 @@ public class PlayerManager : MonoBehaviour
         spawnpoints = new Transform[4];
 
         server = GetComponent<Server>();
-        int numberOfControllers = InputSystem.devices.OfType<Gamepad>().Count();
-        Debug.Log("controllers = " + numberOfControllers);
-        if (numberOfControllers > 0)
-        {
 
-        }
 
         switch (server.UsesControls)
         {
@@ -62,6 +56,34 @@ public class PlayerManager : MonoBehaviour
                 break;
         }
     }
+
+    public void DisconnectPlayer(int id)
+    {
+        Player p = GetPlayer(id);
+        p.Disconnected();
+        disconnectedPlayers.Add(p.name, id);
+    }
+
+
+    public bool IsOldPlayer(string name)
+    {
+        if (disconnectedPlayers.ContainsKey(name)){
+            return true;
+        }
+        return false;
+    }
+
+    public int getOldPlayerID(string name)
+    {
+        return disconnectedPlayers[name];
+    }
+
+    public void ReconnectPlayer(int id)
+    {
+        GetPlayer(id).Reconnected();
+        Debug.LogError("reconnected player with id= " +id);
+    }
+    
 
     public Player AddPlayer(int pId, string name = null)
     {
@@ -85,6 +107,7 @@ public class PlayerManager : MonoBehaviour
         playerLevel.Add(pId, player.GetComponent<Levelable>());
         player.name = name;
         player.Id = pId;
+        Debug.Log("added player to manage with id= " + pId);
         //player.Spawn = new Vector2(spawnpoints[pId].position.x, spawnpoints[pId].position.x);
         return player;
     }
@@ -130,7 +153,7 @@ public class PlayerManager : MonoBehaviour
             playerShot[id].Shoot();
         } else
         {
-            Debug.Log("shootttt");
+           
             BossShoot.CanShoot();
         }
 
@@ -182,5 +205,18 @@ public class PlayerManager : MonoBehaviour
         BossShoot.bulletPrefab = bossBulletPrefab;
         //playerList.Remove(potentialBoss);
     }
-    
+
+
+    public void PlayersReset()
+    {
+        foreach(KeyValuePair<int, Player> p in playerList)
+        {
+            Destroy(p.Value.gameObject);
+        }
+        playerList.Clear();
+        playerShot.Clear();
+        playerLevel.Clear();
+        Boss = null;
+        BossShoot = null;
+    }
 }

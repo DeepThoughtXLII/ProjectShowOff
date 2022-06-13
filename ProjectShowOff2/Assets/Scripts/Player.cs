@@ -40,7 +40,7 @@ public class Player : MonoBehaviour, IDamageable
     private Vector2 lastDir;
 
 
-    public enum PlayerState { ALIVE, REVIVING, INVINCIBLE, BOSS }
+    public enum PlayerState { ALIVE, REVIVING, INVINCIBLE, BOSS}
     [SerializeField] private PlayerState state = PlayerState.ALIVE;
     [SerializeField] private int revivingRange = 10;
     [SerializeField] private float reviveCooldown = 30f;
@@ -263,6 +263,16 @@ public class Player : MonoBehaviour, IDamageable
     }
 
 
+
+    public void Disconnected()
+    {
+        state = PlayerState.INVINCIBLE;
+    }
+
+    public void Reconnected()
+    {
+        state = PlayerState.ALIVE;
+    }
 
     private void OnAction(InputAction.CallbackContext ctx)
     {

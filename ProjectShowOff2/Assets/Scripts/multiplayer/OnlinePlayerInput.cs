@@ -44,7 +44,7 @@ public class OnlinePlayerInput : MonoBehaviour
         bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
         character = ui.gameObject.transform.GetChild(1).GetComponent<Image>();
         playerName = ui.gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        notReady = new Color(255, 255, 255, 127);
+        notReady = new Color(255, 255, 255, 0.5f);
         Connected();
     }
 

@@ -47,7 +47,7 @@ namespace WebSockets {
 			client = pClient;
 			OnPacketReceive = callback;
 			Status = ConnectionStatus.Connected;
-			Console.WriteLine(""+client);
+			//Console.WriteLine(""+client);
 		}
 
 		public void SendMessage(string msg)
@@ -99,7 +99,7 @@ namespace WebSockets {
 			byte[] data;
 			NetworkStream stream = client.GetStream();
 
-			Console.WriteLine("Reading header start");
+			//Console.WriteLine("Reading header start");
 			data = new byte[2];
 			stream.Read(data, 0, 2);
 			bool fin = (data[0] & 0b10000000) != 0,
@@ -109,19 +109,19 @@ namespace WebSockets {
 				Close();
 				return;
 			}
-			Console.WriteLine("Fin: {0} Mask: {1}", fin, mask);
+			//Console.WriteLine("Fin: {0} Mask: {1}", fin, mask);
 			int opcode = data[0] & 0b00001111; // expecting 1 - text message // TODO: generalize (binary, ping, pong, close)
 			msglen = data[1] - 128; // & 0111 1111
 			if (msglen == 126) {
 				headerLength = 2;
 				state = ReadState.LongHeader; // or actually medium length header
-				Console.WriteLine("Reading header of length {0}", headerLength);
+				//Console.WriteLine("Reading header of length {0}", headerLength);
 			} else if (msglen == 127) {
 				headerLength = 8;
 				state = ReadState.LongHeader;
-				Console.WriteLine("Reading header of length {0}", headerLength);
+				//Console.WriteLine("Reading header of length {0}", headerLength);
 			} else {
-				Console.WriteLine("Reading frame of length {0}", msglen);
+				//Console.WriteLine("Reading frame of length {0}", msglen);
 				state = ReadState.Body;
 			}
 		}
@@ -208,7 +208,7 @@ namespace WebSockets {
 						break;
 					case ReadState.Body:
 						if (client.Available >= msglen + 4) { // first four bytes: mask
-							Console.WriteLine("Reading (masked) frame of length {0} Available: {1}", msglen, client.Available);
+							//Console.WriteLine("Reading (masked) frame of length {0} Available: {1}", msglen, client.Available);
 							ReadBody();
 						} else {
 							reading = false;

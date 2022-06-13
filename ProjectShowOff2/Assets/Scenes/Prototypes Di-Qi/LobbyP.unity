@@ -546,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.15373382}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.00012207031}
   m_SizeDelta: {x: -0.000045776, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &285475929
@@ -915,7 +915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7462501, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: -0.000076294, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450084420
@@ -993,7 +993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8155234}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -0.000022888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &481101881
@@ -1145,7 +1145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.15373382}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.00012207031}
   m_SizeDelta: {x: -0.000045776, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &653632828
@@ -1280,7 +1280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.15373382}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.00012207031}
   m_SizeDelta: {x: -0.000045776, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694201371
@@ -1626,7 +1626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.08230994}
   m_AnchorMax: {x: 1, y: 0.8172015}
-  m_AnchoredPosition: {x: 1.607193, y: -0.40600586}
+  m_AnchoredPosition: {x: 1.6072083, y: -0.40600586}
   m_SizeDelta: {x: 2.382, y: -1.4710007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768094724
@@ -1677,7 +1677,11 @@ PrefabInstance:
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: body
       value: 
-      objectReference: {fileID: 1690258265}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: usesControls
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773319, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1898,7 +1902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.08230994}
   m_AnchorMax: {x: 1, y: 0.8172015}
-  m_AnchoredPosition: {x: 1.607193, y: -0.40600586}
+  m_AnchoredPosition: {x: 1.6072083, y: -0.40600586}
   m_SizeDelta: {x: 2.382, y: -1.4710007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &958557690
@@ -2050,7 +2054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.17125, y: 0}
   m_AnchorMax: {x: 0.81624997, y: 1}
-  m_AnchoredPosition: {x: 1.1369629, y: -0.4999466}
+  m_AnchoredPosition: {x: 1.1369629, y: -0.49995422}
   m_SizeDelta: {x: 2.2965698, y: -0.038002014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314437015
@@ -2358,7 +2362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.15373382}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.00012207031}
   m_SizeDelta: {x: -0.000045776, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510818265
@@ -2471,7 +2475,7 @@ GameObject:
   - component: {fileID: 1690258265}
   m_Layer: 5
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: UIParentLobby
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2658,7 +2662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1904753504
 MonoBehaviour:
   m_ObjectHideFlags: 0

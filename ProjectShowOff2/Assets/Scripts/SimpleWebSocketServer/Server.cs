@@ -65,15 +65,8 @@ public class Server : MonoBehaviour
 
         state = gameState.LOBBY;
         
-
-        int numberOfControllers = InputSystem.devices.OfType<Gamepad>().Count();
-        Debug.Log("controllers = " + numberOfControllers);
-        if (numberOfControllers > 0)
-        {
-            //ControllerManagement(numberOfControllers);
-            //usingOnlineControllers = false;
-            //controllers = new Dictionary<int, int>();
-        }
+       
+        
         
         
         if (usesControls == Controls.ONLINE)
@@ -102,6 +95,12 @@ public class Server : MonoBehaviour
 
 
         playerManager = GetComponent<PlayerManager>();
+        findLobbyPlayerUIComponents();
+    }
+
+    void findLobbyPlayerUIComponents()
+    {
+        body = GameObject.FindGameObjectWithTag("UIParentLobby").GetComponent<Image>();
         playerUIs = new Image[4];
         for (int i = 0; i < 4; i++)
         {
@@ -147,23 +146,47 @@ public class Server : MonoBehaviour
 
     void GameOver()
     {
-        //SceneManager.LoadScene(0);
-        state = gameState.GAMEOVER;
+        SceneManager.LoadScene(0);
+        controllerManager.ResetControllers();
+        playerManager.PlayersReset();
+        ResetServer();
+       
+        //state = gameState.GAMEOVER;
+        
+    }
+
+    public void ResetServer()
+    {
+        for(int i = 0; i < transform.childCount; i++){
+            Transform child = transform.GetChild(i);
+            if(child.name != "LevelManager")
+            {
+                Destroy(child);
+            }
+            
+        }
+        state = gameState.LOBBY;
+        body = null;
+        //findLobbyPlayerUIComponents();
     }
 
     public void OnDestroy()
     {
-        if(instance == this)
+        /*if(instance == this)
         {
             SceneManager.LoadScene(0);
             onGameOver();
-        }
+        }*/
         waveSpawner.onBossWave -= bossFight;
         Player.onBossDeath -= GameOver;
     }
 
     public Image GetPlayerUILobby(int id)
     {
+        if(body == null)
+        {
+            findLobbyPlayerUIComponents();
+        }
         if(id < 4 && id > -1)
         {
             return playerUIs[id];
@@ -197,7 +220,7 @@ public class Server : MonoBehaviour
         }
     }
 
-
+    
    
 
 

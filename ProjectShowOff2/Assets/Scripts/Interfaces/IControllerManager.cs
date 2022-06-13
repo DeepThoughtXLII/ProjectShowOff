@@ -6,4 +6,6 @@ public interface IControllerManager
 {
     public int GetControllerCount();
     public void OnGameStart();
+
+    public void ResetControllers();
 }

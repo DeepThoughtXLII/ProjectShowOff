@@ -110,4 +110,14 @@ public class ControllerManager : MonoBehaviour, IControllerManager
     {
         return players.Count;
     }
+
+    public void ResetControllers()
+    {
+       // Dictionary<int, playerInput> players;
+        foreach(KeyValuePair<int, playerInput> p in players)
+        {
+            Destroy(p.Value.gameObject);
+        }
+        players.Clear();
+    }
 }

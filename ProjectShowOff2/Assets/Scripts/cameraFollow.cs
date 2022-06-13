@@ -27,7 +27,7 @@ public class cameraFollow : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         cam.orthographicSize = minZoom;
-        
+        targetMidpoint = Vector3.zero;
 
         GameObject[] tempT = GameObject.FindGameObjectsWithTag("Player");
        
@@ -49,14 +49,17 @@ public class cameraFollow : MonoBehaviour
 
     void FollowTarget()
     {
-        getMidpointOfTargets();
-        if (transform.position != targetMidpoint)
+        if (targets[0] != null)
         {
-            //Vector2 distanceT = transform.position - target.position;
-            //Vector2 velocity = distance.normalized * smoothSpeed;
-            
-            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, targetMidpoint, ref velocity, distanceDamp);
-            transform.position = smoothedPosition;
+            getMidpointOfTargets();
+            if (transform.position != targetMidpoint)
+            {
+                //Vector2 distanceT = transform.position - target.position;
+                //Vector2 velocity = distance.normalized * smoothSpeed;
+
+                Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, targetMidpoint, ref velocity, distanceDamp);
+                transform.position = smoothedPosition;
+            }
         }
     }
 
@@ -73,7 +76,7 @@ public class cameraFollow : MonoBehaviour
             }
             targetMidpoint = bound.center;
         }
-        else
+        else if( playerCount > 0)
         {
             targetMidpoint = targets[0].position;
         }

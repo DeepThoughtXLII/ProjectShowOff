@@ -32,7 +32,6 @@ namespace WebSockets {
 
 		public void Start() {
 			listener.Start();
-            Console.WriteLine("START");
 		}
 
         public bool Pending() {

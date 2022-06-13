@@ -55,12 +55,16 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     public void takeDamage(int damage)
     {
-        //FindObjectOfType<SoundManager>().Play(damageSound);
+        if (damageSound != null && damageSound != "")
+        {
+            FindObjectOfType<SoundManager>().Play(damageSound);
+        }
+      
         health -= damage;
         if (health <= 0)
         {
             Destroy(gameObject);
-            //FindObjectOfType<SoundManager>().Play("enemyDeath");
+            FindObjectOfType<SoundManager>().Play("enemyDeath");
             return;
         }
         player = targetingManager.GetTarget(transform);
