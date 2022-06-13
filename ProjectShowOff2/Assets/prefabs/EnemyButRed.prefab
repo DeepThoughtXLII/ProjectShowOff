@@ -100,14 +100,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900e845ba3601e44bb8402dbbeeac4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  attackSpeed: 1
-  damage: 1
-  attackRange: 10
+  health: 30
+  damageSound: 
+  pathing: 0
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   playerTag: Player
   speed: 1
+  EmergeSpeed: 0
+  EmergeDamage: 0
+  MeleeRange: 0
+  TimeBeforeDissapear: 0
   targetingManager: {fileID: 0}
+  spriteColour: {fileID: 0}
 --- !u!50 &5342786594540471084
 Rigidbody2D:
   serializedVersion: 4

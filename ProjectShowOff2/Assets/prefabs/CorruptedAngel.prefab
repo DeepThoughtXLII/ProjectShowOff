@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1456903649132177477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.258, y: -0.094, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2.07192, y: 2.07192, z: 2.07192}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6311797072188095194}
@@ -102,12 +102,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900e845ba3601e44bb8402dbbeeac4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 50
   damageSound: corruptedAngel
+  pathing: 0
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   playerTag: Player
-  speed: 1
+  speed: 5
+  EmergeSpeed: 0
+  EmergeDamage: 0
+  MeleeRange: 0
+  TimeBeforeDissapear: 0
   targetingManager: {fileID: 0}
+  spriteColour: {fileID: 0}
 --- !u!114 &-4071780315125083232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +144,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1640329167883588167, guid: 5c77c40d69f5f6b4d81563c25d30449a, type: 3}
   firepoint: {fileID: 6311797072188095194}
   firerate: 1.25
-  damage: 1
+  damage: 10
   bulletDamage: 0
 --- !u!50 &4239635615416892891
 Rigidbody2D:

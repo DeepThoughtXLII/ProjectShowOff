@@ -354,6 +354,15 @@ public class Player : MonoBehaviour, IDamageable
             direction.Normalize();
         }
 
+        if (direction != Vector2.zero)
+        {
+            FindObjectOfType<SoundManager>().Play("playerWalk");
+
+        } else
+        {
+            FindObjectOfType<SoundManager>().Play("playerWalk");
+        }
+
         move = rb.position + direction * speed * Time.fixedDeltaTime;
         SetColour(health);
     }

@@ -103,13 +103,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
-  attackSpeed: 1
-  damage: 5
-  attackRange: 5
+  damageSound: 
+  pathing: 0
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   playerTag: Player
   speed: 1
+  EmergeSpeed: 0
+  EmergeDamage: 0
+  MeleeRange: 0
+  TimeBeforeDissapear: 0
   targetingManager: {fileID: 0}
+  spriteColour: {fileID: 0}
 --- !u!50 &4239635615416892891
 Rigidbody2D:
   serializedVersion: 4
@@ -177,7 +181,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1640329167883588167, guid: 5c77c40d69f5f6b4d81563c25d30449a, type: 3}
   firepoint: {fileID: 6311797072188095194}
   firerate: 1.25
-  bulletDamage: 1
+  damage: 10
+  bulletDamage: 10
 --- !u!1 &1602348771886720887
 GameObject:
   m_ObjectHideFlags: 0

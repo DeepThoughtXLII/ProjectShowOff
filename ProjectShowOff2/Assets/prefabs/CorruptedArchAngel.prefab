@@ -104,10 +104,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 30
   damageSound: archAngel
+  pathing: 0
   targetColor: {r: 1, g: 0, b: 0, a: 1}
   playerTag: Player
   speed: 1
+  EmergeSpeed: 0
+  EmergeDamage: 0
+  MeleeRange: 0
+  TimeBeforeDissapear: 0
   targetingManager: {fileID: 0}
+  spriteColour: {fileID: 0}
 --- !u!114 &-4071780315125083232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +144,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8569533747718512972, guid: b19e824b8c21846458f9039a4716fc0d, type: 3}
   firepoint: {fileID: 6311797072188095194}
   firerate: 5
-  damage: 1
+  damage: 20
   bulletDamage: 0
 --- !u!50 &4239635615416892891
 Rigidbody2D:

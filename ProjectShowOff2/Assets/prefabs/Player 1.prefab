@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   pi: {fileID: 0}
-  speed: 20
+  speed: 30
   playerColour: {fileID: 6339540946314994833}
   playerGradient:
     serializedVersion: 2
@@ -194,7 +194,7 @@ MonoBehaviour:
   targetable:
     serializedVersion: 2
     m_Bits: 128
-  dmg: 20
+  dmg: 10
 --- !u!50 &4408252553113940420
 Rigidbody2D:
   serializedVersion: 4
