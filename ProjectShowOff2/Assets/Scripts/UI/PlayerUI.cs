@@ -16,8 +16,8 @@ public class PlayerUI : MonoBehaviour
     int currentMaxHealth;
 
     [SerializeField] Image xp;
-
     [SerializeField] TextMeshProUGUI levelText;
+    float xpUnit;
 
     [SerializeField] TextMeshProUGUI nameText;
 
@@ -143,10 +143,15 @@ public class PlayerUI : MonoBehaviour
         if (levelable.Level.id > displayedLevel)
         {
             displayedLevel = levelable.Level.id;
-            xp.fillAmount = levelable.Level.xpNeeded * displayedLevel;
+            xp.fillAmount = levelable.Xp/100 ;
             levelText.text = "level: " + displayedLevel;
         }
     }
+        public static float map01( float value, float min, float max )
+        {
+        return ( value - min ) * 1f / ( max - min );
+        }
+
 
 
 }
