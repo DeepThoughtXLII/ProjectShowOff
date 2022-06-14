@@ -1536,6 +1536,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: server
       objectReference: {fileID: 0}
+    - target: {fileID: 8414478470262954568, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: levels.Array.data[19].upgrade.typeChosen
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
 --- !u!1 &956768989

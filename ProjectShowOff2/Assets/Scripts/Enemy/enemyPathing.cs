@@ -10,26 +10,23 @@ public class enemyPathing : MonoBehaviour
     public string playerTag = "player";
     Player player = null;
 
-    SpriteRenderer rend;
+    public SpriteRenderer rend;
 
     public float speed = 3f;
-    private CircleCollider2D collisionBox;
-    [Header("Shadow Pathing")]
-    public float EmergeSpeed;
-    public int EmergeDamage;
-    public float MeleeRange;
-    public float TimeBeforeDissapear;
     
-
-    bool _emerging = false;
+    [Header("Shadow Pathing")]
 
     public TargetingManager targetingManager;
+
+    enemyShooting _enemyShooting;
 
     Rigidbody2D rb;
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rend = GetComponent<SpriteRenderer>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        rend = gameObject.GetComponent<SpriteRenderer>();
+        targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
+        _enemyShooting = gameObject.GetComponent<enemyShooting>();
     }
 
     void Start()
@@ -55,19 +52,19 @@ public class enemyPathing : MonoBehaviour
                 }
                 else if (pathing == pathingType.SHADOW)
                 {
-                    if (_emerging == false)
+                    if (_enemyShooting.emerging == false)
                     {
                         walkTowardsPlayer();
                         if (Vector2.Distance(player.transform.position, transform.position) < 0.1)
                         {
-                            _emerging = true;
+                            _enemyShooting.emerging = true;
                             rend.color = Color.yellow;
                         }
 
                     }
-                    else if (_emerging == true)
+                    else if (_enemyShooting.emerging == true)
                     {
-                        StartCoroutine(Emerging());
+                        StartCoroutine(_enemyShooting.Emerging(player));
                     }
 
                 }
@@ -85,30 +82,10 @@ public class enemyPathing : MonoBehaviour
         }
     }
 
-    public void AttackPlayer()
-    {
-        if (Vector2.Distance(player.transform.position, transform.position) < MeleeRange)
-        {
-            IDamageable playerDam = player.GetComponent<IDamageable>();
-            playerDam.takeDamage(EmergeDamage);
-        }
-    }
-
-    public IEnumerator Emerging()
-    {
-        yield return new WaitForSeconds(EmergeSpeed);
-        AttackPlayer();
-        collisionBox.enabled = true;
-        yield return new WaitForSeconds(TimeBeforeDissapear);
-        collisionBox.enabled = false;
-        _emerging = false;
-        rend.color = Color.gray;
-
-    }
-
     void walkTowardsPlayer()
     {
         Vector2 direction = player.transform.position - transform.position;
+        direction.Normalize();
         //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }

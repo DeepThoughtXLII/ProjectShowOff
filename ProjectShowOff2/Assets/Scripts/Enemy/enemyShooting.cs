@@ -1,4 +1,4 @@
-using System.Collections;
+                                                                                                                                                       using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,8 +22,23 @@ public class enemyShooting : MonoBehaviour
 
     TargetingManager targetingManager;
 
+    enemyPathing _enemyPathing;
+
+    public float MeleeRange;
+
+    [Header("Shadow Attacks")]
+    public int EmergeDamage;
+    public float EmergeSpeed;
+    public float TimeBeforeDissapear;
+
+    private CircleCollider2D collisionBox;
+    public bool emerging = false;
+
+
     private void Start()
     {
+        collisionBox = gameObject.GetComponent<CircleCollider2D>();
+        _enemyPathing = gameObject.GetComponent<enemyPathing>();
         // players = GameObject.FindGameObjectsWithTag("Player");
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
     }
@@ -74,6 +89,27 @@ public class enemyShooting : MonoBehaviour
         readyToShoot = false;
         yield return new WaitForSeconds(firerate);
         readyToShoot = true;
+    }
+
+    public void meleeAttack(Player player)
+    {
+        if (Vector2.Distance(player.transform.position, transform.position) < MeleeRange)
+        {
+            IDamageable playerDam = player.GetComponent<IDamageable>();
+            playerDam.takeDamage(EmergeDamage);
+        }
+    }
+
+    public IEnumerator Emerging(Player player)
+    {
+        yield return new WaitForSeconds(EmergeSpeed);
+        meleeAttack(player);
+        collisionBox.enabled = true;
+        yield return new WaitForSeconds(TimeBeforeDissapear);
+        collisionBox.enabled = false;
+        emerging = false;
+        _enemyPathing.rend.color = Color.gray;
+
     }
 
     private void OnDrawGizmosSelected()

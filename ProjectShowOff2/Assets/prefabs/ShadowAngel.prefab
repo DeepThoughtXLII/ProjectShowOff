@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5425440211871156248}
   - component: {fileID: 1669938543758599234}
-  - component: {fileID: 924684509664056131}
+  - component: {fileID: 5529210604737599731}
   - component: {fileID: -4071780315125083232}
+  - component: {fileID: 198695339682792252}
   - component: {fileID: 4239635615416892891}
   - component: {fileID: 8606838728313119713}
   m_Layer: 7
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &924684509664056131
+--- !u!114 &5529210604737599731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,20 +99,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1456903649132177477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900e845ba3601e44bb8402dbbeeac4cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 873f37055c4cb2349911a656efc92d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
-  damageSound: shadowAngel
+  health: 10
+  damageSound: 
   pathing: 1
-  targetColor: {r: 1, g: 0, b: 0, a: 1}
-  playerTag: Player
-  speed: 1
-  EmergeSpeed: 2
-  EmergeDamage: 5
-  MeleeRange: 1
-  TimeBeforeDissapear: 5
+  targetColor: {r: 1, g: 1, b: 1, a: 1}
   targetingManager: {fileID: 0}
+  spriteColour: {fileID: 0}
 --- !u!114 &-4071780315125083232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +121,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xpGains: 2
+--- !u!114 &198695339682792252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456903649132177477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcfe613d11b01c428e1ed82c732c162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathing: 0
+  playerTag: player
+  speed: 3
+  EmergeSpeed: 0
+  EmergeDamage: 0
+  MeleeRange: 0
+  TimeBeforeDissapear: 0
+  targetingManager: {fileID: 0}
 --- !u!50 &4239635615416892891
 Rigidbody2D:
   serializedVersion: 4

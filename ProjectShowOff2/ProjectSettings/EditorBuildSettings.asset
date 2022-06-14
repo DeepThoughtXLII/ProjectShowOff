@@ -23,7 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototypes Di-Qi/Game.unity
     guid: 5a889458a17a96343b8c90d2c3bd3e8a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototypes Di-Qi/Hell.unity
     guid: d958e4ef798a4504fa6651d95ee43558
+  - enabled: 0
+    path: Assets/Scenes/Prototypes Mathijs/LobbyP.unity
+    guid: 3fd6a2bab676e0a4daa54cb5b3ea99c0
+  - enabled: 0
+    path: Assets/Scenes/Prototypes Mathijs/Game.unity
+    guid: 74e5f88651c73764388d9ef912f5b258
   m_configObjects: {}
