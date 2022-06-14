@@ -1425,27 +1425,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.3591406
+      value: 9.148955
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.3591406
+      value: 9.148955
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.3591406
+      value: 9.148955
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.016617
+      value: 4.017
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -64.359535
+      value: -69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 92.67471
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2166,6 +2166,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   xp: {fileID: 0}
   levelText: {fileID: 0}
+  xpText: {fileID: 0}
   nameText: {fileID: 0}
   displayedLevel: 0
 --- !u!114 &485716894
@@ -2664,6 +2665,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   xp: {fileID: 0}
   levelText: {fileID: 0}
+  xpText: {fileID: 0}
   nameText: {fileID: 0}
   displayedLevel: 0
 --- !u!1001 &652554334
@@ -5491,6 +5493,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   xp: {fileID: 0}
   levelText: {fileID: 0}
+  xpText: {fileID: 0}
   nameText: {fileID: 0}
   displayedLevel: 0
 --- !u!1 &1325162708
@@ -6556,6 +6559,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   xp: {fileID: 0}
   levelText: {fileID: 0}
+  xpText: {fileID: 0}
   nameText: {fileID: 0}
   displayedLevel: 0
 --- !u!1001 &1622759874
