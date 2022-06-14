@@ -15,21 +15,23 @@ public class Player : MonoBehaviour  //, IDamageable
 
     [SerializeField] playerShooting ShootingScript;
     [SerializeField] PlayerMovement MovementScript;
-    [SerializeField] PlayerHealth PlayerHealthScript;
+    [SerializeField] PlayerHealth HealthScript;
+    [SerializeField] Levelable LevelScript;
 
 
     private void OnEnable()
     {
         ShootingScript = GetComponent<playerShooting>();
         MovementScript = GetComponent<PlayerMovement>();
-        PlayerHealthScript = GetComponent<PlayerHealth>();
+        HealthScript = GetComponent<PlayerHealth>();
+        LevelScript = GetComponent<Levelable>();
     }
 
     private void Awake()
     {
         ShootingScript = GetComponent<playerShooting>();
         MovementScript = GetComponent<PlayerMovement>();
-        PlayerHealthScript = GetComponent<PlayerHealth>();
+        HealthScript = GetComponent<PlayerHealth>();
     }
 
     private void Start()
@@ -49,17 +51,22 @@ public class Player : MonoBehaviour  //, IDamageable
 
     public PlayerHealth GetPlayerHealth()
     {
-        return PlayerHealthScript;
+        return HealthScript;
+    }
+
+    public Levelable GetPlayerLevel()
+    {
+        return LevelScript;
     }
 
     public void Disconnected()
     {
-        PlayerHealthScript.State = PlayerHealth.PlayerState.INVINCIBLE;
+        HealthScript.State = PlayerHealth.PlayerState.INVINCIBLE;
     }
 
     public void Reconnected()
     {
-        PlayerHealthScript.State = PlayerHealth.PlayerState.ALIVE;
+        HealthScript.State = PlayerHealth.PlayerState.ALIVE;
     }
 
 
@@ -73,10 +80,10 @@ public class Player : MonoBehaviour  //, IDamageable
     {
         Debug.Log("boosmOde");
         gameObject.tag = "enemy";
-        PlayerHealthScript.State = PlayerHealth.PlayerState.BOSS;
+        HealthScript.State = PlayerHealth.PlayerState.BOSS;
         transform.localScale *= 2;
-        PlayerHealthScript.MaxHealth *= 2;
-        PlayerHealthScript.Health = PlayerHealthScript.MaxHealth;
+        HealthScript.MaxHealth *= 2;
+        HealthScript.Health = HealthScript.MaxHealth;
         MovementScript.speed *= 1.5f;
     }
 

@@ -14,9 +14,9 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] Dictionary<int, Player> playerList = new Dictionary<int, Player>();
 
-    [SerializeField] Dictionary<int, playerShooting> playerShot = new Dictionary<int, playerShooting>();
+    //[SerializeField] Dictionary<int, playerShooting> playerShot = new Dictionary<int, playerShooting>();
 
-    Dictionary<int, Levelable> playerLevel = new Dictionary<int, Levelable>();
+    //Dictionary<int, Levelable> playerLevel = new Dictionary<int, Levelable>();
 
    // List<string> disconnectedPlayers = new List<string>();
     Dictionary<string, int> disconnectedPlayers = new Dictionary<string, int>();
@@ -103,8 +103,8 @@ public class PlayerManager : MonoBehaviour
         //create a new view with ourselves as the transform parent
         Player player = Instantiate<Player>(playerPrefab, transform);
         playerList[pId] = player;
-        playerShot.Add(pId, player.GetComponent<playerShooting>());
-        playerLevel.Add(pId, player.GetComponent<Levelable>());
+        //playerShot.Add(pId, player.GetComponent<playerShooting>());
+        //playerLevel.Add(pId, player.GetComponent<Levelable>());
         player.name = name;
         player.Id = pId;
         player.GetPlayerMovement().IsUsingInput = server.UsesControls;
@@ -151,7 +151,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(GetPlayer(id).GetPlayerHealth().State != PlayerHealth.PlayerState.BOSS)
         {
-            playerShot[id].Shoot();
+            playerList[id].GetPlayerShooting().Shoot();
         } else
         {
            
@@ -172,10 +172,19 @@ public class PlayerManager : MonoBehaviour
         return true;
     }
 
+    public void ReviveAllPlayers()
+    {
+        foreach(KeyValuePair<int, Player> player in playerList)
+        {
+            //player.Value.GetPlayerHealth().State = PlayerHealth.PlayerState.ALIVE;
+            player.Value.GetPlayerHealth().Revive();
+        }
+    }
+
 
     public bool checkForPlayerUpgrades(int pId)
     {
-        if (playerLevel[pId].upgradesAvailable)
+        if (playerList[pId].GetPlayerLevel().upgradesAvailable)
         {
             return true;
         }
@@ -184,18 +193,18 @@ public class PlayerManager : MonoBehaviour
 
     public void changeUpgradeType(int pId, Upgrade.UpgradeType type)
     {
-        playerLevel[pId].ChooseUpgrade(type);
+        playerList[pId].GetPlayerLevel().ChooseUpgrade(type);
     }
 
     public void HeavenFallsNextBoss()
     {
         int highestLevel = 0;
         int potentialBoss = -1;
-        foreach (KeyValuePair<int, Levelable> player in playerLevel)
+        foreach (KeyValuePair<int, Player> player in playerList)
         {
-            if(potentialBoss == -1 || player.Value.Level.id > highestLevel)
+            if(potentialBoss == -1 || player.Value.GetPlayerLevel().Level.id > highestLevel)
             {
-                highestLevel = player.Value.Level.id;
+                highestLevel = player.Value.GetPlayerLevel().Level.id;
                 potentialBoss = player.Key;
             }          
         }
@@ -215,8 +224,8 @@ public class PlayerManager : MonoBehaviour
             Destroy(p.Value.gameObject);
         }
         playerList.Clear();
-        playerShot.Clear();
-        playerLevel.Clear();
+        //playerShot.Clear();
+        //playerLevel.Clear();
         Boss = null;
         BossShoot = null;
     }

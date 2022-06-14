@@ -137,6 +137,7 @@ public class Server : MonoBehaviour
     private void bossFight()
     {
         SceneManager.LoadScene(2);
+        playerManager.ReviveAllPlayers();
         playerManager.HeavenFallsNextBoss();
         //start bossfigth 
     }

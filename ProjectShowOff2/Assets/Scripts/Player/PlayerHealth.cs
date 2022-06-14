@@ -143,7 +143,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
     }
 
-
+    public void Revive()
+    {
+        if(state == PlayerState.REVIVING) 
+        {
+            manageRevivalState();
+        }
+        
+    }
 
     void playerProximityCheck()
     {
