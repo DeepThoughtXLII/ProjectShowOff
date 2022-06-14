@@ -47,7 +47,7 @@ public class enemyPathing : MonoBehaviour
     {
         if (player != null)
         {
-            if (player.State != Player.PlayerState.REVIVING)
+            if (player.GetPlayerHealth().State != PlayerHealth.PlayerState.REVIVING)
             {
                 if (pathing == pathingType.SIMPLE)
                 {

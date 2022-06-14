@@ -21,7 +21,7 @@ public class InGameUIManager : MonoBehaviour
         for(int i = 0; i < playerManager.GetPlayerCount(); i++)
         {
             Player p = playerManager.GetPlayer(i);
-            if(p.State != Player.PlayerState.BOSS)
+            if(p.GetPlayerHealth().State != PlayerHealth.PlayerState.BOSS)
             {
                 playerUI[uiCount].Player = p;
                 uiCount++;

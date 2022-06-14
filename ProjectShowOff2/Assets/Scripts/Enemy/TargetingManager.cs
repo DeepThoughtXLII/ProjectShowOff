@@ -34,7 +34,7 @@ public class TargetingManager : MonoBehaviour
         float shortestDist = 0;
         foreach(Player p in players)
         {
-            if(p.State != Player.PlayerState.REVIVING)
+            if(p.GetPlayerHealth().State != PlayerHealth.PlayerState.REVIVING)
             {
                 float dist = Vector3.Distance(self.position, p.transform.position);
                 if (target == null || shortestDist > dist)
@@ -44,7 +44,12 @@ public class TargetingManager : MonoBehaviour
                 }
             }          
         }
-        return target;
+        if(target != null)
+        {
+            return target;
+        }
+        return null;
+
     }
 
     public Player GetTargetInShootingRange(Transform self, float range)
@@ -52,14 +57,18 @@ public class TargetingManager : MonoBehaviour
         List<Player> targetsInRange = new List<Player>();
         Player target = null;
         target = GetTarget(self);
-        if(Vector3.Distance(target.transform.position, self.position) < range)
+        if (target != null)
         {
-            return target;
+            if (Vector3.Distance(target.transform.position, self.position) < range)
+            {
+                return target;
+            }
+            else
+            {
+                return null;
+            }
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 
 

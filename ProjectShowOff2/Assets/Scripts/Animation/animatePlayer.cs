@@ -28,8 +28,8 @@ public class animatePlayer : MonoBehaviour
 
     void checkAnimStates()
     {
-        direction = p.direction;
-        isMoving = p.isMoving;
+        direction = p.GetPlayerMovement().direction;
+        isMoving = p.GetPlayerMovement().isMoving;
         if(direction.x > 0.26)
         {
             anim.SetBool("walkingRight", true);

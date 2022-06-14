@@ -25,12 +25,15 @@ public class playerShooting : MonoBehaviour
 
     private Player player;
 
+    PlayerHealth playerHealth;
+
     public int dmg = 0;
 
     private void Awake()
     {
         //controls = new PlayerControls();
         player = GetComponent<Player>();
+        playerHealth = player.GetPlayerHealth();
         //controls.Gameplay.shoot.performed += ctx => Shoot();
         bulletScriptPrefab = bulletPrefab.GetComponent<IProjectile>();
         //dmg = bulletScriptPrefab.Damage;
@@ -57,7 +60,7 @@ public class playerShooting : MonoBehaviour
     }
 
 
-private void Start()
+    private void Start()
     {
         pi = GetComponentInChildren<PlayerInput>();
         if (pi != null)
@@ -69,7 +72,7 @@ private void Start()
 
     private void OnAction(InputAction.CallbackContext ctx)
     {
-        if(player.State != Player.PlayerState.REVIVING)
+        if(playerHealth.State != PlayerHealth.PlayerState.REVIVING)
         {
             if (ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
             {

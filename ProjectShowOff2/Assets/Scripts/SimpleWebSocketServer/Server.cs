@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
+public enum Controls { ONLINE, GAMEPAD, KEYBOARD }
+
 public class Server : MonoBehaviour
 {
 
@@ -19,7 +21,7 @@ public class Server : MonoBehaviour
 
     
 
-    public enum Controls { ONLINE, GAMEPAD, KEYBOARD}
+   
 
     [SerializeField]
     private Controls usesControls = Controls.ONLINE;
@@ -82,7 +84,7 @@ public class Server : MonoBehaviour
         }
 
         waveSpawner.onBossWave += bossFight;
-        Player.onBossDeath += GameOver;
+        PlayerHealth.onBossDeath += GameOver;
     }
 
     private void Start()
@@ -125,8 +127,8 @@ public class Server : MonoBehaviour
         else if(state == gameState.GAMEOVER)
         {
 
-            Destroy(this);
-            
+            //Destroy(this);
+            GameOver();
             //StartCoroutine(BackToLobby());
         }
     }
@@ -179,7 +181,7 @@ public class Server : MonoBehaviour
             onGameOver();
         }*/
         waveSpawner.onBossWave -= bossFight;
-        Player.onBossDeath -= GameOver;
+        PlayerHealth.onBossDeath -= GameOver;
     }
 
     public Image GetPlayerUILobby(int id)

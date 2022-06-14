@@ -68,7 +68,7 @@ public class Levelable : MonoBehaviour, ILevelable
         {
             //Debug.Log("LEVEL UP YAY!");
             LevelUp(lvlManager.GetNextLevel(level));
-            if (level.hasUpgrade && player.IsUsingInput == Player.Input.ONLINE)
+            if (level.hasUpgrade && player.GetPlayerMovement().IsUsingInput == Controls.ONLINE)
             {
                 UpgradesToTake.Add(level.upgrade);
                 upgradesAvailable = true;
@@ -88,13 +88,13 @@ public class Levelable : MonoBehaviour, ILevelable
                 Debug.Log("dmg upgrade");
                 break;
             case Upgrade.UpgradeType.HEALTH:
-                Debug.Log("health before: "+player.Health + "max health before:  " + player.MaxHealth + "upgrade Value: "+upgrade.HealthValue);
-                player.Health += upgrade.HealthValue;
-                player.MaxHealth += upgrade.HealthValue;
-                Debug.Log("health after: " + player.Health + "max health after:  " + player.MaxHealth);
+                Debug.Log("health before: "+player.GetPlayerHealth().Health + "max health before:  " + player.GetPlayerHealth().MaxHealth + "upgrade Value: "+upgrade.HealthValue);
+                player.GetPlayerHealth().Health += upgrade.HealthValue;
+                player.GetPlayerHealth().MaxHealth += upgrade.HealthValue;
+                Debug.Log("health after: " + player.GetPlayerHealth().Health + "max health after:  " + player.GetPlayerHealth().MaxHealth);
                 break;
             case Upgrade.UpgradeType.SPEED:
-                player.speed += upgrade.SpeedValue;
+                player.GetPlayerMovement().speed += upgrade.SpeedValue;
                 Debug.Log("speed upgrade");
                 break;
             case Upgrade.UpgradeType.UNDEFINED:

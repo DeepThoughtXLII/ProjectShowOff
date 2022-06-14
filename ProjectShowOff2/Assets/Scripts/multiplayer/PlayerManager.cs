@@ -39,22 +39,22 @@ public class PlayerManager : MonoBehaviour
 
         server = GetComponent<Server>();
 
-
+        /*
         switch (server.UsesControls)
         {
-            case Server.Controls.ONLINE:
-                playerPrefab.IsUsingInput = Player.Input.ONLINE;
+            case Controls.ONLINE:
+                playerPrefab.GetPlayerMovement().IsUsingInput = Controls.ONLINE;
  
                 break;
-            case Server.Controls.GAMEPAD:
-                playerPrefab.IsUsingInput = Player.Input.GAMEPAD;
+            case Controls.GAMEPAD:
+                playerPrefab.GetPlayerMovement().IsUsingInput = Controls.GAMEPAD;
 
                 break;
-            case Server.Controls.KEYBOARD:
-                playerPrefab.IsUsingInput = Player.Input.KEYBOARD;
+            case Controls.KEYBOARD:
+                playerPrefab.GetPlayerMovement().IsUsingInput = Controls.KEYBOARD;
 
                 break;
-        }
+        }*/
     }
 
     public void DisconnectPlayer(int id)
@@ -107,6 +107,7 @@ public class PlayerManager : MonoBehaviour
         playerLevel.Add(pId, player.GetComponent<Levelable>());
         player.name = name;
         player.Id = pId;
+        player.GetPlayerMovement().IsUsingInput = server.UsesControls;
         Debug.Log("added player to manage with id= " + pId);
         //player.Spawn = new Vector2(spawnpoints[pId].position.x, spawnpoints[pId].position.x);
         return player;
@@ -142,13 +143,13 @@ public class PlayerManager : MonoBehaviour
     public void MovePlayer(Vector2 direction, int pId)
     {
         Player player = GetPlayer(pId);
-        player.Move(direction);
+        player.GetPlayerMovement().Move(direction);
     }
 
 
     public void PlayerShoot(int id)
     {
-        if(GetPlayer(id).State != Player.PlayerState.BOSS)
+        if(GetPlayer(id).GetPlayerHealth().State != PlayerHealth.PlayerState.BOSS)
         {
             playerShot[id].Shoot();
         } else
@@ -163,7 +164,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (KeyValuePair < int, Player> p in playerList)
         {
-            if(p.Value.State != Player.PlayerState.REVIVING && p.Value.State != Player.PlayerState.BOSS)//if any of the players are not revivng/not dead
+            if(p.Value.GetPlayerHealth().State != PlayerHealth.PlayerState.REVIVING && p.Value.GetPlayerHealth().State != PlayerHealth.PlayerState.BOSS)//if any of the players are not revivng/not dead
             {
                 return false;
             }

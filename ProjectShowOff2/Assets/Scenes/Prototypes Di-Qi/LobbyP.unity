@@ -1679,6 +1679,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: testing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: usesControls
       value: 2
       objectReference: {fileID: 0}
@@ -1976,7 +1980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2059556446646124747, guid: 43f9de74f769bff4f90e0a348c0c4dee, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2059556446646124747, guid: 43f9de74f769bff4f90e0a348c0c4dee, type: 3}
       propertyPath: m_LocalPosition.x

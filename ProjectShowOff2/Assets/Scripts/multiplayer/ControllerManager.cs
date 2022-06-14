@@ -26,7 +26,7 @@ public class ControllerManager : MonoBehaviour, IControllerManager
         playerManager = GetComponent<PlayerManager>();
         players = new Dictionary<int, playerInput>();
 
-        if(server.UsesControls == Server.Controls.KEYBOARD)
+        if(server.UsesControls == Controls.KEYBOARD)
         {
             keyboardTesting = true;
         } else

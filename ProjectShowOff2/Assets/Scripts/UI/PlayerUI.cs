@@ -21,7 +21,7 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI nameText;
 
-    Player.PlayerState oldState = Player.PlayerState.ALIVE;
+    PlayerHealth.PlayerState oldState = PlayerHealth.PlayerState.ALIVE;
 
     ILevelable levelable;
     [SerializeField] private int displayedLevel;
@@ -30,10 +30,10 @@ public class PlayerUI : MonoBehaviour
     {
 
         health = transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
-        healthText = transform.GetChild(1).transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        healthText = transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         xp = transform.GetChild(2).transform.GetChild(0).GetComponent<Image>();
-        levelText = transform.GetChild(2).transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        levelText = transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         levelable = player.gameObject.GetComponent<ILevelable>();
         displayedLevel = levelable.Level.id;
         levelText.text = "level: " + displayedLevel;
@@ -56,19 +56,19 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        if(player.MaxHealth > currentMaxHealth)
+        if(player.GetPlayerHealth().MaxHealth > currentMaxHealth)
         {
             MaxHpRecalc();
         }
-        int hp = player.Health;
+        int hp = player.GetPlayerHealth().Health;
         health.fillAmount = healthUnit * hp;
         healthText.text = "Health: " + hp;
     }
 
     public void MaxHpRecalc()
     {
-        currentMaxHealth = player.MaxHealth;
-        float maxHp = player.MaxHealth;
+        currentMaxHealth = player.GetPlayerHealth().MaxHealth;
+        float maxHp = player.GetPlayerHealth().MaxHealth;
         healthUnit = 1f / maxHp;
     }
 
@@ -79,7 +79,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetReviveMode()
     {
-        healthUnit = 1 / player.ReviveCooldown;
+        healthUnit = 1 / player.GetPlayerHealth().ReviveCooldown;
         health.color = Color.green;
         UpdateReviveBar();
     }
@@ -101,23 +101,23 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateReviveBar()
     {
-        healthText.text = "reviving in... " + Mathf.RoundToInt(player.ReviveTimer) + "secs";
-        health.fillAmount = healthUnit * player.ReviveTimer;
+        healthText.text = "reviving in... " + Mathf.RoundToInt(player.GetPlayerHealth().ReviveTimer) + "secs";
+        health.fillAmount = healthUnit * player.GetPlayerHealth().ReviveTimer;
     }
 
     public void StateChange()
     {
-        if(oldState != player.State)
+        if(oldState != player.GetPlayerHealth().State)
         {
-            oldState = player.State;
+            oldState = player.GetPlayerHealth().State;
             healthText.color = Color.white;
-            if (player.State == Player.PlayerState.ALIVE)
+            if (player.GetPlayerHealth().State == PlayerHealth.PlayerState.ALIVE)
             {
                 SetAliveMode();
-            }else if(player.State == Player.PlayerState.INVINCIBLE)
+            }else if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.INVINCIBLE)
             {
                 SetInvincibleMode();
-            }else if(player.State == Player.PlayerState.REVIVING)
+            }else if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.REVIVING)
             {
                 SetReviveMode();
             }
@@ -127,11 +127,11 @@ public class PlayerUI : MonoBehaviour
     private void Update()
     {
         StateChange();
-        if(player.State == Player.PlayerState.ALIVE)
+        if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.ALIVE)
         {
             UpdateHealthBar();
         }
-        else if(player.State == Player.PlayerState.REVIVING)
+        else if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.REVIVING)
         {
             UpdateReviveBar();
         }
@@ -147,6 +147,12 @@ public class PlayerUI : MonoBehaviour
             levelText.text = "level: " + displayedLevel;
         }
     }
+
+
+
+
+
+
         public static float map01( float value, float min, float max )
         {
         return ( value - min ) * 1f / ( max - min );

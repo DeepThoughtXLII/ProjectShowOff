@@ -4,8 +4,87 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour  //, IDamageable
 {
+    private int id;
+    public int Id
+    {
+        set { id = value; }
+        get { return id; }
+    }
+
+    [SerializeField] playerShooting ShootingScript;
+    [SerializeField] PlayerMovement MovementScript;
+    [SerializeField] PlayerHealth PlayerHealthScript;
+
+
+    private void OnEnable()
+    {
+        ShootingScript = GetComponent<playerShooting>();
+        MovementScript = GetComponent<PlayerMovement>();
+        PlayerHealthScript = GetComponent<PlayerHealth>();
+    }
+
+    private void Awake()
+    {
+        ShootingScript = GetComponent<playerShooting>();
+        MovementScript = GetComponent<PlayerMovement>();
+        PlayerHealthScript = GetComponent<PlayerHealth>();
+    }
+
+    private void Start()
+    {
+        
+    }
+
+    public playerShooting GetPlayerShooting()
+    {
+        return ShootingScript;
+    }
+
+    public PlayerMovement GetPlayerMovement()
+    {
+        return MovementScript;
+    }
+
+    public PlayerHealth GetPlayerHealth()
+    {
+        return PlayerHealthScript;
+    }
+
+    public void Disconnected()
+    {
+        PlayerHealthScript.State = PlayerHealth.PlayerState.INVINCIBLE;
+    }
+
+    public void Reconnected()
+    {
+        PlayerHealthScript.State = PlayerHealth.PlayerState.ALIVE;
+    }
+
+
+    public void Remove()
+    {
+        Destroy(this);
+    }
+
+
+    public void bossMode()
+    {
+        Debug.Log("boosmOde");
+        gameObject.tag = "enemy";
+        PlayerHealthScript.State = PlayerHealth.PlayerState.BOSS;
+        transform.localScale *= 2;
+        PlayerHealthScript.MaxHealth *= 2;
+        PlayerHealthScript.Health = PlayerHealthScript.MaxHealth;
+        MovementScript.speed *= 1.5f;
+    }
+
+
+
+
+
+    /*
     public static event Action onBossDeath;
 
 
@@ -395,4 +474,6 @@ public class Player : MonoBehaviour, IDamageable
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, revivingRange);
     }
+
+    */
 }

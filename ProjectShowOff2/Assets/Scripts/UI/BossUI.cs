@@ -38,19 +38,19 @@ public class BossUI : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        if (player.MaxHealth > currentMaxHealth)
+        if (player.GetPlayerHealth().MaxHealth > currentMaxHealth)
         {
             MaxHpRecalc();
         }
-        int hp = player.Health;
+        int hp = player.GetPlayerHealth().Health;
         healthBar.fillAmount = healthUnit * hp;
         healthText.text = "Health: " + hp;
     }
 
     public void MaxHpRecalc()
     {
-        currentMaxHealth = player.MaxHealth;
-        float maxHp = player.MaxHealth;
+        currentMaxHealth = player.GetPlayerHealth().MaxHealth;
+        float maxHp = player.GetPlayerHealth().MaxHealth;
         healthUnit = 1f / maxHp;
     }
 

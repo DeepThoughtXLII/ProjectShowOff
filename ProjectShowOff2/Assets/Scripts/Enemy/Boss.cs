@@ -63,7 +63,7 @@ public class Boss : MonoBehaviour, ITargetable
 
     private void OnAction(InputAction.CallbackContext ctx)
     {
-        if (player.State != Player.PlayerState.REVIVING)
+        if (player.GetPlayerHealth().State != PlayerHealth.PlayerState.REVIVING)
         {
             if (ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
             {
