@@ -17,6 +17,7 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField] Image xp;
     [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] TextMeshProUGUI xpText;
     float xpUnit;
 
     [SerializeField] TextMeshProUGUI nameText;
@@ -33,10 +34,11 @@ public class PlayerUI : MonoBehaviour
         healthText = transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         xp = transform.GetChild(2).transform.GetChild(0).GetComponent<Image>();
-        levelText = transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        xpText = transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        levelText = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         levelable = player.gameObject.GetComponent<ILevelable>();
         displayedLevel = levelable.Level.id;
-        levelText.text = "level: " + displayedLevel;
+        levelText.text = "" + displayedLevel;
         nameText.text = player.name;
         MaxHpRecalc();
     }
@@ -143,21 +145,10 @@ public class PlayerUI : MonoBehaviour
         if (levelable.Level.id > displayedLevel)
         {
             displayedLevel = levelable.Level.id;
-            xp.fillAmount = levelable.Xp/100 ;
-            levelText.text = "level: " + displayedLevel;
+            levelText.text = ""+displayedLevel;
+            xpText.text = "XP: " + levelable.Xp;
+            xp.fillAmount = levelable.Xp/ 1000;
+
         }
     }
-
-
-
-
-
-
-        public static float map01( float value, float min, float max )
-        {
-        return ( value - min ) * 1f / ( max - min );
-        }
-
-
-
 }
