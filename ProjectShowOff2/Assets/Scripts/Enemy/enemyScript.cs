@@ -73,6 +73,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     private void Awake()
     {
+        rend = GetComponent<SpriteRenderer>();
         defColor = rend.color;
     }
 }
