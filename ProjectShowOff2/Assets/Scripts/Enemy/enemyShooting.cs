@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class enemyShooting : MonoBehaviour
 {
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     FIELDS
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public enum shootingType { BASIC, SHADOW, ARROWHAIL }
     [SerializeField] private shootingType shooting = shootingType.BASIC;
 
@@ -19,6 +22,8 @@ public class enemyShooting : MonoBehaviour
 
     bool readyToShoot = true;
     public bool charging = false;
+
+    List<GameObject> activeArrowHails;
 
     public int bulletDamage;
 
@@ -38,17 +43,22 @@ public class enemyShooting : MonoBehaviour
     private CircleCollider2D collisionBox;
     public bool emerging = false;
 
-
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     START
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
         collisionBox = gameObject.GetComponent<CircleCollider2D>();
         _enemyPathing = gameObject.GetComponent<enemyPathing>();
         // players = GameObject.FindGameObjectsWithTag("Player");
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
+        activeArrowHails = new List<GameObject>();
         getTarget();
     }
 
-
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     UPDATE
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Update()
     {
         getTarget();
@@ -71,6 +81,9 @@ public class enemyShooting : MonoBehaviour
         }
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     UPDATE TARGET
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void updateTarget()
     {
         if (Vector3.Distance(transform.position, target.position) > range)
@@ -79,6 +92,9 @@ public class enemyShooting : MonoBehaviour
         }
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     GET TARGET
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void getTarget()
     {
         Player p = targetingManager.GetTargetInShootingRange(transform, range);
@@ -93,6 +109,9 @@ public class enemyShooting : MonoBehaviour
         }
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     SHOOT
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     IEnumerator Shoot()
     {
         if (target != null)
@@ -109,6 +128,9 @@ public class enemyShooting : MonoBehaviour
         readyToShoot = true;
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     EMERGING
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public IEnumerator Emerging()
     {
         readyToShoot = false;
@@ -124,10 +146,14 @@ public class enemyShooting : MonoBehaviour
 
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     ARROW HAIL ATTACK
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     IEnumerator ArrowHailAttack()
     {
         readyToShoot = false;
         GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+        activeArrowHails.Add(newProjectile);
         _hailOfArrows = newProjectile.GetComponent<hailOfArrows>();
         _hailOfArrows.ReceiveTarget(target);
         _hailOfArrows.setAttackLocation(gameObject.transform);
@@ -138,11 +164,15 @@ public class enemyShooting : MonoBehaviour
         _hailOfArrows.highlightArea.SetActive(false);
         _hailOfArrows.attackArea.SetActive(true);
         yield return new WaitForSeconds(_hailOfArrows.attackDuration);
+        activeArrowHails.Remove(newProjectile);
         Destroy(newProjectile);
         readyToShoot = true;
 
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     MELEE ATTACK
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void meleeAttack()
     {
         if (target != null)
@@ -156,10 +186,23 @@ public class enemyShooting : MonoBehaviour
         }
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     GIZMO SELECTED
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     ON DESTROY
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    private void OnDestroy()
+    {
+        foreach(GameObject gameObject in activeArrowHails)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
