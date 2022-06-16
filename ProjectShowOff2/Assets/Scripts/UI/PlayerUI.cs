@@ -6,12 +6,9 @@ using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     FIELDS
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Player player;
     string playerName;
+    [SerializeField] Image player_img;
 
 
     [SerializeField] Image health;
@@ -19,7 +16,7 @@ public class PlayerUI : MonoBehaviour
      float healthUnit;
     int currentMaxHealth;
 
-    [SerializeField] Image xp_img;
+    [SerializeField] Image xp;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI xpText;
     float xpUnit;
@@ -31,17 +28,13 @@ public class PlayerUI : MonoBehaviour
     ILevelable levelable;
     [SerializeField] private int displayedLevel;
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     START()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
-
+        player_img = transform.GetComponent<Image>();
         health = transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
         healthText = transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        xp_img = transform.GetChild(2).transform.GetChild(0).GetComponent<Image>();
+        xp = transform.GetChild(2).transform.GetChild(0).GetComponent<Image>();
         xpText = transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         levelText = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         levelable = player.gameObject.GetComponent<ILevelable>();
@@ -51,9 +44,7 @@ public class PlayerUI : MonoBehaviour
         MaxHpRecalc();
     }
 
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     GET() AND SET()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public Player Player
     {
         set { player = value; }
@@ -66,14 +57,11 @@ public class PlayerUI : MonoBehaviour
         get { return playerName; }
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     UPDATE HEALTH BAR()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void UpdateHealthBar()
     {
         if(player.GetPlayerHealth().MaxHealth > currentMaxHealth)
         {
+            player_img.color = Color.red;
             MaxHpRecalc();
         }
         int hp = player.GetPlayerHealth().Health;
@@ -81,10 +69,6 @@ public class PlayerUI : MonoBehaviour
         healthText.text = "Health: " + hp;
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     MAX HP RECALC()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void MaxHpRecalc()
     {
         currentMaxHealth = player.GetPlayerHealth().MaxHealth;
@@ -92,19 +76,11 @@ public class PlayerUI : MonoBehaviour
         healthUnit = 1f / maxHp;
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     UPDATE NAME()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void UpdateName()
     {
         nameText.text = playerName;
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     SET REVIVE MODE()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void SetReviveMode()
     {
         healthUnit = 1 / player.GetPlayerHealth().ReviveCooldown;
@@ -112,10 +88,6 @@ public class PlayerUI : MonoBehaviour
         UpdateReviveBar();
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     SET ALIVE MODE()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void SetAliveMode()
     {
         MaxHpRecalc();
@@ -123,10 +95,6 @@ public class PlayerUI : MonoBehaviour
         UpdateHealthBar();
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     SET INVINCIBLE MODE()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void SetInvincibleMode()
     {
         health.fillAmount = 1f;
@@ -135,21 +103,13 @@ public class PlayerUI : MonoBehaviour
         healthText.color = Color.black;
     }
 
-
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     UPDAT ERVEIVE BAR()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void UpdateReviveBar()
     {
+        player_img.material = Glow;
         healthText.text = "reviving in... " + Mathf.RoundToInt(player.GetPlayerHealth().ReviveTimer) + "secs";
         health.fillAmount = healthUnit * player.GetPlayerHealth().ReviveTimer;
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     STATE CHANGE()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void StateChange()
     {
         if(oldState != player.GetPlayerHealth().State)
@@ -169,10 +129,6 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     UODATE()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Update()
     {
         StateChange();
@@ -187,10 +143,6 @@ public class PlayerUI : MonoBehaviour
         levelUpdate();
     }
 
-
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     LEVEL UPDATE()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void levelUpdate()
     {
         if (levelable.Level.id > displayedLevel)
@@ -198,7 +150,7 @@ public class PlayerUI : MonoBehaviour
             displayedLevel = levelable.Level.id;
             levelText.text = ""+displayedLevel;
             xpText.text = "XP: " + levelable.Xp;
-            xp_img.fillAmount = levelable.Xp / levelable.Level.xpNeeded;
+            xp.fillAmount = levelable.Xp / levelable.Level.xpNeeded;
 
         }
     }
