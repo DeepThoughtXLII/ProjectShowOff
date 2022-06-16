@@ -173,6 +173,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     PROCESS CURRENT CLIENTS()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///calls update on clients and players alike
     void ProcessCurrentClients()
     {
         if (onWaitlist.Count > 0)
@@ -200,6 +201,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     UPDATE WAITLIST()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///removes anyone from the waitlist that recently became a client and already joined the game
     void updateWaitlist()
     {
         if (ascendedToClient.Count > 0)
@@ -216,6 +218,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     INSTANTIATE CLIENT()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///creates the client object (OnlinePlayerInput)
     void InstantiateClient(int id, string name = null)
     {
         //GameObject client = (GameObject)Instantiate(circle, transform.position, transform.rotation);
@@ -247,6 +250,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     PARSE COMMAND()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///reads string and checks which command was used and calls the necessary functions
     void parseCommand(string text, int id)
     {
         if (server.State == Server.gameState.LOBBY)
@@ -332,6 +336,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET FREE ID()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///checks which id of {0,1,2,3} is the next free one
     int getFreeID()
     {
         foreach (int id in ids)
@@ -346,7 +351,8 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     PASRE UPGRADES()
-    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+    ///reads the upgrade type from string
     void parseUpgrades(string text, int id)
     {
         int cmd1 = text.IndexOf('!');
@@ -378,6 +384,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     PARSE INPUT()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///seperates the joystick input from the string
     Vector2 parseInput(string text)
     {
         string[] inputTxt = text.Split('!');
@@ -389,7 +396,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     RESOLVE JOYSTICK INPUT()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //TEMPORARY
+    ///calls teh player manager to take care of moving the player
     void resolveJoystickInput(Vector2 input, int id)
     {
         Vector2 m = new Vector2(input.x, input.y * -1);
@@ -415,6 +422,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     ON UPGRADE()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///checks if any of the players have reached an upgrade threshold and there is need to start the upgrade conversation
     private void onUpgrade()
     {
         foreach (KeyValuePair<int, WebSocketConnection> client in clients)
@@ -460,6 +468,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     POLL CLIENT()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///checks every .5 seconds if client is still conencted
     IEnumerator pollClient()
     {
         foreach (KeyValuePair<int, WebSocketConnection> client in clients)
@@ -487,6 +496,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     DETECT FAULTY CLIENT()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///removes clients upon detecting that they disconnected
     private void detectFaultyClients()
     {
         /*List<int> faultyClients = new List<int>();

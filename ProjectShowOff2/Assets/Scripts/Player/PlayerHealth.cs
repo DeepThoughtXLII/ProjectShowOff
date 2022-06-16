@@ -125,12 +125,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     INVINCIBLE
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /////used for invincibility frames after reviving
     IEnumerator Invincible()
     {
         state = PlayerState.INVINCIBLE;
         manageRevivalState();
-        yield return new WaitForSeconds(invincibilityInSec);
-        state = PlayerState.ALIVE;
+        yield return new WaitForSeconds(invincibilityInSec); 
+        state = PlayerState.ALIVE;                              //im not invincible anymore
         FindObjectOfType<SoundManager>().Play("playerRevive");
     }
 
@@ -138,6 +139,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     STATECHECK()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///checks all states and calls responsible functions
     public void StateCheck()
     {
         if (state == PlayerState.REVIVING)
@@ -149,6 +151,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     MANAGE REVIVAL STATE()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///sets the revival process into motion/ ends the revival process
     void manageRevivalState()
     {
         if (state == PlayerState.ALIVE)
@@ -172,6 +175,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     REVIVE()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///triggers revival 
     public void Revive()
     {
         if(state == PlayerState.REVIVING) 
@@ -210,6 +214,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     REVIVING()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///manages revive timer if other players are in range and starts invincibility if revive timer runs out
     void Reviving()
     {
         playerProximityCheck();

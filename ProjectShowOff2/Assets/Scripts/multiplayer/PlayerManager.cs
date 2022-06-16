@@ -75,6 +75,7 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     IS OLD PLAYER()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///checks if the name that was input is the name of a player that was disconnected
     public bool IsOldPlayer(string name)
     {
         if (disconnectedPlayers.ContainsKey(name)){
@@ -87,6 +88,7 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET OLD PLAYER ID()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///return sth eid of a disconnected player by its name
     public int getOldPlayerID(string name)
     {
         return disconnectedPlayers[name];
@@ -207,6 +209,7 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     PLAYERS ALL DEAD()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ////checks if all players are alive
     public bool PlayersAllDead()
     {
         foreach (KeyValuePair < int, Player> p in playerList)
@@ -236,6 +239,7 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     CHEKC FOR PLAYER UPGRADES()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///checks if upgrades are ready so OnlinControllerManager knows to send messages to the client and enable upgradeButtons etc.
     public bool checkForPlayerUpgrades(int pId)
     {
         if (playerList[pId].GetPlayerLevel().upgradesAvailable)
@@ -249,6 +253,7 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     CHANGE UPGRADE TYPE()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///chooses the upgrade the player decided on
     public void changeUpgradeType(int pId, Upgrade.UpgradeType type)
     {
         playerList[pId].GetPlayerLevel().ChooseUpgrade(type);
@@ -258,6 +263,7 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     HEAVEN FALLS NEXT BOSS()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /////calculates which player should turn into the boss upon fulfilling the conditions for a boss fight
     public void HeavenFallsNextBoss()
     {
         int highestLevel = 0;

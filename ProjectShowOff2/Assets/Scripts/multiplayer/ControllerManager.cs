@@ -115,6 +115,7 @@ public class ControllerManager : MonoBehaviour, IControllerManager
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     JOIN PLAYERS()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///joining players manually for keyboard input
     public void JoinPlayers()
     {
         if (Keyboard.current.wKey.wasPressedThisFrame && !players.ContainsKey(0))
