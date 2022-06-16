@@ -1,0 +1,1706 @@
+fileFormatVersion: 2
+guid: 442cbb3473c93f34888daf9d401ae64a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemy big sprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6167d8823a9f44408dd7d048f758d8b
+      internalID: 1050282141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_1
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba6eec60e1524046b6a6e21804f9116
+      internalID: 2126823401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_2
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715781b4c96b5a3458be4b7276c3f14a
+      internalID: -1188499695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_3
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a6b6f79db52bcd439e5d5a1beb9c2ba
+      internalID: -1478657819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_4
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c671ff096e5fe9b4f8243a6f014c131f
+      internalID: -417760471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_5
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd05bdc6ea958447ae58b6f6c767273
+      internalID: 2046156552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_6
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617daf50bd8f03b4c96ba76b3255abbd
+      internalID: 540829146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_7
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d467a366c9b22643bdffa97a26949b2
+      internalID: 399624982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_8
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 5866
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1189e43ddfee9c44ac73e120256d18b
+      internalID: 1923871643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 824df0ce9b5d4e647834c2ee04153541
+      internalID: -830408462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_10
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f73a23cc9d2d6a43937068077e8a436
+      internalID: 2036901841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_11
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a598e4c979b56b40a029bf20a13c6fe
+      internalID: 263756114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_12
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea7f56e49c552b4ea85c59dc529e031
+      internalID: 1723809868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_13
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76600cb7abcdec943b907245c69fef2e
+      internalID: 502436426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_14
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75df1dc0680b6474dae2c1248f5b44c6
+      internalID: 1082576300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_15
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3dd6aa513dabf498410970e73c6695
+      internalID: -1623704891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_16
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6721ffd7d8bda841bbcf5ca13ec2a08
+      internalID: 62451172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_17
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 5028
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4558f3475da2b846b68f70623900b81
+      internalID: 2038829399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5e9b783ec0f1040915e25f40e31744
+      internalID: 1343491825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_19
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6beb08e72808c40973a4916208a266
+      internalID: -1417439815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_20
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 358a491b95922c442af277a68b2f7699
+      internalID: 621831836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_21
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57ae4f4824a3d264f8cc7490c847bd8c
+      internalID: 202070836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_22
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c523236833def242b7658a35c1f672b
+      internalID: -857223244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_23
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad06c2f1b20e4e4a870bee2623da90b
+      internalID: -339733624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_24
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754cc2d6bd9fa8c4caf5477f66f139be
+      internalID: 400733258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_25
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe810075b33c5a04fad73ba57a67005d
+      internalID: 164252172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_26
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 4190
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b409d245141ae814ea7e092e048b41f3
+      internalID: -807699848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b8c850e078c52f42a4e9bfeca3f1f6d
+      internalID: 904850710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_28
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdaaa4685dd1c10448f141cb4bee09fe
+      internalID: 789927449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_29
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b426ed8ee30e244b8b35ea5e58ee828
+      internalID: -220149572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_30
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35ec7b3843715b749b24f4968e4ebc2b
+      internalID: -224640018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_31
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e79c78ab384b0b446b5341863d663925
+      internalID: 1639287544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_32
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b34be7210323ce499dd30bcba028597
+      internalID: 261036144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_33
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5478e79941760354aa40ff50f99bfe3c
+      internalID: 2114496992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_34
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc1af512a67a91b4ab64175ad623e466
+      internalID: 1000061774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_35
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 3352
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1918dd127c3b5a498d80130704a2a01
+      internalID: -715324782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54dfb9ccc8c77004588b6a93930185ed
+      internalID: 93738501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_37
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a09afca7accad1049b2629281f7373d0
+      internalID: 895777964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_38
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0fc370670c65d6469177836b57ba038
+      internalID: 496401646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_39
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033ea6b729189c24a8992f2fa867d8e9
+      internalID: -598439494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_40
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58715eab989ff084b80a9020284b3652
+      internalID: -104812987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_41
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb3693efc5a88e43a080b381d1aced2
+      internalID: 819995287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_42
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8dadb88682177e4e95943b2d6e35c0b
+      internalID: 1662918395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_43
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a299901390a9294ab3c83eb5eadbeeb
+      internalID: -1357344188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_44
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 2514
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f950540988628a4190011eacab1d192
+      internalID: 230462821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9c5427c314bc764d9ec48eb9c359738
+      internalID: 113712432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_46
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9b6fe9fa596a1b4ab68d72dfbf8cfaf
+      internalID: 733669372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_47
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd5247d6e5cbba40a64c4d2c5a31f47
+      internalID: -162054160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_48
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073470ee3f814f349b24c577e4d35fcc
+      internalID: 574022536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_49
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85cddc58c236f4a41b0d39e2ac0267fa
+      internalID: -61656005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_50
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ced97751509834b89000f9c3dcf656
+      internalID: 1676544283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_51
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d720304e90fc3d47893fcbe25c3f5d9
+      internalID: 839394476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_52
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07026364ea059274194bfcf2f06796a5
+      internalID: -975934300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_53
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 1676
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7baa31d826537df4eb330ba8571b44f3
+      internalID: 394425178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078b49d0c3c0ee24cbab35d2df59b76b
+      internalID: 1088571869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_55
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e2b61fa53bee65449979efae8992a50
+      internalID: 1905738994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_56
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6581b3ea51d934cb2540d447d30c31
+      internalID: -37975371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_57
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5649dc81f12cc64aa849cbcdadbdcbc
+      internalID: 1668598781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_58
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a7dc20df5e6af343b86bf0a3fb22293
+      internalID: -409040379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_59
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de7c347dca8b12f4db097982939a7f20
+      internalID: 753149205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_60
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ea64ed589d53c4ca9a160c05ee5af4
+      internalID: 445279894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_61
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a032d01871a63a4dafdf3680518847a
+      internalID: -1276178862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_62
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 838
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ebde6372ca95b144bca43272e75cd51
+      internalID: -1922306093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fabfd51f69cee8b45a100d27e3f1ed73
+      internalID: 74627450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_64
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade2ff54dd05a9e4cb2404bc70bc82f3
+      internalID: -869315532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_65
+      rect:
+        serializedVersion: 2
+        x: 2670
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50286efb9d2bb73408e09c048838b477
+      internalID: 483919056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_66
+      rect:
+        serializedVersion: 2
+        x: 4005
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 233d9a306fcec0e48835a0cd0d9422a0
+      internalID: 398722852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_67
+      rect:
+        serializedVersion: 2
+        x: 5340
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a33a121391bcb49b875a79543b42e8
+      internalID: -1838553727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_68
+      rect:
+        serializedVersion: 2
+        x: 6675
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f990f09181330f04fa53d969d075037e
+      internalID: -1597983571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_69
+      rect:
+        serializedVersion: 2
+        x: 8010
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d33aae6da6e4840b4079f8e86864e3
+      internalID: 1083957111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_70
+      rect:
+        serializedVersion: 2
+        x: 9345
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccecc3c602b9d4c4f9b49eabe5cd890b
+      internalID: 698028393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy big sprites_71
+      rect:
+        serializedVersion: 2
+        x: 10680
+        y: 0
+        width: 1335
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5066ef807e702ef4385d9df760875550
+      internalID: 637566479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      enemy big sprites_61: -1276178862
+      enemy big sprites_9: -830408462
+      enemy big sprites_27: 904850710
+      enemy big sprites_65: 483919056
+      enemy big sprites_38: 496401646
+      enemy big sprites_8: 1923871643
+      enemy big sprites_19: -1417439815
+      enemy big sprites_48: 574022536
+      enemy big sprites_70: 698028393
+      enemy big sprites_44: 230462821
+      enemy big sprites_69: 1083957111
+      enemy big sprites_4: -417760471
+      enemy big sprites_30: -224640018
+      enemy big sprites_22: -857223244
+      enemy big sprites_54: 1088571869
+      enemy big sprites_62: -1922306093
+      enemy big sprites_35: -715324782
+      enemy big sprites_2: -1188499695
+      enemy big sprites_32: 261036144
+      enemy big sprites_36: 93738501
+      enemy big sprites_12: 1723809868
+      enemy big sprites_46: 733669372
+      enemy big sprites_51: 839394476
+      enemy big sprites_29: -220149572
+      enemy big sprites_64: -869315532
+      enemy big sprites_68: -1597983571
+      enemy big sprites_58: -409040379
+      enemy big sprites_57: 1668598781
+      enemy big sprites_16: 62451172
+      enemy big sprites_55: 1905738994
+      enemy big sprites_66: 398722852
+      enemy big sprites_7: 399624982
+      enemy big sprites_17: 2038829399
+      enemy big sprites_0: 1050282141
+      enemy big sprites_41: 819995287
+      enemy big sprites_24: 400733258
+      enemy big sprites_26: -807699848
+      enemy big sprites_50: 1676544283
+      enemy big sprites_25: 164252172
+      enemy big sprites_31: 1639287544
+      enemy big sprites_47: -162054160
+      enemy big sprites_33: 2114496992
+      enemy big sprites_49: -61656005
+      enemy big sprites_43: -1357344188
+      enemy big sprites_5: 2046156552
+      enemy big sprites_42: 1662918395
+      enemy big sprites_60: 445279894
+      enemy big sprites_28: 789927449
+      enemy big sprites_3: -1478657819
+      enemy big sprites_40: -104812987
+      enemy big sprites_1: 2126823401
+      enemy big sprites_10: 2036901841
+      enemy big sprites_52: -975934300
+      enemy big sprites_18: 1343491825
+      enemy big sprites_15: -1623704891
+      enemy big sprites_67: -1838553727
+      enemy big sprites_39: -598439494
+      enemy big sprites_34: 1000061774
+      enemy big sprites_20: 621831836
+      enemy big sprites_6: 540829146
+      enemy big sprites_59: 753149205
+      enemy big sprites_13: 502436426
+      enemy big sprites_21: 202070836
+      enemy big sprites_56: -37975371
+      enemy big sprites_14: 1082576300
+      enemy big sprites_45: 113712432
+      enemy big sprites_11: 263756114
+      enemy big sprites_23: -339733624
+      enemy big sprites_53: 394425178
+      enemy big sprites_63: 74627450
+      enemy big sprites_71: 637566479
+      enemy big sprites_37: 895777964
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
