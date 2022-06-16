@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class animatePlayer : MonoBehaviour
 {
+    //script to read what direction the player is facing and play the correct animation
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     FIELDS
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public Vector2 direction;
     public bool isMoving;
@@ -11,14 +16,24 @@ public class animatePlayer : MonoBehaviour
     Player p;
     Animator anim;
 
-    // Start is called before the first frame update
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     START()
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+
     void Start()
     {
         p = GetComponent<Player>();
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     UPDATE()
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     void Update()
     {
         checkAnimStates();
@@ -26,6 +41,12 @@ public class animatePlayer : MonoBehaviour
 
 
 
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     checkAnimStates()
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///bool notMoving decides if player should be idle or play a moving animation at all
+    ///direction decides if the player walks left,right,up or down
+    ///depending on which one (or which combination of directions) are set to true, the animator plays the correct walking animation
     void checkAnimStates()
     {
         direction = p.GetPlayerMovement().direction;

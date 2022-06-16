@@ -136,11 +136,12 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector2.zero)
         {
             FindObjectOfType<SoundManager>().Play("playerWalk");
-
+            isMoving = true;
         }
         else
         {
             FindObjectOfType<SoundManager>().Play("playerWalk");
+            isMoving = false;
         }
         move = rb.position + direction * speed * Time.fixedDeltaTime;
 
