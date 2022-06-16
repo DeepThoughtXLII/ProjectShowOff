@@ -1,12 +1,13 @@
-                                                                                                                                                       using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public class enemyShooting : MonoBehaviour
 {
-    GameObject[] players;
-    List<Transform> targetsInRange = new List<Transform>();
+    public enum shootingType { BASIC, SHADOW, ARROWHAIL }
+    [SerializeField] private shootingType shooting = shootingType.BASIC;
+
     public Transform target = null;
     public float range = 1.5f;
 
@@ -17,12 +18,15 @@ public class enemyShooting : MonoBehaviour
     public int damage = 1;
 
     bool readyToShoot = true;
+    public bool charging = false;
 
     public int bulletDamage;
 
     TargetingManager targetingManager;
 
     enemyPathing _enemyPathing;
+
+    hailOfArrows _hailOfArrows;
 
     public float MeleeRange;
 
@@ -41,21 +45,35 @@ public class enemyShooting : MonoBehaviour
         _enemyPathing = gameObject.GetComponent<enemyPathing>();
         // players = GameObject.FindGameObjectsWithTag("Player");
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
+        getTarget();
     }
 
 
     private void Update()
     {
         getTarget();
-        if (target != null && readyToShoot)
+        if (target != null)
         {
-            StartCoroutine(Shoot());
+            if (readyToShoot && shooting == shootingType.BASIC)
+            {
+                StartCoroutine(Shoot());
+            }
+
+            if (readyToShoot && shooting == shootingType.SHADOW)
+            {
+                StartCoroutine(Emerging());
+            }
+
+            if (readyToShoot && shooting == shootingType.ARROWHAIL)
+            {
+                StartCoroutine(ArrowHailAttack());
+            }
         }
     }
 
     void updateTarget()
     {
-        if(Vector3.Distance(transform.position, target.position) > range)
+        if (Vector3.Distance(transform.position, target.position) > range)
         {
             target = null;
         }
@@ -64,7 +82,7 @@ public class enemyShooting : MonoBehaviour
     void getTarget()
     {
         Player p = targetingManager.GetTargetInShootingRange(transform, range);
-        if(p != null)
+        if (p != null)
         {
             target = p.transform;
 
@@ -91,25 +109,51 @@ public class enemyShooting : MonoBehaviour
         readyToShoot = true;
     }
 
-    public void meleeAttack(Player player)
+    public IEnumerator Emerging()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) < MeleeRange)
-        {
-            IDamageable playerDam = player.GetComponent<IDamageable>();
-            playerDam.takeDamage(EmergeDamage);
-        }
-    }
-
-    public IEnumerator Emerging(Player player)
-    {
+        readyToShoot = false;
         yield return new WaitForSeconds(EmergeSpeed);
-        meleeAttack(player);
+        meleeAttack();
         collisionBox.enabled = true;
+        
         yield return new WaitForSeconds(TimeBeforeDissapear);
         collisionBox.enabled = false;
         emerging = false;
         _enemyPathing.rend.color = Color.gray;
+        readyToShoot = true;
 
+    }
+
+    IEnumerator ArrowHailAttack()
+    {
+        readyToShoot = false;
+        GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+        _hailOfArrows = newProjectile.GetComponent<hailOfArrows>();
+        _hailOfArrows.ReceiveTarget(target);
+        _hailOfArrows.setAttackLocation(gameObject.transform);
+        _hailOfArrows.highlightArea.SetActive(true);
+        charging = true;
+        yield return new WaitForSeconds(_hailOfArrows.chargeTime);
+        charging = false;
+        _hailOfArrows.highlightArea.SetActive(false);
+        _hailOfArrows.attackArea.SetActive(true);
+        yield return new WaitForSeconds(_hailOfArrows.attackDuration);
+        Destroy(newProjectile);
+        readyToShoot = true;
+
+    }
+
+    public void meleeAttack()
+    {
+        if (target != null)
+        {
+            if (Vector2.Distance(target.position, transform.position) < MeleeRange)
+            {
+                IDamageable playerDam = target.GetComponent<IDamageable>();
+                playerDam.takeDamage(EmergeDamage);
+            }
+
+        }
     }
 
     private void OnDrawGizmosSelected()

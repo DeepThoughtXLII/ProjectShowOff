@@ -34,6 +34,7 @@ public class hailOfArrows : MonoBehaviour
         get { return damage; }
     }
 
+
     void Start()
     {
         minusDeviation -= maximumDeviation;
@@ -61,27 +62,15 @@ public class hailOfArrows : MonoBehaviour
     {
         ownerId = pOwnerId;
         _target = target;
-        setAttackLocation();
-        StartCoroutine(arrowAttack());
     }
 
-    public void setAttackLocation()
+    public void setAttackLocation(Transform enemyTransform)
     {
-        direction = (Vector2)_target.position - (Vector2)this.transform.position;
+        direction = (Vector2)_target.position - (Vector2)gameObject.transform.position;
         angleOffset = Random.Range(minusDeviation, maximumDeviation);
-        rotateVector(direction, angleOffset);
-        Vector2 position = gameObject.transform.position;
-        position += direction;
-        gameObject.transform.position.Set(position.x, position.y, 0f);
-    }
-    public IEnumerator arrowAttack()
-    {
-        highlightArea.SetActive(true);
-        yield return new WaitForSeconds(chargeTime);
-        highlightArea.SetActive(false);
-        attackArea.SetActive(true);
-        yield return new WaitForSeconds(attackDuration);
-        Destroy(gameObject);
+        gameObject.transform.Translate(direction.x, direction.y, 0f);
+        float rotation = Vector2.Angle((Vector2)_target.position, (Vector2)enemyTransform.position) + angleOffset;
+        gameObject.transform.Rotate(0, 0, rotation);
     }
 
     public Vector2 rotateVector(Vector2 v, float degrees)

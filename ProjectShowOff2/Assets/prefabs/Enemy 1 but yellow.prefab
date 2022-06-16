@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5425440211871156248}
   - component: {fileID: 1669938543758599234}
-  - component: {fileID: 924684509664056131}
   - component: {fileID: 4239635615416892891}
   - component: {fileID: 8606838728313119713}
   - component: {fileID: -4592722244351603048}
   - component: {fileID: 8032830822421680088}
+  - component: {fileID: 1076311133579859208}
   m_Layer: 7
   m_Name: Enemy 1 but yellow
   m_TagString: enemy
@@ -90,26 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &924684509664056131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1456903649132177477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900e845ba3601e44bb8402dbbeeac4cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 20
-  attackSpeed: 1
-  damage: 2
-  attackRange: 4
-  targetColor: {r: 1, g: 0, b: 0, a: 1}
-  playerTag: Player
-  speed: 1
-  targetingManager: {fileID: 0}
 --- !u!50 &4239635615416892891
 Rigidbody2D:
   serializedVersion: 4
@@ -172,12 +152,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21139638ec23b474baf8855a00b93775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooting: 0
   target: {fileID: 0}
   range: 20.97
   bulletPrefab: {fileID: 1640329167883588167, guid: 5c77c40d69f5f6b4d81563c25d30449a, type: 3}
   firepoint: {fileID: 6311797072188095194}
   firerate: 1.25
+  damage: 1
+  charging: 0
   bulletDamage: 1
+  MeleeRange: 0
+  EmergeDamage: 0
+  EmergeSpeed: 0
+  TimeBeforeDissapear: 0
+  emerging: 0
+--- !u!114 &1076311133579859208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456903649132177477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873f37055c4cb2349911a656efc92d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  damageSound: 
+  targetColor: {r: 1, g: 1, b: 1, a: 1}
+  targetingManager: {fileID: 0}
+  spriteColour: {fileID: 0}
 --- !u!1 &1602348771886720887
 GameObject:
   m_ObjectHideFlags: 0

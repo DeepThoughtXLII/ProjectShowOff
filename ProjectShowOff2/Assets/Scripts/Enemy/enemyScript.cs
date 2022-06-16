@@ -10,9 +10,6 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     private int health = 0;
 
     public string damageSound;
-    public enum pathingType { SIMPLE, SHADOW, SMART }
-    [SerializeField] private pathingType pathing = pathingType.SIMPLE;
-
     SpriteRenderer rend;
 
     Color defColor;
@@ -22,6 +19,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     bool isTarget = false;
 
     public TargetingManager targetingManager;
+
 
     //Temp sprite renderer colour change
     public SpriteRenderer spriteColour;

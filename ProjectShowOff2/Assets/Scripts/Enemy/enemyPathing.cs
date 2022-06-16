@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyPathing : MonoBehaviour
 {
-    public enum pathingType { SIMPLE, SHADOW, SMART}
+    public enum pathingType { SIMPLE, SHADOW, SMART }
     [SerializeField] private pathingType pathing = pathingType.SIMPLE;
 
     public string playerTag = "player";
@@ -13,7 +13,7 @@ public class enemyPathing : MonoBehaviour
     public SpriteRenderer rend;
 
     public float speed = 3f;
-    
+
     [Header("Shadow Pathing")]
 
     public TargetingManager targetingManager;
@@ -31,13 +31,12 @@ public class enemyPathing : MonoBehaviour
 
     void Start()
     {
-        player = targetingManager.GetTarget(transform);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        player = targetingManager.GetTarget(transform);
     }
 
     private void FixedUpdate()
@@ -46,39 +45,60 @@ public class enemyPathing : MonoBehaviour
         {
             if (player.GetPlayerHealth().State != PlayerHealth.PlayerState.REVIVING)
             {
-                if (pathing == pathingType.SIMPLE)
-                {
-                    walkTowardsPlayer();
-                }
-                else if (pathing == pathingType.SHADOW)
-                {
-                    if (_enemyShooting.emerging == false)
-                    {
-                        walkTowardsPlayer();
-                        if (Vector2.Distance(player.transform.position, transform.position) < 0.1)
-                        {
-                            _enemyShooting.emerging = true;
-                            rend.color = Color.yellow;
-                        }
-
-                    }
-                    else if (_enemyShooting.emerging == true)
-                    {
-                        StartCoroutine(_enemyShooting.Emerging(player));
-                    }
-
-                }
-                else if (pathing == pathingType.SMART)
-                {
-
-                }
-                //inRangeOfPlayer();
+                pathingSimple();
+                pathingShadow();
+                pathingSmart();
             }
-            else
+
+        }
+        else
+        {
+            player = targetingManager.GetTarget(transform);
+        }
+
+    }
+
+
+    void pathingSimple()
+    {
+        if (pathing == pathingType.SIMPLE)
+        {
+            if(_enemyShooting.charging == false)
             {
-                player = targetingManager.GetTarget(transform);
+                walkTowardsPlayer();
             }
+        }
 
+    }
+
+    void pathingShadow()
+    {
+        if (pathing == pathingType.SHADOW)
+        {
+            if (_enemyShooting.emerging == false)
+            {
+                walkTowardsPlayer();
+                if (Vector2.Distance(player.transform.position, transform.position) < 0.1)
+                {
+                    _enemyShooting.emerging = true;
+                    rend.color = Color.yellow;
+                }
+
+            }
+            else if (_enemyShooting.emerging == true)
+            {
+                StartCoroutine(_enemyShooting.Emerging());
+            }
+        }
+
+
+    }
+
+    void pathingSmart()
+    {
+        if (pathing == pathingType.SMART)
+        {
+            // INSERT PATHFINDING
         }
     }
 
