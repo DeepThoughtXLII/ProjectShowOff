@@ -2886,7 +2886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227fddb0c915e8d449e60ccde85c79fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_img: {fileID: 0}
   health: {fileID: 0}
   healthText: {fileID: 0}
   xp: {fileID: 0}
@@ -2949,7 +2948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227fddb0c915e8d449e60ccde85c79fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_img: {fileID: 0}
   health: {fileID: 0}
   healthText: {fileID: 0}
   xp: {fileID: 0}
@@ -2969,7 +2967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0512c5d3ce2474672b0c9b3fc895e993, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3727,7 +3725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0512c5d3ce2474672b0c9b3fc895e993, type: 2}
   m_Color: {r: 0.9568628, g: 0.61960787, b: 0.61960787, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3846,7 +3844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227fddb0c915e8d449e60ccde85c79fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_img: {fileID: 0}
   health: {fileID: 0}
   healthText: {fileID: 0}
   xp: {fileID: 0}
@@ -6383,7 +6380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 0512c5d3ce2474672b0c9b3fc895e993, type: 2}
   m_Color: {r: 0.8000001, g: 0.7725491, b: 0.9686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -8695,7 +8692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227fddb0c915e8d449e60ccde85c79fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_img: {fileID: 0}
   health: {fileID: 0}
   healthText: {fileID: 0}
   xp: {fileID: 0}

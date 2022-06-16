@@ -8,8 +8,8 @@ public class PlayerUI : MonoBehaviour
 {
     Player player;
     string playerName;
-    [SerializeField] Image player_img;
 
+    Material p_Mat;
 
     [SerializeField] Image health;
     [SerializeField] TextMeshProUGUI healthText;
@@ -30,7 +30,7 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
-        player_img = transform.GetComponent<Image>();
+        p_Mat = this.GetComponent<Image>().material;
         health = transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
         healthText = transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         nameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -61,7 +61,7 @@ public class PlayerUI : MonoBehaviour
     {
         if(player.GetPlayerHealth().MaxHealth > currentMaxHealth)
         {
-            player_img.color = Color.red;
+            p_Mat.color = Color.red;
             MaxHpRecalc();
         }
         int hp = player.GetPlayerHealth().Health;
@@ -83,6 +83,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetReviveMode()
     {
+        p_Mat.color = Color.green;
         healthUnit = 1 / player.GetPlayerHealth().ReviveCooldown;
         health.color = Color.green;
         UpdateReviveBar();
@@ -91,6 +92,7 @@ public class PlayerUI : MonoBehaviour
     public void SetAliveMode()
     {
         MaxHpRecalc();
+        p_Mat.color = Color.white;
         health.color = Color.red;
         UpdateHealthBar();
     }
@@ -105,7 +107,6 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateReviveBar()
     {
-        player_img.material = Glow;
         healthText.text = "reviving in... " + Mathf.RoundToInt(player.GetPlayerHealth().ReviveTimer) + "secs";
         health.fillAmount = healthUnit * player.GetPlayerHealth().ReviveTimer;
     }
