@@ -18,6 +18,7 @@ public class OnlinePlayerInput : MonoBehaviour
     Image bg;
     Image character;
 
+    static Animator anim;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET() AND SET()
@@ -47,9 +48,10 @@ public class OnlinePlayerInput : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
-        bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
-        character = ui.gameObject.transform.GetChild(1).GetComponent<Image>();
-        playerName = ui.gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        anim = ui.gameObject.transform.GetComponent<Animator>();
+       /* bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
+        character = ui.gameObject.transform.GetChild(1).GetComponent<Image>(); */
+        playerName = ui.gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         notReady = new Color(255, 255, 255, 0.5f);
         Connected();
     }
@@ -60,8 +62,11 @@ public class OnlinePlayerInput : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void Connected()
     {
-        bg.color = Color.white;
-        character.enabled = true;
+        anim.SetBool("Player_Joined", true);
+        anim.SetBool("Player_Left", false);
+       
+        /*bg.color = Color.white;
+        character.enabled = true;*/
         if (pname != null)
         {
             UpdateName();
@@ -74,10 +79,14 @@ public class OnlinePlayerInput : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void Disconnected()
     {
-        bg.color = notReady;
+        /*bg.color = notReady;
+        character.enabled = false;
+        */
+        anim.SetBool("Player_Left", true);
+        anim.SetBool("Player_Joined", false);
+
         pname = "not ready";
         UpdateName();
-        character.enabled = false;
         Destroy(this);
     }
 

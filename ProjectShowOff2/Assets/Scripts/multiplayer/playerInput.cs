@@ -20,6 +20,8 @@ public class playerInput : MonoBehaviour
 
     [SerializeField]int index = 0;
 
+    static Animator anim;
+
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET() AND SET()
@@ -42,9 +44,10 @@ public class playerInput : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
-        bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
-        character = ui.gameObject.transform.GetChild(1).GetComponent<Image>();
-        playerName = ui.gameObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        /*bg = ui.gameObject.transform.GetChild(0).GetComponent<Image>();
+        character = ui.gameObject.transform.GetChild(1).GetComponent<Image>(); */
+        anim = ui.gameObject.transform.GetComponent<Animator>();
+        playerName = ui.gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -56,9 +59,12 @@ public class playerInput : MonoBehaviour
         controls = new PlayerControls();
         controls.Lobby.Enable();
 
+        anim.SetBool("Player_Joined", true);
+        anim.SetBool("Player_Left", false);
+
         controls.Lobby.startGame.performed += ctx => GetComponentInParent<Server>().StartGame();
-        bg.color = Color.white;
-        character.enabled = true;
+       /* bg.color = Color.white;
+        character.enabled = true; */
         playerName.text = "ready";
     }
 
@@ -68,6 +74,9 @@ public class playerInput : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void OnDisable()
     {
+        anim.SetBool("Player_Left", true);
+        anim.SetBool("Player_Joined", false);
+
         controls.Lobby.Disable();
     }
 
