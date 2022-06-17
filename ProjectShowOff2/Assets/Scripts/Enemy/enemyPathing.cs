@@ -11,6 +11,7 @@ public class enemyPathing : MonoBehaviour
     public enum pathingType { SIMPLE, SHADOW, SMART }
     [SerializeField] private pathingType pathing = pathingType.SIMPLE;
 
+
     public string playerTag = "player";
     Player player = null;
 
@@ -24,6 +25,8 @@ public class enemyPathing : MonoBehaviour
 
     enemyShooting _enemyShooting;
 
+    IsometricCharacterRenderer isoRenderer;
+
     Rigidbody2D rb;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -35,6 +38,7 @@ public class enemyPathing : MonoBehaviour
         rend = gameObject.GetComponent<SpriteRenderer>();
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
         _enemyShooting = gameObject.GetComponent<enemyShooting>();
+        isoRenderer = GetComponent<IsometricCharacterRenderer>();
     }
 
 
@@ -127,7 +131,10 @@ public class enemyPathing : MonoBehaviour
     {
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
+        Vector2 inputVector = Vector2.ClampMagnitude(direction, 1);
+        Vector2 movement = inputVector * speed;
+        isoRenderer.SetDirection(movement);
         //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
     }
 }

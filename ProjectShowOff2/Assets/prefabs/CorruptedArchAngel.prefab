@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 8311576965149013452}
   - component: {fileID: 4239635615416892891}
   - component: {fileID: 8606838728313119713}
+  - component: {fileID: 2562438338866849987}
+  - component: {fileID: 8345519374329195181}
   m_Layer: 7
   m_Name: CorruptedArchAngel
   m_TagString: enemy
@@ -141,6 +143,7 @@ MonoBehaviour:
   firepoint: {fileID: 6311797072188095194}
   firerate: 5
   damage: 20
+  charging: 0
   bulletDamage: 0
   MeleeRange: 0
   EmergeDamage: 0
@@ -201,6 +204,38 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2562438338866849987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456903649132177477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0631f36ac84554335b5b1f70f25312fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &8345519374329195181
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456903649132177477}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9619ff09cff64ea8b5b1f3213fa70ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1602348771886720887
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +346,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 2bdfce71c302a430a8b232aab3f84fd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
