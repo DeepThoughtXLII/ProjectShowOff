@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerManager : MonoBehaviour
@@ -12,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     ///                                                                     FIELDS
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    [SerializeField]private Player playerPrefab = null;
+    [SerializeField]private Player [] playerPrefab = new Player[4];
 
     [SerializeField] Dictionary<int, Player> playerList = new Dictionary<int, Player>();
 
@@ -28,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject bossBulletPrefab;
 
     public Transform[] spawnpoints;
+    public GameObject spawn;
 
     Server server;
 
@@ -59,6 +61,18 @@ public class PlayerManager : MonoBehaviour
 
                 break;
         }*/
+    }
+
+    private void Update()
+    {
+        if(server.State == Server.gameState.INGAME && spawn == null)
+        {
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+            {
+                Debug.Log("scene lodaded");
+                SpawnPlayers();
+            }
+        }
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -123,7 +137,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         //create a new view with ourselves as the transform parent
-        Player player = Instantiate<Player>(playerPrefab, transform);
+        Player player = Instantiate<Player>(playerPrefab[pId], transform);
         playerList[pId] = player;
         //playerShot.Add(pId, player.GetComponent<playerShooting>());
         //playerLevel.Add(pId, player.GetComponent<Levelable>());
@@ -300,4 +314,38 @@ public class PlayerManager : MonoBehaviour
         Boss = null;
         BossShoot = null;
     }
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     SAVE SPAWN POINTS()
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public void saveSpawnPoints()
+    {
+            spawn = GameObject.Find("spawnPoints");
+
+            for (int i = 0; i < spawn.transform.childCount; i++)
+            {
+                spawnpoints[i] = spawn.transform.GetChild(i);
+            }
+        
+    }
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                    SPAWN PLAYERS()
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void SpawnPlayers()
+    {
+        saveSpawnPoints();
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            playerList[i].transform.position = spawnpoints[i].position;
+        }
+    }
+
+
+
+
+
+
+
 }

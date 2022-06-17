@@ -74,8 +74,8 @@ public class playerInput : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void OnDisable()
     {
-        anim.SetBool("Player_Left", true);
-        anim.SetBool("Player_Joined", false);
+        //anim.SetBool("Player_Left", true);
+        //anim.SetBool("Player_Joined", false);
 
         controls.Lobby.Disable();
     }

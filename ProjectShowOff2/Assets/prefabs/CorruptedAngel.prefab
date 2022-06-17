@@ -106,7 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   damageSound: 
-  pathing: 0
   targetColor: {r: 1, g: 1, b: 1, a: 1}
   targetingManager: {fileID: 0}
   spriteColour: {fileID: 0}
@@ -135,13 +134,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21139638ec23b474baf8855a00b93775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooting: 0
   target: {fileID: 0}
   range: 20
   bulletPrefab: {fileID: 1640329167883588167, guid: 5c77c40d69f5f6b4d81563c25d30449a, type: 3}
   firepoint: {fileID: 6311797072188095194}
   firerate: 1.25
   damage: 10
-  bulletDamage: 0
+  charging: 0
+  bulletDamage: 10
   MeleeRange: 0
   EmergeDamage: 0
   EmergeSpeed: 0
