@@ -151,7 +151,7 @@ public class PlayerUI : MonoBehaviour
             displayedLevel = levelable.Level.id;
             levelText.text = ""+displayedLevel;
             xpText.text = "XP: " + levelable.Xp;
-            xp.fillAmount = levelable.Xp / levelable.Level.xpNeeded;
+            xp.fillAmount = levelable.Xp/levelable.Level.xpNeeded;
 
         }
     }
