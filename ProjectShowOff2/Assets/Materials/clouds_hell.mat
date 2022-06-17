@@ -54,7 +54,7 @@ Material:
     - _Cloud_Height: 2.15
     - _Clouds_Speed: 0.3
     - _Noise_Power: 1.46
-    - _Noise_Scale: 0.18
+    - _Noise_Scale: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smooth_Edge_1: 0
@@ -63,5 +63,5 @@ Material:
     - _Color_1: {r: 0.24891421, g: 0.27733853, b: 0.3018868, a: 1}
     - _Color_2: {r: 0.754717, g: 0.5628603, b: 0.53684586, a: 1}
     - _Noise_Remap: {r: 0, g: 1, b: -1, a: 1}
-    - _Rotate_Projection: {r: 1, g: 0, b: 0, a: 90}
+    - _Rotate_Projection: {r: 1, g: 0, b: 0, a: 10}
   m_BuildTextureStacks: []
