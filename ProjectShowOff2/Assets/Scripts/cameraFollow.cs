@@ -58,8 +58,6 @@ public class cameraFollow : MonoBehaviour
         GameObject[] tempT = GameObject.FindGameObjectsWithTag("Player");
 
 
-        if (targets == null)
-        {
 
             targets = new Transform[pm.GetPlayerCount()];
 
@@ -67,7 +65,7 @@ public class cameraFollow : MonoBehaviour
             {
                 targets[i] = pm.GetPlayer(i).transform;//tempT[i].transform;
             }
-        }
+
 
         FollowTarget();
     }
@@ -81,7 +79,7 @@ public class cameraFollow : MonoBehaviour
     void LateUpdate()
     {
         FollowTarget();
-        changeColors();
+        //changeColors();
     }
 
 
@@ -349,8 +347,6 @@ public class cameraFollow : MonoBehaviour
 
     void CameraTargetUpdate(Transform[] target)
     {
-        
-
         Transform furthestTarget = GetPlayerFurthestAway(target);
         targetsOnCamera.Clear();
         targetsThatDontFit.Clear();
@@ -376,7 +372,7 @@ public class cameraFollow : MonoBehaviour
         {
             targetsOnCamera.Add(target[0]);
         }
-        if(targetsThatDontFit.Count > 0)
+        else if(targetsThatDontFit.Count > 0)
         {
             if (AllTargetsOnCamera(targetsOnCamera.ToArray())!= true)
             {

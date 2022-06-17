@@ -103,6 +103,7 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
+        transform.position = Vector3.zero;
        if(controllerManager == null)
         {
             throw new Exception("no controllerManager found. players cannot join.");
@@ -271,6 +272,8 @@ public class Server : MonoBehaviour
             Debug.Log("change Scene");
             state = gameState.INGAME;
             controllerManager.OnGameStart();
+            
+
         }
     }
 
