@@ -48,11 +48,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Base_Scale: 0.04
-    - _Base_Speed: 0.99
+    - _Base_Speed: 0.9
     - _Base_Strenght: 4.25
     - _Big_Noise: 5
     - _Cloud_Height: 1
-    - _Clouds_Speed: 0.3
+    - _Clouds_Speed: 0.5
     - _Noise_Power: 0.49
     - _Noise_Scale: 0.1
     - _QueueControl: 0
