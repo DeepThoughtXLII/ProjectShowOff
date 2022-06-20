@@ -96,6 +96,7 @@ public class waveSpawner : MonoBehaviour
     IEnumerator spawnWave()
     {
         Console.WriteLine("Wave Started");
+        FindObjectOfType<SoundManager>().Play("newWaveVO");
         currentWaveDangerLevel = waves[waveIndex].waveDangerLevel;
         while (currentWaveDangerLevel > 0)
         {

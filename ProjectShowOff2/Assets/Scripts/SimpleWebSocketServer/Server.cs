@@ -145,6 +145,7 @@ public class Server : MonoBehaviour
             if (playerManager.PlayersAllDead() && !testing)
             {
                 state = gameState.GAMEOVER;
+                FindObjectOfType<SoundManager>().Play("gameOverVO");
             }
         }
         else if(state == gameState.GAMEOVER)
@@ -166,6 +167,7 @@ public class Server : MonoBehaviour
         SceneManager.LoadScene(2);
         playerManager.ReviveAllPlayers();
         playerManager.HeavenFallsNextBoss();
+        FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
         //start bossfigth 
     }
 

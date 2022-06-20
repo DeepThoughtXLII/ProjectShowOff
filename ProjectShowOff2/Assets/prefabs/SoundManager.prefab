@@ -135,4 +135,88 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: playerLowHpVO
+    clip: {fileID: 8300000, guid: f68cbedbe6eb3254995fc87b0b625e1b, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: corruptionStartsVO
+    clip: {fileID: 8300000, guid: d5698fd41827e1f47af02c5f21e314a5, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: corruptionHighVO
+    clip: {fileID: 8300000, guid: 68cfa17b9e0c24d45a76d00cef8f6385, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: finalBossTransitionVO
+    clip: {fileID: 8300000, guid: 6ce7153df3bb03e45a634cc765d1afcb, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: gameOverVO
+    clip: {fileID: 8300000, guid: dfb65f7d46941044f9989a11d194f184, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: playerDiesVO
+    clip: {fileID: 8300000, guid: b9be19698c5742441b0f4fe68ddcadb8, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: newWaveVO
+    clip: {fileID: 8300000, guid: 5a9fc6e3cf0c0a044a2139adde1e180f, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: victoryEndingVO
+    clip: {fileID: 8300000, guid: 725f0ae947330aa47822208a086fda0d, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: introductionVO
+    clip: {fileID: 8300000, guid: e8af382ec97f19348bcec8729d6b033f, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: tutorialVoice1VO
+    clip: {fileID: 8300000, guid: 99c45ef594d891440b834bd3607100da, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: tutorialVoice2VO
+    clip: {fileID: 8300000, guid: 83871f613cfea9f4dbe495c1363968a5, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: tutorialVoice3VO
+    clip: {fileID: 8300000, guid: c3c4b04040613e44d937c8572f0b523c, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: tutorialVoice4VO
+    clip: {fileID: 8300000, guid: 134ea8cde05d77d4ab3356fd72cd6e8a, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: tutorialVoice5VO
+    clip: {fileID: 8300000, guid: aee72effec6886745b536fe964a2a798, type: 3}
+    volume: 0.234
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   mixer: {fileID: 24300002, guid: 7e58c89ebaa76a340a45ce144ea8d7b8, type: 2}

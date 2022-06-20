@@ -105,12 +105,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             health -= damage;
             FindObjectOfType<SoundManager>().Play("playerDamageVoice");
 
+            if (health <=20)
+            {
+                FindObjectOfType<SoundManager>().Play("playerLowHpVO");
+            }
+
             if (health <= 0)
             {
                 if (state != PlayerState.BOSS)
                 {
                     manageRevivalState();
                     FindObjectOfType<SoundManager>().Play("playerDeath");
+                    FindObjectOfType<SoundManager>().Play("playerDiesVO");
                 }
                 else
                 {
