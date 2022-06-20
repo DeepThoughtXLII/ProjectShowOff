@@ -28,8 +28,15 @@ public class PlayerUI : MonoBehaviour
     ILevelable levelable;
     [SerializeField] private int displayedLevel;
 
+    [SerializeField] public Image p_UI;
+
+    [SerializeField] public Sprite nolvlup;
+    [SerializeField] public Sprite yeslvlup;
+
+
     private void Start()
     {
+        p_UI = this.GetComponent<Image>();
         p_Mat = this.GetComponent<Image>().material;
         health = transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
         healthText = transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>();
@@ -93,7 +100,7 @@ public class PlayerUI : MonoBehaviour
     {
         MaxHpRecalc();
         p_Mat.color = Color.white;
-        health.color = Color.red;
+        health.color = Color.white;
         UpdateHealthBar();
     }
 
@@ -151,8 +158,10 @@ public class PlayerUI : MonoBehaviour
             displayedLevel = levelable.Level.id;
             levelText.text = ""+displayedLevel;
             xpText.text = "XP: " + levelable.Xp;
-            xp.fillAmount = levelable.Xp/levelable.Level.xpNeeded;
-
+            p_UI.sprite = yeslvlup;
+        }else {
+            p_UI.sprite = nolvlup;
         }
+        xp.fillAmount = levelable.Xp/levelable.Level.xpNeeded;
     }
 }

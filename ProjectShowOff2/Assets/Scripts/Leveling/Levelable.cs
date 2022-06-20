@@ -34,12 +34,15 @@ public class Levelable : MonoBehaviour, ILevelable
 
     public bool upgradesAvailable;
 
+    PlayerUI _pUI;
+
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     START()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
+        _pUI = GetComponent<PlayerUI>();
         player = GetComponent<Player>();
         playerShot = GetComponent<playerShooting>();
         UpgradesToTake = new List<Upgrade>();
@@ -88,11 +91,11 @@ public class Levelable : MonoBehaviour, ILevelable
             LevelUp(lvlManager.GetNextLevel(level));
             if (level.hasUpgrade && player.GetPlayerMovement().IsUsingInput == Controls.ONLINE)
             {
+                _pUI.p_UI.sprite = _pUI.yeslvlup;
                 UpgradesToTake.Add(level.upgrade);
                 upgradesAvailable = true;
                 Debug.Log("upgrade booyaaa");
                 onUpgrade();
-
             }
         }
     }
