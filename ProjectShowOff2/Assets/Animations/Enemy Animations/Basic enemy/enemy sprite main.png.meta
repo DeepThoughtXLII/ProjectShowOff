@@ -1627,8 +1627,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       enemy sprite main_47: 1556651706
-      enemy sprite main_70: -1121199340
-      enemy sprite main_59: 1752067155
+      enemy sprite main_23: 1977382213
       enemy sprite main_44: 1946717680
       enemy sprite main_34: 1358694837
       enemy sprite main_42: 354604767
@@ -1660,9 +1659,9 @@ TextureImporter:
       enemy sprite main_55: -1116282397
       enemy sprite main_17: -643926133
       enemy sprite main_13: -965483373
+      enemy sprite main_58: -1223642700
       enemy sprite main_6: 1594677395
       enemy sprite main_16: -785516965
-      enemy sprite main_58: -1223642700
       enemy sprite main_8: -823922498
       enemy sprite main_41: -827626499
       enemy sprite main_37: -1683605698
@@ -1685,8 +1684,9 @@ TextureImporter:
       enemy sprite main_36: -152685077
       enemy sprite main_27: 788534177
       enemy sprite main_18: -1128740833
-      enemy sprite main_40: 842379255
+      enemy sprite main_70: -1121199340
       enemy sprite main_31: 1213973179
+      enemy sprite main_40: 842379255
       enemy sprite main_32: -1986027925
       enemy sprite main_10: -1875410547
       enemy sprite main_4: 1892636206
@@ -1696,7 +1696,7 @@ TextureImporter:
       enemy sprite main_60: 240660035
       enemy sprite main_5: 1321527175
       enemy sprite main_46: 51839448
-      enemy sprite main_23: 1977382213
+      enemy sprite main_59: 1752067155
       enemy sprite main_45: -912219493
   spritePackingTag: 
   pSDRemoveMatte: 0

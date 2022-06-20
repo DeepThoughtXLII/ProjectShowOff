@@ -43,6 +43,8 @@ public class enemyShooting : MonoBehaviour
     private CircleCollider2D collisionBox;
     public bool emerging = false;
 
+    Animator anim;
+
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     START
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,6 +56,7 @@ public class enemyShooting : MonoBehaviour
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
         activeArrowHails = new List<GameObject>();
         getTarget();
+        anim = GetComponent<Animator>();
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -116,6 +119,7 @@ public class enemyShooting : MonoBehaviour
     {
         if (target != null)
         {
+            anim.SetBool("IsAttacking", true);
             GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             if (projectile != null)
@@ -124,6 +128,7 @@ public class enemyShooting : MonoBehaviour
             }
         }
         readyToShoot = false;
+        anim.SetBool("IsAttacking", false);
         yield return new WaitForSeconds(firerate);
         readyToShoot = true;
     }

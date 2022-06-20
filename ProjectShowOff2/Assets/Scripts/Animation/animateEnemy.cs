@@ -24,7 +24,7 @@ public class animateEnemy : MonoBehaviour
 
     void Start()
     {
-        p = GetComponent<Player>();
+        //p = GetComponent<Player>();
         anim = GetComponent<Animator>();
     }
 
