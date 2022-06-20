@@ -11,10 +11,17 @@ public class animateEnemy : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public Vector2 direction;
-    public bool isMoving;
 
-    Player p;
+    bool isMoving;
+
+    bool isAttacking;
+
+
     Animator anim;
+
+    enemyPathing enemypath;
+
+    enemyShooting _enemyShooting;
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -24,8 +31,10 @@ public class animateEnemy : MonoBehaviour
 
     void Start()
     {
-        //p = GetComponent<Player>();
         anim = GetComponent<Animator>();
+        enemypath = GetComponent<enemyPathing>();
+        _enemyShooting = gameObject.GetComponent<enemyShooting>();
+
     }
 
 
@@ -49,8 +58,11 @@ public class animateEnemy : MonoBehaviour
     ///depending on which one (or which combination of directions) are set to true, the animator plays the correct walking animation
     void checkAnimStates()
     {
-        direction = p.GetPlayerMovement().direction;
-        isMoving = p.GetPlayerMovement().isMoving;
+        direction = enemypath.movement;
+        isMoving = enemypath.isMoving;
+        isAttacking = _enemyShooting.isAttacking;
+
+
         if(direction.x > 0.26)
         {
             anim.SetBool("walkingRight", true);
@@ -100,6 +112,16 @@ public class animateEnemy : MonoBehaviour
         {
             anim.SetBool("notMoving", true);
         }
+        
+        if (isAttacking)
+        {
+            anim.SetBool("IsAttacking", false);
+        }
+        else
+        {
+            anim.SetBool("IsAttacking", true);
+        }
+
     }
 
 

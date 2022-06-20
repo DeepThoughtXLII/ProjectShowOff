@@ -29,11 +29,18 @@ public class enemyPathing : MonoBehaviour
 
     Rigidbody2D rb;
 
+    public bool isMoving;
+
+
+
+    public Vector2 movement;
+
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     AWAKE
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
+        isMoving = false;
         rb = gameObject.GetComponent<Rigidbody2D>();
         rend = gameObject.GetComponent<SpriteRenderer>();
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
@@ -62,12 +69,16 @@ public class enemyPathing : MonoBehaviour
                 pathingSimple();
                 pathingShadow();
                 pathingSmart();
+                isMoving = true;
+
             }
 
         }
         else
         {
             player = targetingManager.GetTarget(transform);
+            isMoving = false;
+
         }
 
     }
@@ -127,13 +138,13 @@ public class enemyPathing : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     WALK TOWARDS PLAYER
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    void walkTowardsPlayer()
+    public void walkTowardsPlayer()
     {
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
         Vector2 inputVector = Vector2.ClampMagnitude(direction, 1);
-        Vector2 movement = inputVector * speed;
-        isoRenderer.SetDirection(movement);
+        movement = inputVector * speed;
+        //isoRenderer.SetDirection(movement);
         //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
     }

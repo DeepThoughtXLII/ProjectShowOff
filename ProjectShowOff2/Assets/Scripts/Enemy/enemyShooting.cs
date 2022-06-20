@@ -45,11 +45,15 @@ public class enemyShooting : MonoBehaviour
 
     Animator anim;
 
+    public bool isAttacking;
+
+
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     START
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
+        isAttacking = false;
         collisionBox = gameObject.GetComponent<CircleCollider2D>();
         _enemyPathing = gameObject.GetComponent<enemyPathing>();
         // players = GameObject.FindGameObjectsWithTag("Player");
@@ -92,6 +96,8 @@ public class enemyShooting : MonoBehaviour
         if (Vector3.Distance(transform.position, target.position) > range)
         {
             target = null;
+            isAttacking = true;
+
         }
     }
 
@@ -104,7 +110,7 @@ public class enemyShooting : MonoBehaviour
         if (p != null)
         {
             target = p.transform;
-
+            isAttacking = false;
         }
         if (target != null)
         {
@@ -119,7 +125,7 @@ public class enemyShooting : MonoBehaviour
     {
         if (target != null)
         {
-            anim.SetBool("IsAttacking", true);
+            //anim.SetBool("IsAttacking", true);
             GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             if (projectile != null)
@@ -127,8 +133,9 @@ public class enemyShooting : MonoBehaviour
                 projectile.ReceiveTarget(target, bulletDamage);
             }
         }
+        //isAttacking = false;
         readyToShoot = false;
-        anim.SetBool("IsAttacking", false);
+        //anim.SetBool("IsAttacking", false);
         yield return new WaitForSeconds(firerate);
         readyToShoot = true;
     }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 330384143539772085}
   - component: {fileID: 4239635615416892891}
   - component: {fileID: 8606838728313119713}
+  - component: {fileID: 4010305848472782870}
   m_Layer: 7
   m_Name: CorruptedAngel
   m_TagString: enemy
@@ -148,6 +149,7 @@ MonoBehaviour:
   EmergeSpeed: 0
   TimeBeforeDissapear: 0
   emerging: 0
+  isAttacking: 0
 --- !u!114 &330384143539772085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +167,8 @@ MonoBehaviour:
   rend: {fileID: 0}
   speed: 3
   targetingManager: {fileID: 0}
+  isMoving: 0
+  movement: {x: 0, y: 0}
 --- !u!50 &4239635615416892891
 Rigidbody2D:
   serializedVersion: 4
@@ -202,6 +206,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!95 &4010305848472782870
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456903649132177477}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 771519685c77f4021939ef8cf385a22d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1602348771886720887
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,13 +269,14 @@ GameObject:
   - component: {fileID: 4419517675343603086}
   - component: {fileID: 8177521844898663458}
   - component: {fileID: 3734598208244654249}
+  - component: {fileID: 1040891700989371718}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7457236323813703990
 RectTransform:
   m_ObjectHideFlags: 0
@@ -362,3 +387,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1040891700989371718
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5718062433020373526}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 771519685c77f4021939ef8cf385a22d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
