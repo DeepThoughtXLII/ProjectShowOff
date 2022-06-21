@@ -150,6 +150,7 @@ MonoBehaviour:
   EmergeSpeed: 0
   TimeBeforeDissapear: 0
   emerging: 0
+  isAttacking: 0
 --- !u!114 &8311576965149013452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +168,8 @@ MonoBehaviour:
   rend: {fileID: 0}
   speed: 3
   targetingManager: {fileID: 0}
-  direction: {x: 0, y: 0}
+  isMoving: 0
+  movement: {x: 0, y: 0}
 --- !u!50 &4239635615416892891
 Rigidbody2D:
   serializedVersion: 4
@@ -238,7 +240,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  isMoving: 0
 --- !u!1 &1602348771886720887
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1991564528381423915
 RectTransform:
   m_ObjectHideFlags: 0
