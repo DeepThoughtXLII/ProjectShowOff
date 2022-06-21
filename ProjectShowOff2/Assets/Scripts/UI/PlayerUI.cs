@@ -102,7 +102,7 @@ public class PlayerUI : MonoBehaviour
 
     public void SetReviveMode()
     {
-        p_Mat.color = Color.green;
+        p_Mat.color = Color.grey;
         healthUnit = 1 / player.GetPlayerHealth().ReviveCooldown;
         health.color = Color.green;
         UpdateReviveBar();
