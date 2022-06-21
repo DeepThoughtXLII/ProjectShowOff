@@ -13,7 +13,7 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField] Image health;
     [SerializeField] TextMeshProUGUI healthText;
-     float healthUnit;
+    float healthUnit;
     int currentMaxHealth;
 
     [SerializeField] Image xp;
@@ -27,6 +27,13 @@ public class PlayerUI : MonoBehaviour
 
     ILevelable levelable;
     [SerializeField] private int displayedLevel;
+    [SerializeField] private int oldXp;
+    [SerializeField] private int displayedXpBarMax;
+    [SerializeField] private int displayedXpBarMin;
+    [SerializeField] private int xpBarMax;
+    [SerializeField] private int xpBarMin;
+    [SerializeField] private int displayedXp;
+
 
     [SerializeField] public Image p_UI;
 
@@ -51,6 +58,9 @@ public class PlayerUI : MonoBehaviour
         levelText.text = "" + displayedLevel;
         nameText.text = player.name;
         MaxHpRecalc();
+        xp.fillAmount = 0;
+        reassignXpValues();
+        p_Mat.color = Color.white;
     }
 
 
@@ -68,7 +78,7 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        if(player.GetPlayerHealth().MaxHealth > currentMaxHealth)
+        if (player.GetPlayerHealth().MaxHealth > currentMaxHealth)
         {
             p_Mat.color = Color.red;
             MaxHpRecalc();
@@ -122,17 +132,19 @@ public class PlayerUI : MonoBehaviour
 
     public void StateChange()
     {
-        if(oldState != player.GetPlayerHealth().State)
+        if (oldState != player.GetPlayerHealth().State)
         {
             oldState = player.GetPlayerHealth().State;
             healthText.color = Color.white;
             if (player.GetPlayerHealth().State == PlayerHealth.PlayerState.ALIVE)
             {
                 SetAliveMode();
-            }else if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.INVINCIBLE)
+            }
+            else if (player.GetPlayerHealth().State == PlayerHealth.PlayerState.INVINCIBLE)
             {
                 SetInvincibleMode();
-            }else if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.REVIVING)
+            }
+            else if (player.GetPlayerHealth().State == PlayerHealth.PlayerState.REVIVING)
             {
                 SetReviveMode();
             }
@@ -142,41 +154,81 @@ public class PlayerUI : MonoBehaviour
     private void Update()
     {
         StateChange();
-        if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.ALIVE)
+        if (player.GetPlayerHealth().State == PlayerHealth.PlayerState.ALIVE)
         {
             UpdateHealthBar();
         }
-        else if(player.GetPlayerHealth().State == PlayerHealth.PlayerState.REVIVING)
+        else if (player.GetPlayerHealth().State == PlayerHealth.PlayerState.REVIVING)
         {
             UpdateReviveBar();
         }
         levelUpdate();
     }
 
+    private void xpRecalc()
+    {
+        Debug.Log("reclaculate xp unit");
+        xpUnit = 1f / displayedXpBarMax;
+        xpUpdate();
+    }
+
+    private void xpUpdate()
+    {
+        Debug.Log("update xp");
+        if (oldXp != levelable.Xp)
+        {
+            displayedXp += levelable.Xp - oldXp;
+            xp.fillAmount = displayedXp * xpUnit;
+            xpText.text = "XP: " + displayedXp;
+            Debug.Log($"new xp {displayedXp} because we calculated {oldXp} + {levelable.Xp - oldXp}");
+            oldXp = levelable.Xp;
+        }
+
+    }
+
+    private void reassignXpValues()
+    {
+        Debug.Log("reassign xp values");
+        xpBarMax = levelable.Level.xpNeeded; //actual xp needed for next level
+        xpBarMin = levelable.Xp; //actual xp that you have currently;
+        displayedXpBarMax = xpBarMax - xpBarMin;
+        displayedXpBarMin = 0;
+        displayedXp = 0;
+        xpRecalc();
+    }
+
+
     private void levelUpdate()
     {
-        if (levelable.Level.id > displayedLevel)
+        xpUpdate();
+        if (levelable.Level.id > displayedLevel)//if you leveled up
         {
             displayedLevel = levelable.Level.id;
-            levelText.text = ""+displayedLevel;
-            xpText.text = "XP: " + levelable.Xp;
+            levelText.text = "" + displayedLevel;
+            reassignXpValues();
+
+            if (displayedLevel == 3 || displayedLevel == 7)
+            {
+                p_UI.sprite = yeslvlup;
+                StartCoroutine(LevelUpEffect());
+            }
+            else
+            {
+                p_UI.sprite = nolvlup;
+            }
         }
-        xp.fillAmount = levelable.Xp / levelable.Level.xpNeeded;
-        if(displayedLevel == 3 || displayedLevel == 7){
-            p_UI.sprite = yeslvlup;
-            StartCoroutine(LevelUpEffect());
-        }else {
-            p_UI.sprite = nolvlup;
-        }
+        //p_UI.sprite = nolvlup;
     }
-    IEnumerator LevelUpEffect(){
+
+
+
+    IEnumerator LevelUpEffect()
+    {
         lvlEffect.gameObject.SetActive(true);
         lvlEffect.Play();
-        yield return new WaitForSeconds(lvlEffect.duration);
+        yield return new WaitForSeconds(lvlEffect.main.duration);
         lvlEffect.gameObject.SetActive(false);
 
     }
-
-
 
 }

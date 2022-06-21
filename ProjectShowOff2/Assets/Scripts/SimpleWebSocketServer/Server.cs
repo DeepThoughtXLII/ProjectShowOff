@@ -156,6 +156,7 @@ public class Server : MonoBehaviour
                 state = gameState.GAMEOVER;
                 ending = endingType.DeathPreBoss;
                 FindObjectOfType<SoundManager>().Play("gameOverVO");
+                GameOver();
             }
         }
         else if(state == gameState.BOSS)
@@ -165,13 +166,14 @@ public class Server : MonoBehaviour
                 state = gameState.GAMEOVER;
                 ending = endingType.DeathDuringBoss;
                 FindObjectOfType<SoundManager>().Play("gameOverVO");
+                GameOver();
             }
         }
         else if(state == gameState.GAMEOVER)
         {
 
             //Destroy(this);
-            GameOver();
+            //GameOver();
             //StartCoroutine(BackToLobby());
         }
     }
@@ -187,8 +189,7 @@ public class Server : MonoBehaviour
         playerManager.ReviveAllPlayers();
         if (playerManager.IsAPlayerCorrupted())
         {
-            playerManager.HeavenFallsNextBoss();
-            FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
+            startPlayerBossFight();
         }
         else
         {
@@ -196,10 +197,19 @@ public class Server : MonoBehaviour
         }
     }
 
+    private void startPlayerBossFight()
+    {
+        Debug.Log("PLAYER BOSS");
+        playerManager.HeavenFallsNextBoss();
+        FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
+    }
+
 
     private void startBossAIFight()
     {
         Debug.Log("AI BOSS");
+        playerManager.HeavenFallsNextBoss();
+        FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
     }
 
 
@@ -228,14 +238,15 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void GameOver()
     {
+
         SceneManager.LoadScene(3);
-        
     }
 
     void BossDied()
     {
         ending = endingType.Won;
         state = gameState.GAMEOVER;
+        GameOver();
     }
 
 
