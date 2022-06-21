@@ -58,15 +58,14 @@ public class cameraFollow : MonoBehaviour
         GameObject[] tempT = GameObject.FindGameObjectsWithTag("Player");
 
 
-        if (targets == null)
-        {
+
             targets = new Transform[pm.GetPlayerCount()];
 
             for (int i = 0; i < pm.GetPlayerCount(); i++)
             {
                 targets[i] = pm.GetPlayer(i).transform;//tempT[i].transform;
             }
-        }
+        
 
         FollowTarget();
     }

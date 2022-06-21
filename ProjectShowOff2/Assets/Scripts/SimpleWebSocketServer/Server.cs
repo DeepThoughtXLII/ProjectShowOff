@@ -199,7 +199,7 @@ public class Server : MonoBehaviour
 
     private void startBossAIFight()
     {
-
+        Debug.Log("AI BOSS");
     }
 
 
