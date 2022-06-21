@@ -38,8 +38,8 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
-        
 
+        Levelable.onLevelUp += checkPlayerLevel;
 
         spawnpoints = new Transform[4];
 
@@ -280,17 +280,7 @@ public class PlayerManager : MonoBehaviour
     /////calculates which player should turn into the boss upon fulfilling the conditions for a boss fight
     public void HeavenFallsNextBoss()
     {
-        int highestLevel = 0;
-        int potentialBoss = -1;
-        foreach (KeyValuePair<int, Player> player in playerList)
-        {
-            if(potentialBoss == -1 || player.Value.GetPlayerLevel().Level.id > highestLevel)
-            {
-                highestLevel = player.Value.GetPlayerLevel().Level.id;
-                potentialBoss = player.Key;
-            }          
-        }
-        Boss = GetPlayer(potentialBoss);
+        Boss = GetPlayer(getPlayerWithHighestLevel());
         BossShoot = Boss.gameObject.AddComponent<Boss>();
         Boss.bossMode();
         Boss.gameObject.GetComponent<playerShooting>().enabled = false;
@@ -298,6 +288,70 @@ public class PlayerManager : MonoBehaviour
         //playerList.Remove(potentialBoss);
     }
 
+    public bool IsAPlayerCorrupted()
+    {
+        Player[] sorted = sortPlayersAfterLevel();
+        if(sorted[sorted.Length-1].GetPlayerLevel().Level.id - sorted[sorted.Length - 2].GetPlayerLevel().Level.id > 2)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    private int getPlayerWithHighestLevel()
+    {
+        int highestLevel = 0;
+        int highestLevelPlayer = -1;
+        foreach (KeyValuePair<int, Player> player in playerList)
+        {
+            if (highestLevelPlayer == -1 || player.Value.GetPlayerLevel().Level.id > highestLevel)
+            {
+                highestLevel = player.Value.GetPlayerLevel().Level.id;
+                highestLevelPlayer = player.Key;
+            }
+        }
+        return highestLevelPlayer;
+    }
+
+
+    //sorts players after level and returns the sorted array
+    //sorts from 1=lowestLevel to 4=highestLevel
+    private Player[] sortPlayersAfterLevel()
+    {
+        Player[] sortedPlayers = playerList.Values.ToArray();
+        int lowLevelPlayer;
+        for(int i = 0; i < sortedPlayers.Length; i++)
+        {
+            lowLevelPlayer = i;
+            for(int j = i+1; j < sortedPlayers.Length; j++)
+            {
+                if(sortedPlayers[j].GetPlayerLevel().Level.id < sortedPlayers[lowLevelPlayer].GetPlayerLevel().Level.id)
+                {
+                    Player temp = sortedPlayers[lowLevelPlayer];
+                    sortedPlayers[lowLevelPlayer] = sortedPlayers[j];
+                    sortedPlayers[j] = temp;
+                }
+            }
+        }
+        return sortedPlayers;
+    }
+
+    void testSortedPlayers()
+    {
+        Player[] sort = sortPlayersAfterLevel();
+        string playerArray = $"sorted array = length:{sort.Length} \n";
+        for(int i = 0; i < sort.Length; i++)
+        {
+            playerArray += $"player {i} is {sort[i]} \n";
+        }
+        Debug.Log(playerArray);
+    }
+
+    void checkPlayerLevel()
+    {
+        testSortedPlayers();
+    }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     PLAYERS RESET()

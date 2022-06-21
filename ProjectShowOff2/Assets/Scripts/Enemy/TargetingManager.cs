@@ -16,13 +16,34 @@ public class TargetingManager : MonoBehaviour
     ///                                                                     START()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         players = new List<Player>();
         PlayerManager server = GameObject.FindGameObjectWithTag("server").GetComponent<PlayerManager>();
-        for(int i = 0; i < server.GetPlayerCount(); i++)
+        for (int i = 0; i < server.GetPlayerCount(); i++)
         {
             players.Add(server.GetPlayer(i));
+            Debug.Log("added player");
+        }
+    }
+
+
+    void Start()
+    {
+       
+    }
+
+    private void Update()
+    {
+        if (players.Count <= 0)
+        {
+            PlayerManager server = GameObject.FindGameObjectWithTag("server").GetComponent<PlayerManager>();
+            for (int i = 0; i < server.GetPlayerCount(); i++)
+            {
+                players.Add(server.GetPlayer(i));
+
+            }
         }
     }
 

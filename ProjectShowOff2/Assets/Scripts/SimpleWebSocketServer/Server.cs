@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,11 +19,11 @@ public class Server : MonoBehaviour
     public static event Action onGameOver;
 
     public enum gameState { LOBBY, INGAME, BOSS, GAMEOVER }
-    gameState state;
+    [SerializeField]gameState state;
 
     
-
-   
+    public enum endingType { DeathPreBoss, DeathDuringBoss, Won}
+    public endingType ending;
 
     [SerializeField]
     private Controls usesControls = Controls.ONLINE;
@@ -42,6 +42,7 @@ public class Server : MonoBehaviour
     public int minAmountOfPlayers = 1;
 
     public bool testing = true;
+    public int numberOfPlayersToTestWith = 4;
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -75,10 +76,10 @@ public class Server : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        state = gameState.LOBBY;
-        
-       
-        
+        if (!testing)
+        {
+            state = gameState.LOBBY;
+        }
         
         
         if (usesControls == Controls.ONLINE)
@@ -94,7 +95,7 @@ public class Server : MonoBehaviour
         }
 
         waveSpawner.onBossWave += bossFight;
-        PlayerHealth.onBossDeath += GameOver;
+        PlayerHealth.onBossDeath += BossDied;
     }
 
 
@@ -115,9 +116,17 @@ public class Server : MonoBehaviour
         findLobbyPlayerUIComponents();
     }
 
-
+    public void testingWithPlayers()
+    {
+        
+            for (int i = 0; i < numberOfPlayersToTestWith; i++)
+            {
+                playerManager.AddPlayer(i);
+            }
+        
+    }
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     FIND LOBBY ÜLAYER UI COMPONENTS()
+    ///                                                                     FIND LOBBY ï¿½LAYER UI COMPONENTS()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void findLobbyPlayerUIComponents()
     {
@@ -145,6 +154,16 @@ public class Server : MonoBehaviour
             if (playerManager.PlayersAllDead() && !testing)
             {
                 state = gameState.GAMEOVER;
+                ending = endingType.DeathPreBoss;
+                FindObjectOfType<SoundManager>().Play("gameOverVO");
+            }
+        }
+        else if(state == gameState.BOSS)
+        {
+            if(playerManager.PlayersAllDead() && !testing)
+            {
+                state = gameState.GAMEOVER;
+                ending = endingType.DeathDuringBoss;
                 FindObjectOfType<SoundManager>().Play("gameOverVO");
             }
         }
@@ -166,34 +185,57 @@ public class Server : MonoBehaviour
     {
         SceneManager.LoadScene(2);
         playerManager.ReviveAllPlayers();
-        playerManager.HeavenFallsNextBoss();
-        FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
-        //start bossfigth 
+        if (playerManager.IsAPlayerCorrupted())
+        {
+            playerManager.HeavenFallsNextBoss();
+            FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
+        }
+        else
+        {
+            startBossAIFight();
+        }
+    }
+
+
+    private void startBossAIFight()
+    {
+
     }
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     BACK TO LOBBY()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    IEnumerator BackToLobby()
+   /* IEnumerator BackToLobby()
     {
         yield return new WaitForSeconds(GameOverScreenTime);
         Destroy(this);
-    }
+    }*/
 
+    void BackToLobby()
+    {
+        SceneManager.LoadScene(0);
+        controllerManager.ResetControllers();
+        playerManager.PlayersReset();
+        ResetServer();
+        //end boss fight back to lobby
+        //state = gameState.GAMEOVER;
+
+    }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GAME OVER()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void GameOver()
     {
-        SceneManager.LoadScene(0);
-        controllerManager.ResetControllers();
-        playerManager.PlayersReset();
-        ResetServer();
-       //end boss fight back to lobby
-        //state = gameState.GAMEOVER;
+        SceneManager.LoadScene(3);
         
+    }
+
+    void BossDied()
+    {
+        ending = endingType.Won;
+        state = gameState.GAMEOVER;
     }
 
 
@@ -279,7 +321,6 @@ public class Server : MonoBehaviour
         }
     }
 
-    
    
 
 

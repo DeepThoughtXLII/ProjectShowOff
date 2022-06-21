@@ -11,6 +11,7 @@ public class Levelable : MonoBehaviour, ILevelable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static event Action onUpgrade;
     public static event Action onUpgradeChosen;
+    public static event Action onLevelUp;
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -88,6 +89,7 @@ public class Levelable : MonoBehaviour, ILevelable
         if(xp >= nextLevelAt)
         {
             //Debug.Log("LEVEL UP YAY!");
+           
             LevelUp(lvlManager.GetNextLevel(level));
             if (level.hasUpgrade && player.GetPlayerMovement().IsUsingInput == Controls.ONLINE)
             {
@@ -97,6 +99,7 @@ public class Levelable : MonoBehaviour, ILevelable
                 Debug.Log("upgrade booyaaa");
                 onUpgrade();
             }
+            onLevelUp();
         }
     }
 

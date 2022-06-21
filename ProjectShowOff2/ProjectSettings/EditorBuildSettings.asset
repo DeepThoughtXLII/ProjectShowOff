@@ -17,16 +17,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/serverDemoTabea/GameOver.unity
     guid: ca14a0d719b6c3245979a8b754f678fd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototypes Di-Qi/LobbyP.unity
     guid: 556b9f8969c339d4cb27cc3024b25e45
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototypes Di-Qi/Game_minimap.unity
     guid: 983496382c5cc48f4a9ed493b68dde3d
   - enabled: 0
     path: Assets/Scenes/Prototypes Di-Qi/Game.unity
     guid: 5a889458a17a96343b8c90d2c3bd3e8a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototypes Di-Qi/Hell.unity
     guid: d958e4ef798a4504fa6651d95ee43558
   - enabled: 0

@@ -126,7 +126,12 @@ public class Player : MonoBehaviour  //, IDamageable
         MovementScript.speed *= 1.5f;
     }
 
-
+    public override string ToString()
+    {
+        string player = $"id:{id}, name:{name}, health:{GetPlayerHealth().Health}, level:{GetPlayerLevel().Level.id}";
+        return player;
+        //return base.ToString();
+    }
 
 
 
