@@ -1028,6 +1028,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
+--- !u!198 &76048416 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800004, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
+  m_PrefabInstance: {fileID: 76048415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &99792891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2236,15 +2241,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.8847723
+      value: 5.94
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.8847723
+      value: 5.94
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6.8847723
+      value: 5.94
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 609a26366c86cab46bbe65e7a573340e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2815,6 +2820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grass_ground (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8781752981883046579, guid: f85193a092d894e41865f3ebd9c146da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f85193a092d894e41865f3ebd9c146da, type: 3}
 --- !u!4 &449607071 stripped
@@ -2925,6 +2934,7 @@ MonoBehaviour:
   p_UI: {fileID: 0}
   nolvlup: {fileID: 21300000, guid: 5bd0a38f00df06c42872f642645c2023, type: 3}
   yeslvlup: {fileID: 21300000, guid: c044af5c1d1a1154ea1fe85ddd5fe45d, type: 3}
+  lvlEffect: {fileID: 0}
 --- !u!1 &485716891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,6 +3000,7 @@ MonoBehaviour:
   p_UI: {fileID: 0}
   nolvlup: {fileID: 21300000, guid: 2929df9580fa3c746adf031e4746067b, type: 3}
   yeslvlup: {fileID: 21300000, guid: 682950d611273c54bb3911d328c91282, type: 3}
+  lvlEffect: {fileID: 76048416}
 --- !u!114 &485716894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3616,7 +3627,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -100
+  near clip plane: 0.01
   far clip plane: 995.9
   field of view: 60
   orthographic: 1
@@ -3893,6 +3904,7 @@ MonoBehaviour:
   p_UI: {fileID: 0}
   nolvlup: {fileID: 21300000, guid: f9d224f6fbed3114aa267f4d1d14c09b, type: 3}
   yeslvlup: {fileID: 21300000, guid: 3b1ac30461584584393393c275ead54b, type: 3}
+  lvlEffect: {fileID: 0}
 --- !u!1 &786139764
 GameObject:
   m_ObjectHideFlags: 0
@@ -8739,6 +8751,7 @@ MonoBehaviour:
   p_UI: {fileID: 0}
   nolvlup: {fileID: 21300000, guid: 915576da679730c4181d8db2f8666d25, type: 3}
   yeslvlup: {fileID: 21300000, guid: 18416d1712020264aac6fbc2f44eb1fd, type: 3}
+  lvlEffect: {fileID: 0}
 --- !u!1 &1984057656
 GameObject:
   m_ObjectHideFlags: 0
@@ -8941,7 +8954,7 @@ GameObject:
   - component: {fileID: 2024691519}
   - component: {fileID: 2024691518}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas_ui
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

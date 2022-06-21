@@ -33,6 +33,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] public Sprite nolvlup;
     [SerializeField] public Sprite yeslvlup;
 
+    public ParticleSystem lvlEffect;
+
 
     private void Start()
     {
@@ -158,10 +160,23 @@ public class PlayerUI : MonoBehaviour
             displayedLevel = levelable.Level.id;
             levelText.text = ""+displayedLevel;
             xpText.text = "XP: " + levelable.Xp;
+        }
+        xp.fillAmount = levelable.Xp / levelable.Level.xpNeeded;
+        if(displayedLevel == 3 || displayedLevel == 7){
             p_UI.sprite = yeslvlup;
+            StartCoroutine(LevelUpEffect());
         }else {
             p_UI.sprite = nolvlup;
         }
-        xp.fillAmount = levelable.Xp/levelable.Level.xpNeeded;
     }
+    IEnumerator LevelUpEffect(){
+        lvlEffect.gameObject.SetActive(true);
+        lvlEffect.Play();
+        yield return new WaitForSeconds(lvlEffect.duration);
+        lvlEffect.gameObject.SetActive(false);
+
+    }
+
+
+
 }
