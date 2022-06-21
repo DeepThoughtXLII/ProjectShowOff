@@ -177,7 +177,7 @@ public class PlayerUI : MonoBehaviour
         Debug.Log("update xp");
         if (oldXp != levelable.Xp)
         {
-            displayedXp += levelable.Xp - oldXp;
+            displayedXp = levelable.Xp - xpBarMin;
             xp.fillAmount = displayedXp * xpUnit;
             xpText.text = "XP: " + displayedXp;
             Debug.Log($"new xp {displayedXp} because we calculated {oldXp} + {levelable.Xp - oldXp}");
@@ -200,7 +200,6 @@ public class PlayerUI : MonoBehaviour
 
     private void levelUpdate()
     {
-        xpUpdate();
         if (levelable.Level.id > displayedLevel)//if you leveled up
         {
             displayedLevel = levelable.Level.id;
@@ -217,6 +216,7 @@ public class PlayerUI : MonoBehaviour
                 p_UI.sprite = nolvlup;
             }
         }
+        xpUpdate();
         //p_UI.sprite = nolvlup;
     }
 
