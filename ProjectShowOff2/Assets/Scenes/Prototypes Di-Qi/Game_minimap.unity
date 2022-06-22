@@ -278,18 +278,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CorruptedAngel
       objectReference: {fileID: 0}
-    - target: {fileID: 1456903649132177477, guid: 3417b0a769bcf1141b6736be45c6146c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669938543758599234, guid: 3417b0a769bcf1141b6736be45c6146c, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669938543758599234, guid: 3417b0a769bcf1141b6736be45c6146c, type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5425440211871156248, guid: 3417b0a769bcf1141b6736be45c6146c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -336,24 +324,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3417b0a769bcf1141b6736be45c6146c, type: 3}
---- !u!1 &26871157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1456903649132177477, guid: 3417b0a769bcf1141b6736be45c6146c, type: 3}
-  m_PrefabInstance: {fileID: 26871156}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &26871158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26871157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 338a04b02226a4b2fbeabcdceb6132f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
 --- !u!1 &27482058
 GameObject:
   m_ObjectHideFlags: 0
@@ -5418,44 +5388,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3087463696768416845, guid: 649079e86d88a6f479f343e853650818, type: 3}
   m_PrefabInstance: {fileID: 1204687433}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1214005740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1456903649132177477, guid: dd2bc061e9b2c1c4c87abc047c886537, type: 3}
-  m_PrefabInstance: {fileID: 2103726924}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1214005741
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214005740}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9619ff09cff64ea8b5b1f3213fa70ed, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1214005742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214005740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 338a04b02226a4b2fbeabcdceb6132f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
 --- !u!1 &1240995840
 GameObject:
   m_ObjectHideFlags: 0
@@ -6463,10 +6395,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 1456903649132177477, guid: 77c8fbf6a688a408994403e6346a2237, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5425440211871156248, guid: 77c8fbf6a688a408994403e6346a2237, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -6511,10 +6439,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8345519374329195181, guid: 77c8fbf6a688a408994403e6346a2237, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: aa4ff1409c66a41c09dccd6597b70456, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77c8fbf6a688a408994403e6346a2237, type: 3}
 --- !u!1001 &1496377001
@@ -9460,18 +9384,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CorruptedArchAngel
       objectReference: {fileID: 0}
-    - target: {fileID: 1456903649132177477, guid: dd2bc061e9b2c1c4c87abc047c886537, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669938543758599234, guid: dd2bc061e9b2c1c4c87abc047c886537, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1050282141, guid: 442cbb3473c93f34888daf9d401ae64a, type: 3}
-    - target: {fileID: 3922609030032323669, guid: dd2bc061e9b2c1c4c87abc047c886537, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5425440211871156248, guid: dd2bc061e9b2c1c4c87abc047c886537, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9516,8 +9428,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2562438338866849987, guid: dd2bc061e9b2c1c4c87abc047c886537, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd2bc061e9b2c1c4c87abc047c886537, type: 3}
 --- !u!1001 &2059556446684305978
 PrefabInstance:
