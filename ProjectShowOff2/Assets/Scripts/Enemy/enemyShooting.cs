@@ -147,14 +147,18 @@ public class enemyShooting : MonoBehaviour
     {
         readyToShoot = false;
         yield return new WaitForSeconds(EmergeSpeed);
+        anim.SetBool("IsAttacking", true);
         meleeAttack();
         collisionBox.enabled = true;
         
         yield return new WaitForSeconds(TimeBeforeDissapear);
+        anim.SetBool("Dissappear", true);
         collisionBox.enabled = false;
         emerging = false;
+
         _enemyPathing.rend.color = Color.gray;
-        readyToShoot = true;
+        anim.SetBool("Dissappear", false);
+        anim.SetBool("IsAttacking", false);
 
     }
 

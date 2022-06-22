@@ -115,11 +115,11 @@ public class animateEnemy : MonoBehaviour
         
         if (isAttacking)
         {
-            anim.SetBool("IsAttacking", false);
+            anim.SetBool("IsAttacking", true);
         }
         else
         {
-            anim.SetBool("IsAttacking", true);
+            anim.SetBool("IsAttacking", false);
         }
 
     }

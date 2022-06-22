@@ -297,6 +297,7 @@ MonoBehaviour:
   EmergeSpeed: 0
   TimeBeforeDissapear: 0
   emerging: 0
+  isAttacking: 0
 --- !u!114 &2394727972631366792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +332,8 @@ MonoBehaviour:
   rend: {fileID: 0}
   speed: 3
   targetingManager: {fileID: 0}
+  isMoving: 0
+  movement: {x: 0, y: 0}
 --- !u!1 &1602348771886720887
 GameObject:
   m_ObjectHideFlags: 0
