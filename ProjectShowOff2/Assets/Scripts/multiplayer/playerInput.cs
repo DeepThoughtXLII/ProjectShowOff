@@ -87,7 +87,7 @@ public class playerInput : MonoBehaviour
 
     void gameOverControls()
     {
-
+        gameOverScreen = true;
     }
 
     private void OnEnable()

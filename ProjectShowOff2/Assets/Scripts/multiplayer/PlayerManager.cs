@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
         Levelable.onLevelUp += checkPlayerLevel;
 
         spawnpoints = new Transform[4];
+        //saveSpawnPoints();
 
         server = GetComponent<Server>();
 
@@ -131,10 +132,7 @@ public class PlayerManager : MonoBehaviour
         {
             name = "Player" + pId;
         }
-        if(spawnpoints[0] == null)
-        {
-           
-        }
+
 
         //create a new view with ourselves as the transform parent
         Player player = Instantiate<Player>(playerPrefab[pId], transform);
