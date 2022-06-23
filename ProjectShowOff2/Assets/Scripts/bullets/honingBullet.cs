@@ -18,7 +18,10 @@ public class honingBullet : MonoBehaviour, IProjectile
     private int ownerId = 0;
 
     public float aliveForSeconds = 7f;
+    
 
+
+    Vector3 lastDirection = new Vector3(1, 0, 0);
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     Get() and Set()
@@ -46,6 +49,7 @@ public class honingBullet : MonoBehaviour, IProjectile
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
 
@@ -90,8 +94,16 @@ public class honingBullet : MonoBehaviour, IProjectile
             return;
         }
 
+        
+
+
+        
 
         Vector2 dir = _target.position - transform.position;
+
+        transform.Rotate(new Vector3(0, 0, 1), Vector3.SignedAngle(lastDirection.normalized, dir.normalized, new Vector3(0,0,1)), Space.World);
+        lastDirection = dir;
+
         Vector2 move = rb.position + dir.normalized * speed * Time.fixedDeltaTime;
 
         float distanceThisFrame = speed * Time.fixedDeltaTime;

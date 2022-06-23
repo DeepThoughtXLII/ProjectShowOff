@@ -107,7 +107,7 @@ public class playerShooting : MonoBehaviour
         if(target != null)
         {
             Vector2 direction = target.position - transform.position;
-            weapon.faceDirection(direction.normalized);
+            weapon.faceDirection(target.position);
         }
     }
 
@@ -122,7 +122,7 @@ public class playerShooting : MonoBehaviour
             weapon.playShootAnimation();
             yield return new WaitForSeconds(weapon.getAnimationLength());
 
-            GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
+            GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, bulletPrefab.transform.rotation);
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             FindObjectOfType<SoundManager>().Play("playerShoot");
             if (projectile != null)

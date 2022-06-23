@@ -7,8 +7,10 @@ public class weaponAnimation : MonoBehaviour
 
     Animator anim;
     public Transform origin;
-    Vector2 direction;
+    Vector3 direction;
     float shootLength;
+
+    Vector3 position;
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +49,11 @@ public class weaponAnimation : MonoBehaviour
     //if angle that it should be is smaller than the current, we substract
     //otherwise we add
     //move the difference between thses angles
-    public void faceDirection(Vector2 direction)
+    public void faceDirection(Vector3 position)
     {
-        this.direction = direction;
+        direction = position - transform.parent.position;
+        direction.Normalize();
+        this.position = position;
         Vector3 currentDirection = transform.position - transform.parent.position;
         currentDirection.Normalize();
         Debug.Log(currentDirection);
@@ -114,7 +118,7 @@ public class weaponAnimation : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Vector3 point = (transform.position - transform.parent.position).normalized * 20;
-        Gizmos.DrawLine(transform.parent.position, direction*20);
+        Gizmos.DrawLine(transform.parent.position, position);
     }
 }
 /*/*
