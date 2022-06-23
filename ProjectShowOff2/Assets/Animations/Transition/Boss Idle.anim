@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: attackDown_basic_enemy
+  m_Name: Boss Idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2017334791, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
-    - time: 0.21666667
-      value: {fileID: -1900934470, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
-    - time: 0.4
-      value: {fileID: -127156362, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
-    - time: 0.6166667
-      value: {fileID: -945839468, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
+      value: {fileID: 516019668, guid: be57b70f14f80ef4894322272dca1d62, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,21 +40,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2017334791, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
-    - {fileID: -1900934470, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
-    - {fileID: -127156362, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
-    - {fileID: -945839468, guid: b9d3ea80982164adcb7b60d3f21abe42, type: 3}
+    - {fileID: 516019668, guid: be57b70f14f80ef4894322272dca1d62, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6333333
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
