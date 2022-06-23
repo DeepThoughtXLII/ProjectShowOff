@@ -11,7 +11,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     [SerializeField]
     private int health = 0;
 
-    public string damageSound;
+
     SpriteRenderer rend;
 
     Color defColor;
@@ -37,11 +37,6 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void takeDamage(int damage)
     {
-        if (damageSound != null && damageSound != "")
-        {
-            FindObjectOfType<SoundManager>().Play(damageSound);
-        }
-      
         health -= damage;
         if (health <= 0)
         {
