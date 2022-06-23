@@ -15,6 +15,10 @@ public class Boss : MonoBehaviour, ITargetable
 
     SpriteRenderer rend;
 
+    public bool isPlayer = true;
+
+
+
     Color defColor;
     public Color targetColor = Color.white;
 
@@ -25,6 +29,8 @@ public class Boss : MonoBehaviour, ITargetable
 
 
     public float range = 1.5f;
+
+    public float speed = 3f;
 
 
     public Transform firepoint;
@@ -37,28 +43,43 @@ public class Boss : MonoBehaviour, ITargetable
 
     public int circularCount = 8;
 
+    public TargetingManager targetingManager;
+
+    Rigidbody2D rb;
+
+    public Vector2 movement;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     START()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void Start()
     {
-        player = GetComponent<Player>();
+        if (isPlayer == true)
+        {
+            player = GetComponent<Player>();
+            pi = GetComponentInChildren<PlayerInput>();
+            if (pi != null)
+            {
+                pi.onActionTriggered += OnAction;
+            }
+        }
+
+        if (isPlayer == false)
+        {
+            targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
+            player = targetingManager.GetTarget(transform);
+            rb = gameObject.GetComponent<Rigidbody2D>();
+        }
 
         rend = GetComponent<SpriteRenderer>();
         defColor = rend.color;
 
-        pi = GetComponentInChildren<PlayerInput>();
-        if (pi != null)
-        {
-            pi.onActionTriggered += OnAction;
-        }
 
         gameObject.layer = LayerMask.NameToLayer("targetable");
         firepoint = transform.GetChild(0);
 
         firepoint.position = transform.position;
-        
+
     }
 
 
@@ -120,10 +141,8 @@ public class Boss : MonoBehaviour, ITargetable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     IEnumerator Shoot()
     {
-       
-
-
-        Vector3 beginDir = new Vector3(1,0,0);
+        readyToShoot = false;
+        Vector3 beginDir = new Vector3(1, 0, 0);
         float angle = 360 / circularCount;
         for (int i = 0; i < circularCount; i++)
         {
@@ -132,13 +151,49 @@ public class Boss : MonoBehaviour, ITargetable
             GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             projectile.ReceiveDirection(rotateDir, bulletDamage);
-            newProjectile.transform.position = firepoint.position + rotateDir * 2;            
+            newProjectile.transform.position = firepoint.position + rotateDir * 2;
         }
 
-        readyToShoot = false;
         yield return new WaitForSeconds(firerate);
         readyToShoot = true;
     }
+
+    void FixedUpdate()
+    {
+        if(isPlayer == false)
+        {
+            player = targetingManager.GetTarget(transform);
+            BossAI();
+        }
+    }
+
+    void BossAI()
+    {
+        //pathing
+        AIPathing();
+        //shooting
+        AIShooting();
+
+    }
+
+    void AIPathing()
+    {
+        Vector2 direction = player.transform.position - transform.position;
+        direction.Normalize();
+        Vector2 inputVector = Vector2.ClampMagnitude(direction, 1);
+        movement = inputVector * speed;
+        rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+
+    }
+
+    void AIShooting()
+    {
+        if(readyToShoot)
+        {
+            StartCoroutine(Shoot());
+        }
+    }
+
 
 
 
