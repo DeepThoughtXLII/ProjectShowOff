@@ -12,6 +12,7 @@ public class Levelable : MonoBehaviour, ILevelable
     public static event Action onUpgrade;
     public static event Action onUpgradeChosen;
     public static event Action onLevelUp;
+    public ParticleSystem levelup;
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -77,6 +78,8 @@ public class Levelable : MonoBehaviour, ILevelable
         level = lvl;
         nextLevelAt = lvl.xpNeeded;
         FindObjectOfType<SoundManager>().Play("playerLevelUp");
+        Instantiate(levelup, transform.position, transform.rotation);
+
     }
 
 

@@ -109,6 +109,7 @@ MonoBehaviour:
   health: 20
   damageSound: 
   targetColor: {r: 1, g: 1, b: 1, a: 1}
+  enemyDeath: {fileID: 5252429346282490553, guid: 1d0b9a0041aac4049aa3617044eb59c9, type: 3}
   targetingManager: {fileID: 0}
   spriteColour: {fileID: 0}
 --- !u!114 &-4071780315125083232

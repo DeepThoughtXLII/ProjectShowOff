@@ -16,7 +16,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
 
     Color defColor;
     public Color targetColor = Color.white;
-
+    public ParticleSystem enemyDeath;
 
     bool isTarget = false;
 
@@ -46,6 +46,8 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         if (health <= 0)
         {
             FindObjectOfType<SoundManager>().Play("enemyDeath");
+            Instantiate(enemyDeath, transform.position, transform.rotation);
+            Destroy(enemyDeath);
             Destroy(gameObject);
             return;
         }

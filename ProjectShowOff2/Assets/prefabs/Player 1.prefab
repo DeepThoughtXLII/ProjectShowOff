@@ -351,6 +351,8 @@ MonoBehaviour:
     m_Bits: 256
   OtherPlayerIsClose: 0
   invincibilityInSec: 1
+  revivalState: {fileID: 1823425731052739880, guid: 59d273da850511743b9179792a0c3926, type: 3}
+  resurrection: {fileID: 1689062457675914147, guid: b74c236bde1e84e479fb166d3fdb888c, type: 3}
 --- !u!114 &-5716722945720519454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135241151575df4b8f69f6c4832f7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelup: {fileID: 2325616795343875744, guid: 27251fb88b490f8419b5478f60d6dd38, type: 3}
   level:
     id: 0
     xpNeeded: 0

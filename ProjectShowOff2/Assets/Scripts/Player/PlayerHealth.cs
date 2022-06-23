@@ -29,6 +29,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask playerLayerMask;
     [SerializeField] private bool OtherPlayerIsClose = false;
     [SerializeField] private float invincibilityInSec = 1f;
+    public ParticleSystem revivalState;
+    public ParticleSystem resurrection;
 
 
 
@@ -105,7 +107,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             health -= damage;
             FindObjectOfType<SoundManager>().Play("playerDamageVoice");
 
-            if (health <=20)
+            if (health == 20)
             {
                 FindObjectOfType<SoundManager>().Play("playerLowHpVO");
             }
@@ -117,6 +119,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                     manageRevivalState();
                     FindObjectOfType<SoundManager>().Play("playerDeath");
                     FindObjectOfType<SoundManager>().Play("playerDiesVO");
+                    Instantiate(revivalState, transform.position, transform.rotation);
                 }
                 else
                 {
@@ -138,7 +141,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         manageRevivalState();
         yield return new WaitForSeconds(invincibilityInSec); 
         state = PlayerState.ALIVE;                              //im not invincible anymore
+        Destroy(revivalState);
         FindObjectOfType<SoundManager>().Play("playerRevive");
+        Instantiate(resurrection, transform.position, transform.rotation);
+        
     }
 
 
