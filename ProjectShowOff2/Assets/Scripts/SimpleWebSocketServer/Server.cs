@@ -44,6 +44,9 @@ public class Server : MonoBehaviour
     public bool testing = true;
     public int numberOfPlayersToTestWith = 4;
 
+    public string[] scenes = { "Lobby", "Introduction", "Game", "HellTransition", "Hell", "GameOver" };
+    public bool cutscenesOn = false;
+
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET() AND SET()
@@ -167,6 +170,7 @@ public class Server : MonoBehaviour
                 ending = endingType.DeathDuringBoss;
                 FindObjectOfType<SoundManager>().Play("gameOverVO");
                 GameOver();
+               
             }
         }
         else if(state == gameState.GAMEOVER)
@@ -185,7 +189,7 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void bossFight()
     {
-        SceneManager.LoadScene(2);
+        changeScene("HellTransition");
         playerManager.ReviveAllPlayers();
         if (playerManager.IsAPlayerCorrupted())
         {
@@ -195,6 +199,7 @@ public class Server : MonoBehaviour
         {
             startBossAIFight();
         }
+        playerManager.SpawnPlayers();
     }
 
     private void startPlayerBossFight()
@@ -217,10 +222,23 @@ public class Server : MonoBehaviour
     ///                                                                     BACK TO LOBBY()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    void changeScene(string Scene)
+    {
+        int index = Array.IndexOf(scenes, Scene);
+        if (!cutscenesOn)
+        {
+            if(Scene == "Introduction" || Scene == "HellTransition")
+            {
+                index++;               
+            }
+        }
+       SceneManager.LoadScene(scenes[index]);
+    }
+
 
     public void BackToLobby()
     {
-        SceneManager.LoadScene(0);
+        changeScene("Lobby");
         controllerManager.ResetControllers();
         playerManager.PlayersReset();
         ResetServer();
@@ -234,8 +252,8 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void GameOver()
     {
-
-        SceneManager.LoadScene(3);
+        onGameOver();
+        changeScene("GameOver");
         playerManager.removeAllPlayers();
     }
 
@@ -320,7 +338,7 @@ public class Server : MonoBehaviour
         Debug.Log("start game");
         if (state == gameState.LOBBY && controllerManager.GetControllerCount() >= minAmountOfPlayers)
         {
-            SceneManager.LoadScene(1);
+            changeScene("Introduction");
             Debug.Log("change Scene");
             state = gameState.INGAME;
             controllerManager.OnGameStart();

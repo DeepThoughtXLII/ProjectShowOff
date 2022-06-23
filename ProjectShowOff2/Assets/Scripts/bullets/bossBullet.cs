@@ -79,7 +79,7 @@ public class bossBullet : MonoBehaviour, IProjectile
     {
         ownerId = pOwnerId;
         _target = target;
-        damage = dmg;
+        //damage = dmg;
         StartCoroutine(lifeTime());
     }
 

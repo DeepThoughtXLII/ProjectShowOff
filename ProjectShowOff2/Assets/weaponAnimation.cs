@@ -65,7 +65,7 @@ public class weaponAnimation : MonoBehaviour
         //transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), -angleToMove);
        
         
-              transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), angleToMove);
+        transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), angleToMove);
          
 
          

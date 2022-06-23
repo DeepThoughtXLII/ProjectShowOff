@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(server.State == Server.gameState.INGAME && spawn == null)
         {
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(Array.IndexOf(server.scenes, "Game")))
             {
                 Debug.Log("scene lodaded");
                 SpawnPlayers();
