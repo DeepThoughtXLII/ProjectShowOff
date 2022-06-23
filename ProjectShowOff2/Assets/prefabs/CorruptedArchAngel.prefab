@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcfe613d11b01c428e1ed82c732c162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathing: 0
+  pathing: 3
   playerTag: player
   rend: {fileID: 0}
   speed: 3

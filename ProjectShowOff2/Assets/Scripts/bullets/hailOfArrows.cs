@@ -80,7 +80,7 @@ public class hailOfArrows : MonoBehaviour
         direction = (Vector2)_target.position - (Vector2)gameObject.transform.position;
         angleOffset = Random.Range(minusDeviation, maximumDeviation);
         gameObject.transform.Translate(direction.x, direction.y, 0f);
-        float rotation = Vector2.Angle((Vector2)_target.position, (Vector2)enemyTransform.position) + angleOffset;
+        float rotation = angleBetweenVectors((Vector2)_target.position, (Vector2)enemyTransform.position) + angleOffset;
         gameObject.transform.Rotate(0, 0, rotation);
     }
 
@@ -97,6 +97,13 @@ public class hailOfArrows : MonoBehaviour
         v.x = (cos * tx) - (sin * ty);
         v.y = (sin * tx) + (cos * ty);
         return v;
+    }
+
+    public float angleBetweenVectors(Vector2 a, Vector2 b)
+    {
+        float x = b.x - a.x;
+        float y = b.y - a.y;
+        return Mathf.Atan2(y, x) * (180 / Mathf.PI);
     }
 
 

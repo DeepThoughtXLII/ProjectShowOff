@@ -8,7 +8,7 @@ public class enemyPathing : MonoBehaviour
     ///                                                                     FIELDS
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public enum pathingType { SIMPLE, SHADOW, SMART }
+    public enum pathingType { SIMPLE, SHADOW, SMART, DISTANCE }
     [SerializeField] private pathingType pathing = pathingType.SIMPLE;
 
 
@@ -69,8 +69,8 @@ public class enemyPathing : MonoBehaviour
                 pathingSimple();
                 pathingShadow();
                 pathingSmart();
+                pathingDistance();
                 isMoving = true;
-
             }
 
         }
@@ -80,7 +80,8 @@ public class enemyPathing : MonoBehaviour
             isMoving = false;
 
         }
-
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0;
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -90,7 +91,7 @@ public class enemyPathing : MonoBehaviour
     {
         if (pathing == pathingType.SIMPLE)
         {
-            if(_enemyShooting.charging == false)
+            if (_enemyShooting.charging == false)
             {
                 walkTowardsPlayer();
             }
@@ -108,17 +109,17 @@ public class enemyPathing : MonoBehaviour
             if (_enemyShooting.emerging == false)
             {
                 walkTowardsPlayer();
-                if (Vector2.Distance(player.transform.position, transform.position) < 0.1)
+                if (Vector2.Distance(player.transform.position, transform.position) < 0.5)
                 {
                     _enemyShooting.emerging = true;
                     rend.color = Color.yellow;
+                    StartCoroutine(_enemyShooting.Emerging());
                 }
 
             }
-            else if (_enemyShooting.emerging == true)
-            {
-                StartCoroutine(_enemyShooting.Emerging());
-            }
+
+
+
         }
 
 
@@ -135,6 +136,14 @@ public class enemyPathing : MonoBehaviour
         }
     }
 
+    void pathingDistance()
+    {
+        if (pathing == pathingType.DISTANCE)
+        {
+            walkWithDistance();
+        }
+    }
+
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     WALK TOWARDS PLAYER
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -147,5 +156,51 @@ public class enemyPathing : MonoBehaviour
         //isoRenderer.SetDirection(movement);
         //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+    }
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     STAY DISTANCE TOWARDS PLAYER
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    void walkWithDistance()
+    {
+        if (_enemyShooting.charging == false)
+        {
+            Vector2 direction = player.transform.position - transform.position;
+            Vector2 attackMinus = new Vector2(_enemyShooting.range - 1, 0);
+            attackMinus = rotateVector(attackMinus, angleBetweenVectors((Vector2)player.transform.position, (Vector2)gameObject.transform.position));
+            Console.WriteLine("Attack angle: " + angleBetweenVectors((Vector2)player.transform.position, (Vector2)gameObject.transform.position));
+            direction += attackMinus;
+            direction.Normalize();
+            Vector2 inputVector = Vector2.ClampMagnitude(direction, 1);
+            movement = inputVector * speed;
+            //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+            rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
+        }
+
+    }
+
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     ROTATE VECTOR
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public Vector2 rotateVector(Vector2 v, float degrees)
+    {
+        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+        float tx = v.x;
+        float ty = v.y;
+        v.x = (cos * tx) - (sin * ty);
+        v.y = (sin * tx) + (cos * ty);
+        return v;
+    }
+
+    public float angleBetweenVectors(Vector2 a, Vector2 b)
+    {
+        float x = b.x - a.x;
+        float y = b.y - a.y;
+        return Mathf.Atan2(y, x) * (180 / Mathf.PI);
     }
 }

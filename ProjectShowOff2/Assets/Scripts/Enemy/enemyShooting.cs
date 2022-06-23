@@ -150,6 +150,7 @@ public class enemyShooting : MonoBehaviour
         anim.SetBool("IsAttacking", true);
         meleeAttack();
         collisionBox.enabled = true;
+        Console.WriteLine("Melee attacked in Emerging()");
         
         yield return new WaitForSeconds(TimeBeforeDissapear);
         anim.SetBool("Dissappear", true);
@@ -159,6 +160,7 @@ public class enemyShooting : MonoBehaviour
         _enemyPathing.rend.color = Color.gray;
         anim.SetBool("Dissappear", false);
         anim.SetBool("IsAttacking", false);
+        readyToShoot = true;
 
     }
 
