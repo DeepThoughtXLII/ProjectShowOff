@@ -108,6 +108,7 @@ public class ControllerManager : MonoBehaviour, IControllerManager
             player.Value.transform.SetParent(p.transform);
             player.Value.transform.SetAsLastSibling();
             p.GetComponent<Player>().enabled = true;
+            player.Value.enabled = false;
             //p.transform.SetParent(player.Value.transform);
         }
     }

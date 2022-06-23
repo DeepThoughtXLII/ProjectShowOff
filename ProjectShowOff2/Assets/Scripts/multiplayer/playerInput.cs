@@ -63,6 +63,7 @@ public class playerInput : MonoBehaviour
         anim.SetBool("Player_Left", false);
 
         controls.Lobby.startGame.performed += ctx => GetComponentInParent<Server>().StartGame();
+
        /* bg.color = Color.white;
         character.enabled = true; */
         playerName.text = "ready";
@@ -80,6 +81,14 @@ public class playerInput : MonoBehaviour
         controls.Lobby.Disable();
     }
 
+
+    private void OnEnable()
+    {
+        
+        controls.GameOver.Enable();
+        controls.GameOver.backToLobby.performed += ctx => GetComponentInParent<Server>().BackToLobby();
+        controls.GameOver.playAgain.performed += ctx => GetComponentInParent<Server>().BackToLobby();
+    }
     
 
     

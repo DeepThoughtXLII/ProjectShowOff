@@ -124,7 +124,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     {
 
         string text = Encoding.UTF8.GetString(packet.Data);
-        //Console.WriteLine("Received a packet: {0}", text);
+        Console.WriteLine("Received a packet: {0}", text);
 
         parseCommand(text, clients2[connection]);
 
@@ -245,6 +245,17 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             clients[id].SendMessage("gameLeader");
         }
     }
+
+
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ///                                                                     INSTANTIATE CLIENT()
+    ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -458,7 +469,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
             p.transform.position = Vector3.zero;
             player.Value.transform.SetParent(p.transform);
             p.GetComponent<Player>().enabled = true;
-            player.Value.gameObject.SetActive(false);
+            player.Value.enabled = false;
             //p.transform.SetParent(player.Value.transform);
         }
 

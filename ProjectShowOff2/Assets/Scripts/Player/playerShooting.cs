@@ -31,6 +31,8 @@ public class playerShooting : MonoBehaviour
 
     public int dmg = 0;
 
+    public weaponAnimation weapon;
+
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     AWAKE()
@@ -38,13 +40,7 @@ public class playerShooting : MonoBehaviour
     private void Awake()
     {
         //controls = new PlayerControls();
-        player = GetComponent<Player>();
-        playerHealth = player.GetPlayerHealth();
-        //controls.Gameplay.shoot.performed += ctx => Shoot();
-        bulletScriptPrefab = bulletPrefab.GetComponent<IProjectile>();
-        //dmg = bulletScriptPrefab.Damage;
-
-        Levelable.onUpgradeChosen += checkDamageValues; 
+     
     }
 
 
@@ -66,6 +62,15 @@ public class playerShooting : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Start()
     {
+
+        player = GetComponent<Player>();
+        playerHealth = player.GetPlayerHealth();
+        //controls.Gameplay.shoot.performed += ctx => Shoot();
+        bulletScriptPrefab = bulletPrefab.GetComponent<IProjectile>();
+        //dmg = bulletScriptPrefab.Damage;
+        weapon = GetComponentInChildren<weaponAnimation>();
+
+        Levelable.onUpgradeChosen += checkDamageValues;
         pi = GetComponentInChildren<PlayerInput>();
         if (pi != null)
         {
@@ -84,7 +89,7 @@ public class playerShooting : MonoBehaviour
         {
             if (ctx.action.name == "shoot" && ctx.action.phase == InputActionPhase.Performed)
             {
-                Shoot();
+                StartCoroutine(Shoot());
                 
             }
         }
@@ -99,16 +104,24 @@ public class playerShooting : MonoBehaviour
     private void Update()
     {
         UpdateTarget();
+        if(target != null)
+        {
+            Vector2 direction = target.position - transform.position;
+            weapon.faceDirection(direction.normalized);
+        }
     }
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     SHOOT()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    public void Shoot()
+    public IEnumerator Shoot()
     {
         if (target != null)
         {
+            weapon.playShootAnimation();
+            yield return new WaitForSeconds(weapon.getAnimationLength());
+
             GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             FindObjectOfType<SoundManager>().Play("playerShoot");

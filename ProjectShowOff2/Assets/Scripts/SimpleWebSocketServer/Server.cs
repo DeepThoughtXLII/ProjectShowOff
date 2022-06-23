@@ -216,13 +216,9 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     BACK TO LOBBY()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   /* IEnumerator BackToLobby()
-    {
-        yield return new WaitForSeconds(GameOverScreenTime);
-        Destroy(this);
-    }*/
 
-    void BackToLobby()
+
+    public void BackToLobby()
     {
         SceneManager.LoadScene(0);
         controllerManager.ResetControllers();
@@ -240,6 +236,7 @@ public class Server : MonoBehaviour
     {
 
         SceneManager.LoadScene(3);
+        playerManager.removeAllPlayers();
     }
 
     void BossDied()

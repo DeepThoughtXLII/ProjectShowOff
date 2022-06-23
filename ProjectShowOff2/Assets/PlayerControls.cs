@@ -252,6 +252,87 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GameOver"",
+            ""id"": ""f48a1b3c-f537-4fbc-90ba-5d4708827be6"",
+            ""actions"": [
+                {
+                    ""name"": ""playAgain"",
+                    ""type"": ""Button"",
+                    ""id"": ""a53e5b37-4ec7-417b-9c50-32031921df9a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""backToLobby"",
+                    ""type"": ""Button"",
+                    ""id"": ""520cb768-7a00-4836-a4c9-1839a6fa90db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ad1144ec-7730-424a-bf5e-66bad869593f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""playAgain"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f978327-49fe-4d8a-adbd-d35295c4a26f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard;keyboard2"",
+                    ""action"": ""playAgain"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""608b5c40-df12-4fa7-9f53-d7eb1ed65f26"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""playAgain"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be591a0b-56cd-47bb-81e2-cec32ffc44ff"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keyboard;keyboard2"",
+                    ""action"": ""backToLobby"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ea28c6f-9982-4e40-b117-a1a0a4dcf726"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""gamepad"",
+                    ""action"": ""backToLobby"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -297,6 +378,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Lobby
         m_Lobby = asset.FindActionMap("Lobby", throwIfNotFound: true);
         m_Lobby_startGame = m_Lobby.FindAction("startGame", throwIfNotFound: true);
+        // GameOver
+        m_GameOver = asset.FindActionMap("GameOver", throwIfNotFound: true);
+        m_GameOver_playAgain = m_GameOver.FindAction("playAgain", throwIfNotFound: true);
+        m_GameOver_backToLobby = m_GameOver.FindAction("backToLobby", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -426,6 +511,47 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public LobbyActions @Lobby => new LobbyActions(this);
+
+    // GameOver
+    private readonly InputActionMap m_GameOver;
+    private IGameOverActions m_GameOverActionsCallbackInterface;
+    private readonly InputAction m_GameOver_playAgain;
+    private readonly InputAction m_GameOver_backToLobby;
+    public struct GameOverActions
+    {
+        private @PlayerControls m_Wrapper;
+        public GameOverActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @playAgain => m_Wrapper.m_GameOver_playAgain;
+        public InputAction @backToLobby => m_Wrapper.m_GameOver_backToLobby;
+        public InputActionMap Get() { return m_Wrapper.m_GameOver; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameOverActions set) { return set.Get(); }
+        public void SetCallbacks(IGameOverActions instance)
+        {
+            if (m_Wrapper.m_GameOverActionsCallbackInterface != null)
+            {
+                @playAgain.started -= m_Wrapper.m_GameOverActionsCallbackInterface.OnPlayAgain;
+                @playAgain.performed -= m_Wrapper.m_GameOverActionsCallbackInterface.OnPlayAgain;
+                @playAgain.canceled -= m_Wrapper.m_GameOverActionsCallbackInterface.OnPlayAgain;
+                @backToLobby.started -= m_Wrapper.m_GameOverActionsCallbackInterface.OnBackToLobby;
+                @backToLobby.performed -= m_Wrapper.m_GameOverActionsCallbackInterface.OnBackToLobby;
+                @backToLobby.canceled -= m_Wrapper.m_GameOverActionsCallbackInterface.OnBackToLobby;
+            }
+            m_Wrapper.m_GameOverActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @playAgain.started += instance.OnPlayAgain;
+                @playAgain.performed += instance.OnPlayAgain;
+                @playAgain.canceled += instance.OnPlayAgain;
+                @backToLobby.started += instance.OnBackToLobby;
+                @backToLobby.performed += instance.OnBackToLobby;
+                @backToLobby.canceled += instance.OnBackToLobby;
+            }
+        }
+    }
+    public GameOverActions @GameOver => new GameOverActions(this);
     private int m_gamepadSchemeIndex = -1;
     public InputControlScheme gamepadScheme
     {
@@ -461,5 +587,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface ILobbyActions
     {
         void OnStartGame(InputAction.CallbackContext context);
+    }
+    public interface IGameOverActions
+    {
+        void OnPlayAgain(InputAction.CallbackContext context);
+        void OnBackToLobby(InputAction.CallbackContext context);
     }
 }

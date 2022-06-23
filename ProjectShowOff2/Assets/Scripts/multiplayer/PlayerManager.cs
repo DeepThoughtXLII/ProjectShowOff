@@ -210,7 +210,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(GetPlayer(id).GetPlayerHealth().State != PlayerHealth.PlayerState.BOSS)
         {
-            playerList[id].GetPlayerShooting().Shoot();
+            StartCoroutine(playerList[id].GetPlayerShooting().Shoot());
         } else
         {
            
@@ -312,6 +312,44 @@ public class PlayerManager : MonoBehaviour
             }
         }
         return highestLevelPlayer;
+    }
+
+
+    public void removeAllPlayers()
+    {
+        foreach(KeyValuePair<int, Player> p in playerList)
+        {
+            if(server.UsesControls == Controls.ONLINE)
+            {
+                OnlinePlayerInput pi = p.Value.transform.GetComponentInChildren<OnlinePlayerInput>();
+                pi.transform.parent = server.transform;
+                pi.enabled = true;
+            }
+            else
+            {
+                playerInput pi = p.Value.transform.GetComponentInChildren<playerInput>();
+                pi.transform.parent = server.transform;
+                pi.enabled = true;
+            }
+            p.Value.Remove();
+
+        }
+        playerList.Clear();
+    }
+
+    public void disablePlayerInput()
+    {
+        foreach(KeyValuePair<int, Player> player in playerList)
+        {
+            if(server.UsesControls == Controls.ONLINE)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 
 
