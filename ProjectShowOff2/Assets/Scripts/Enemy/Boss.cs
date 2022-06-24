@@ -145,6 +145,7 @@ public class Boss : MonoBehaviour, ITargetable
     IEnumerator Shoot()
     {
         readyToShoot = false;
+        anim.SetBool("isAttacking", true);
         Vector3 beginDir = new Vector3(1, 0, 0);
         float angle = 360 / circularCount;
         for (int i = 0; i < circularCount; i++)
@@ -156,7 +157,7 @@ public class Boss : MonoBehaviour, ITargetable
             projectile.ReceiveDirection(rotateDir, bulletDamage);
             newProjectile.transform.position = firepoint.position + rotateDir * 2;
         }
-
+        anim.SetBool("isAttacking", false);
         yield return new WaitForSeconds(firerate);
         readyToShoot = true;
     }
@@ -186,7 +187,12 @@ public class Boss : MonoBehaviour, ITargetable
         Vector2 inputVector = Vector2.ClampMagnitude(direction, 1);
         movement = inputVector * speed;
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
-
+        if(movement.x>0.1){
+        anim.SetBool("walkingRight", true);
+        } else if(movement.x<-0.1){
+            anim.SetBool("walkingRight", false);
+            anim.SetBool("walkingLeft", true);
+        }
     }
 
     void AIShooting()
