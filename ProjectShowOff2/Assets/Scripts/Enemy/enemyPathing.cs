@@ -25,8 +25,6 @@ public class enemyPathing : MonoBehaviour
 
     enemyShooting _enemyShooting;
 
-    IsometricCharacterRenderer isoRenderer;
-
     Rigidbody2D rb;
 
     public bool isMoving;
@@ -45,7 +43,6 @@ public class enemyPathing : MonoBehaviour
         rend = gameObject.GetComponent<SpriteRenderer>();
         targetingManager = GameObject.FindGameObjectWithTag("targetManager").GetComponent<TargetingManager>();
         _enemyShooting = gameObject.GetComponent<enemyShooting>();
-        isoRenderer = GetComponent<IsometricCharacterRenderer>();
     }
 
 
@@ -153,7 +150,6 @@ public class enemyPathing : MonoBehaviour
         direction.Normalize();
         Vector2 inputVector = Vector2.ClampMagnitude(direction, 1);
         movement = inputVector * speed;
-        //isoRenderer.SetDirection(movement);
         //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
     }

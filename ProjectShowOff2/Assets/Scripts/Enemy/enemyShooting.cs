@@ -125,7 +125,7 @@ public class enemyShooting : MonoBehaviour
     {
         if (target != null)
         {
-            //anim.SetBool("IsAttacking", true);
+            anim.SetBool("isAttacking", true);
             GameObject newProjectile = (GameObject)Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             if (projectile != null)
@@ -135,7 +135,7 @@ public class enemyShooting : MonoBehaviour
         }
         //isAttacking = false;
         readyToShoot = false;
-        //anim.SetBool("IsAttacking", false);
+        anim.SetBool("isAttacking", false);
         yield return new WaitForSeconds(firerate);
         readyToShoot = true;
     }

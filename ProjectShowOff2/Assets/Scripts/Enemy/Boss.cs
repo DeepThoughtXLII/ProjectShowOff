@@ -47,6 +47,8 @@ public class Boss : MonoBehaviour, ITargetable
 
     Rigidbody2D rb;
 
+    Animator anim;
+
     public Vector2 movement;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,6 +56,7 @@ public class Boss : MonoBehaviour, ITargetable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void Start()
     {
+        anim = GetComponent<Animator>();
         if (isPlayer == true)
         {
             player = GetComponent<Player>();
