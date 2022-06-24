@@ -20,6 +20,8 @@ public class OnlinePlayerInput : MonoBehaviour
 
     static Animator anim;
 
+    bool gameOverScreen = false;
+
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET() AND SET()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,8 +56,14 @@ public class OnlinePlayerInput : MonoBehaviour
         playerName = ui.gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         notReady = new Color(255, 255, 255, 0.5f);
         Connected();
+
+        Server.onGameOver += gameOverControls;
     }
 
+    void gameOverControls()
+    {
+        gameOverScreen = true;
+    }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     CONNECTED()

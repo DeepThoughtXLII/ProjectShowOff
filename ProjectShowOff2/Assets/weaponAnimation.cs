@@ -59,7 +59,7 @@ public class weaponAnimation : MonoBehaviour
         Debug.Log(currentDirection);
         float angleToMove = Vector3.SignedAngle(currentDirection, direction, new Vector3(0,0,1));
         float currentAngle = Vector3.Angle(new Vector3(1, 0, 0), currentDirection);
-        //float angle = Mathf.Lerp(0f, angleToMove, Time.deltaTime * 0.5f);
+        float angle = Mathf.Lerp(0f, angleToMove, Time.deltaTime * 0.5f);
        
        // Debug.Log($"angleItShouldBe: {angleItShouldBe} currentAngle: {currentAngle} und dann angleToMove:{angleToMove} ");
         //transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), -angleToMove);

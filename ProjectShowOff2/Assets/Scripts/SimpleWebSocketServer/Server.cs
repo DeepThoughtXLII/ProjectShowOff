@@ -48,6 +48,9 @@ public class Server : MonoBehaviour
     public bool cutscenesOn = false;
 
 
+    bool bossSpawned = false;
+
+
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET() AND SET()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -119,6 +122,8 @@ public class Server : MonoBehaviour
         findLobbyPlayerUIComponents();
     }
 
+ 
+
     public void testingWithPlayers()
     {
         
@@ -172,6 +177,8 @@ public class Server : MonoBehaviour
                 GameOver();
                
             }
+
+            
         }
         else if(state == gameState.GAMEOVER)
         {
@@ -189,7 +196,10 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void bossFight()
     {
-        changeScene("HellTransition");
+        //changeScene("HellTransition");
+        SceneManager.LoadScene(4);
+        state = gameState.BOSS;
+
         playerManager.ReviveAllPlayers();
         if (playerManager.IsAPlayerCorrupted())
         {
@@ -255,6 +265,7 @@ public class Server : MonoBehaviour
         onGameOver();
         changeScene("GameOver");
         playerManager.removeAllPlayers();
+        controllerManager.endGame();
     }
 
     void BossDied()

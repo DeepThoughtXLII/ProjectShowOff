@@ -39,7 +39,7 @@ public class Boss : MonoBehaviour, ITargetable
 
     bool readyToShoot = true;
 
-    public int bulletDamage = 1;
+    public int bulletDamage = 20;
 
     public int circularCount = 8;
 

@@ -150,4 +150,10 @@ public class ControllerManager : MonoBehaviour, IControllerManager
         }
         players.Clear();
     }
+
+
+    public void endGame()
+    {
+
+    }
 }

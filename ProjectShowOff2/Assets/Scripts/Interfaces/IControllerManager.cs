@@ -8,4 +8,5 @@ public interface IControllerManager
     public void OnGameStart();
 
     public void ResetControllers();
+    public void endGame();
 }

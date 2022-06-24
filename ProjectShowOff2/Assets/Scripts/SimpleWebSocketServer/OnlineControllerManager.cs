@@ -253,7 +253,11 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
 
 
-
+    public void endGame()
+    {
+        //clients[0].SendMessage("gameEnd");
+        Broadcast("gameEnded");
+    }
 
 
 
@@ -327,6 +331,13 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
                         
                     }
                 }
+            }
+        }
+        else if(server.State == Server.gameState.GAMEOVER)
+        {
+            if (text.Contains("playAgain"))
+            {
+                server.BackToLobby();
             }
         }
     }

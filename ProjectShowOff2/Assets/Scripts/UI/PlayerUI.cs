@@ -208,8 +208,11 @@ public class PlayerUI : MonoBehaviour
 
             if (displayedLevel == 3 || displayedLevel == 7)
             {
-                p_UI.sprite = yeslvlup;
-                StartCoroutine(LevelUpEffect());
+                if (lvlEffect != null)
+                {
+                    p_UI.sprite = yeslvlup;
+                    StartCoroutine(LevelUpEffect());
+                }
             }
             else
             {

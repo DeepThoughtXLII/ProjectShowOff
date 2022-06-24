@@ -351,6 +351,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   dmg: 0
+  weapon: {fileID: 0}
 --- !u!114 &635014738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135241151575df4b8f69f6c4832f7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelup: {fileID: 0}
   level:
     id: 0
     xpNeeded: 0
@@ -502,6 +504,8 @@ MonoBehaviour:
     m_Bits: 0
   OtherPlayerIsClose: 0
   invincibilityInSec: 1
+  revivalState: {fileID: 0}
+  resurrection: {fileID: 0}
 --- !u!1001 &635644127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -767,6 +771,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   dmg: 0
+  weapon: {fileID: 0}
 --- !u!61 &338532481514810537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -805,6 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135241151575df4b8f69f6c4832f7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelup: {fileID: 0}
   level:
     id: 0
     xpNeeded: 0
@@ -1357,6 +1363,7 @@ MonoBehaviour:
   EmergeSpeed: 0
   TimeBeforeDissapear: 0
   emerging: 0
+  isAttacking: 0
 --- !u!1 &8212733444456594902
 GameObject:
   m_ObjectHideFlags: 0

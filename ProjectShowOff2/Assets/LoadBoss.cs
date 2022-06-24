@@ -7,6 +7,6 @@ public class LoadBoss : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
     }
 }

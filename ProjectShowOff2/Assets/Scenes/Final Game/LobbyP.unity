@@ -2653,11 +2653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: cutscenesOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: usesControls
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: minAmountOfPlayers

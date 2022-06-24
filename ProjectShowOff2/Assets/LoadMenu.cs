@@ -7,6 +7,8 @@ public class LoadMenu : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene(0);
+        Server server = GameObject.FindGameObjectWithTag("server").GetComponent<Server>();
+        server.BackToLobby();
+        //SceneManager.LoadScene(0);
     }
 }

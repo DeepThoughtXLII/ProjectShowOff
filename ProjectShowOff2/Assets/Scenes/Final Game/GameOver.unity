@@ -7361,7 +7361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &670454142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7939,6 +7939,8 @@ MonoBehaviour:
   deathPreBoss: {fileID: 1495528221}
   deathDuringBoss: {fileID: 1279995480}
   playersWin: {fileID: 670454143}
+  Hell: {fileID: 123391888}
+  Heaven: {fileID: 629516783}
 --- !u!1 &709970793
 GameObject:
   m_ObjectHideFlags: 0
@@ -18075,7 +18077,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3

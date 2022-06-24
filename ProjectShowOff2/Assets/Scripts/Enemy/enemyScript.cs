@@ -42,7 +42,7 @@ public class enemyScript : MonoBehaviour, IDamageable, ITargetable
         {
             FindObjectOfType<SoundManager>().Play("enemyDeath");
             Instantiate(enemyDeath, transform.position, transform.rotation);
-            Destroy(enemyDeath);
+            //Destroy(enemyDeath);
             Destroy(gameObject);
             return;
         }
