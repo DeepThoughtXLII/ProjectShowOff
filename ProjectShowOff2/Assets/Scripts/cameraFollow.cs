@@ -11,6 +11,8 @@ public class cameraFollow : MonoBehaviour
 
     List<Transform> targetsOnCamera;
     List<Transform> targetsThatDontFit;
+    float timeOutOfBounds;
+    [SerializeField]float fixPositionTime = 2;
 
     public float smoothSpeed = 0.125f;
     public float smoothZoomVelocity = 0;
@@ -59,13 +61,13 @@ public class cameraFollow : MonoBehaviour
 
 
 
-            targets = new Transform[pm.GetPlayerCount()];
+        targets = new Transform[pm.GetPlayerCount()];
 
-            for (int i = 0; i < pm.GetPlayerCount(); i++)
-            {
-                targets[i] = pm.GetPlayer(i).transform;//tempT[i].transform;
-            }
-        
+        for (int i = 0; i < pm.GetPlayerCount(); i++)
+        {
+            targets[i] = pm.GetPlayer(i).transform;//tempT[i].transform;
+        }
+
 
         FollowTarget();
     }
@@ -79,9 +81,27 @@ public class cameraFollow : MonoBehaviour
     void LateUpdate()
     {
         FollowTarget();
+        setBackToMiddle();
         //changeColors();
     }
 
+    void setBackToMiddle()
+    {
+        Bounds bound = new Bounds(targetMidpoint, cameraZoomRange);
+        if (targetsThatDontFit.Count > 0)
+        {
+            timeOutOfBounds += Time.deltaTime;
+            if (timeOutOfBounds >= fixPositionTime)
+            { 
+                foreach (Transform target in targetsThatDontFit)
+                {
+                    target.position = targetMidpoint;
+                }
+
+                timeOutOfBounds = 0;
+            }
+        }
+    }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     FOLLOW TARGET()
@@ -109,7 +129,7 @@ public class cameraFollow : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void getMidpoint(Transform[] targets)
     {
-        if(targets.Length > 1)
+        if (targets.Length > 1)
         {
             var bound = new Bounds(targets[0].position, Vector3.zero); //creates AABB bounding box with player one as center
             for (int i = 1; i < targets.Length; i++)
@@ -118,7 +138,7 @@ public class cameraFollow : MonoBehaviour
             }
             targetMidpoint = bound.center; //target camera to the center of the box
         }
-        else if( targets.Length > 0)
+        else if (targets.Length > 0)
         {
             targetMidpoint = targets[0].position;
         }
@@ -146,7 +166,7 @@ public class cameraFollow : MonoBehaviour
 
     bool isTargetOnCamera(Transform target)
     {
-        Bounds bound = new Bounds(targetMidpoint, new Vector3(cam.aspect*cam.orthographicSize*2, cam.orthographicSize*2)); //creates AABB bounding box with player one as center
+        Bounds bound = new Bounds(targetMidpoint, new Vector3(cam.aspect * cam.orthographicSize * 2, cam.orthographicSize * 2)); //creates AABB bounding box with player one as center
         if (bound.Contains(target.position))
         {
             return true;
@@ -154,20 +174,21 @@ public class cameraFollow : MonoBehaviour
         return false;
     }
 
-    bool AllTargetsOnCamera(Transform [] targets)
+    bool AllTargetsOnCamera(Transform[] targets)
     {
         int targetsNotOnCamera = 0;
-        foreach(Transform target in targets)
+        foreach (Transform target in targets)
         {
             if (!isTargetOnCamera(target))
             {
                 targetsNotOnCamera++;
             }
         }
-        if(targetsNotOnCamera > 0)
+        if (targetsNotOnCamera > 0)
         {
             return false;
-        }else
+        }
+        else
         {
             return true;
         }
@@ -209,17 +230,18 @@ public class cameraFollow : MonoBehaviour
 
     void changeColors()
     {
-        foreach(Transform t in targets)
+        foreach (Transform t in targets)
         {
             SpriteRenderer rend = t.GetComponent<SpriteRenderer>();
-            if(outSider == t)
+            if (outSider == t)
             {
                 rend.color = Color.blue;
             }
             else if (targetsOnCamera.Contains(t))
             {
                 rend.color = Color.green;
-            }else if (targetsThatDontFit.Contains(t))
+            }
+            else if (targetsThatDontFit.Contains(t))
             {
                 rend.color = Color.red;
             }
@@ -227,9 +249,9 @@ public class cameraFollow : MonoBehaviour
             {
                 rend.color = Color.white;
             }
-            
+
         }
-        
+
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -296,7 +318,7 @@ public class cameraFollow : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     CAMERA ZOOM FOR MULTIPLE PLAYERS()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
+
     //if camera distance too big
     //take furthest player out of calculations
     //if camera distance still too big
@@ -304,22 +326,22 @@ public class cameraFollow : MonoBehaviour
 
     //if player in range again, take player into calculations again
 
-    Transform GetPlayerClosestToZoom(Transform[] targets) 
+    Transform GetPlayerClosestToZoom(Transform[] targets)
     {
         Transform furthestTarget = null;
         float furthestDist = 0;
         for (int i = 0; i < targets.Length; i++)
         {
             float thisDist = Vector3.Distance(targetMidpoint, targets[i].position);
-                if (furthestTarget == null || thisDist > furthestDist)
-                {
-                    furthestTarget = targets[i];
-                    furthestDist = thisDist;
-                }
+            if (furthestTarget == null || thisDist > furthestDist)
+            {
+                furthestTarget = targets[i];
+                furthestDist = thisDist;
+            }
         }
         return furthestTarget;
     }
-    
+
     Transform GetPlayerFurthestAway(Transform[] targets)
     {
         Transform furthestTarget = null;
@@ -372,9 +394,9 @@ public class cameraFollow : MonoBehaviour
         {
             targetsOnCamera.Add(target[0]);
         }
-        else if(targetsThatDontFit.Count > 0)
+        else if (targetsThatDontFit.Count > 0)
         {
-            if (AllTargetsOnCamera(targetsOnCamera.ToArray())!= true)
+            if (AllTargetsOnCamera(targetsOnCamera.ToArray()) != true)
             {
                 CameraTargetUpdate(targetsOnCamera.ToArray());
             }
@@ -419,7 +441,7 @@ public class cameraFollow : MonoBehaviour
     }
     */
 
-    
+
     /*private void CameraZoomForMultiplePlayers(Transform [] target)
     {
         Transform furthestTarget = null;
@@ -504,84 +526,87 @@ public class cameraFollow : MonoBehaviour
          */
 
 
-        //getMidpointOfTargets(targetsOnCamera.ToArray());
+    //getMidpointOfTargets(targetsOnCamera.ToArray());
 
 
 
-        /* int camDistsTooBig = 0; //number of players who are out of camera bounds
-         for(int i = 0; i<camDist.Length; i++)
+    /* int camDistsTooBig = 0; //number of players who are out of camera bounds
+     for(int i = 0; i<camDist.Length; i++)
+     {
+         if(camDist[i] > maxZoom)
          {
-             if(camDist[i] > maxZoom)
-             {
-                 camDistsTooBig++;
-             }
+             camDistsTooBig++;
          }
-         if(camDistsTooBig > 0)
-         {
+     }
+     if(camDistsTooBig > 0)
+     {
 
-         }*/
+     }*/
 
 
 
 
-        /*if (camDist > cam.orthographicSize && cam.orthographicSize <= maxZoom)
+    /*if (camDist > cam.orthographicSize && cam.orthographicSize <= maxZoom)
+    {
+        cam.orthographicSize += camDist - cam.orthographicSize;
+        if (cam.orthographicSize > maxZoom)
         {
-            cam.orthographicSize += camDist - cam.orthographicSize;
-            if (cam.orthographicSize > maxZoom)
-            {
-                cam.orthographicSize = maxZoom;
-            }
-        }
-        else if (camDist < cam.orthographicSize && cam.orthographicSize >= minZoom)
-        {
-            cam.orthographicSize -= cam.orthographicSize - camDist;
-            if (cam.orthographicSize < minZoom)
-            {
-                cam.orthographicSize = minZoom;
-            }
+            cam.orthographicSize = maxZoom;
         }
     }
-        */
+    else if (camDist < cam.orthographicSize && cam.orthographicSize >= minZoom)
+    {
+        cam.orthographicSize -= cam.orthographicSize - camDist;
+        if (cam.orthographicSize < minZoom)
+        {
+            cam.orthographicSize = minZoom;
+        }
+    }
+}
+    */
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     CAMERA ZOMM FOR ONE PLAYER()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   float getDistBtwTargetAndZoomRange(Transform target)
-   {
+    float getDistBtwTargetAndZoomRange(Transform target)
+    {
         Bounds bound = new Bounds(targetMidpoint, cameraZoomRange); //creates AABB bounding box with player one as center
-        
+
         float dist = Vector3.Distance(bound.ClosestPoint(target.position), target.position);
-      
+
         return dist;
         //float dist = bound.SqrDistance(target.position);
-        
+
         //return dist;
-   }
+    }
+
+
 
 
     private void zoomCamera(Transform target)
     {
 
-            zoomOut = isTargetOutOfZoomRange(target);
-            if (zoomOut && cam.orthographicSize < maxZoom)
+        zoomOut = isTargetOutOfZoomRange(target);
+        if (zoomOut && cam.orthographicSize < maxZoom)
+        {
+            cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, cam.orthographicSize + getDistBtwTargetAndZoomRange(target), ref smoothZoomVelocity, smoothTime);
+            if (cam.orthographicSize > maxZoom) //else if camera bigger than max zoom
             {
-            cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, cam.orthographicSize+getDistBtwTargetAndZoomRange(target), ref smoothZoomVelocity, smoothTime);
-                if (cam.orthographicSize > maxZoom) //else if camera bigger than max zoom
-                {
-                    cam.orthographicSize = maxZoom; //camera = max zoom
-                }
-            }else if(!zoomOut && cam.orthographicSize > minZoom)
-            {
-            //Debug.Log(getDistBtwTargetAndZoomRange(target));
-                cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, cam.orthographicSize - 0.5f, ref smoothZoomVelocity, smoothTime);
-            if (cam.orthographicSize < minZoom) //else if camera bigger than max zoom
-                {
-                    cam.orthographicSize = minZoom; //camera = max zoom
-                }
+                cam.orthographicSize = maxZoom; //camera = max zoom
             }
-        
+        }
+        else if (!zoomOut && cam.orthographicSize > minZoom)
+        {
+            //Debug.Log(getDistBtwTargetAndZoomRange(target));
+            cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, cam.orthographicSize - 0.5f, ref smoothZoomVelocity, smoothTime);
+            if (cam.orthographicSize < minZoom) //else if camera bigger than max zoom
+            {
+                cam.orthographicSize = minZoom; //camera = max zoom
+            }
+        }
+
 
     }
-    
+
 
     /*
     private void CameraZoomForOnePlayer(float camDist)
@@ -617,39 +642,39 @@ public class cameraFollow : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void OnDrawGizmos()
     {
-       /*
-        if (targetMidpoint != null)
-        {
-            Gizmos.DrawWireSphere(targetMidpoint, 2);
-            Gizmos.DrawWireSphere(targetMidpoint, cameraSizeDist);
-           // Gizmos.DrawWireSphere(targetMidpoint, cam.orthographicSize);
-            //Gizmos.DrawWireSphere(targetMidpoint, cameraZoomRange);
-            //Gizmos.DrawWireCube(targetMidpoint, new Vector3((cam.orthographicSize*2*cam.aspect)*0.75f, cam.orthographicSize, 0));
-            Gizmos.DrawWireCube(targetMidpoint, cameraZoomRange);
-            //Gizmos.DrawLine(GetPlayerClosestToZoom(targets).position, )
-            foreach (Transform t in targets)
-            {
-                if(Vector3.Distance(targetMidpoint, t.position)> cameraSizeDist)
-                {
-                    Gizmos.color = Color.red;
-                }
-                else
-                {
-                    Gizmos.color = Color.green;
-                }
-                Gizmos.DrawLine(t.position, targetMidpoint);
-                Gizmos.color = Color.white;
-                for (int i = 0; i<targets.Length; i++)
-                {
-                    if(t != targets[i])
-                    {
-                        Gizmos.DrawLine(t.position, targets[i].position);
-                    }
-                    
-                }
-                
-            }
-        }*/
+        /*
+         if (targetMidpoint != null)
+         {
+             Gizmos.DrawWireSphere(targetMidpoint, 2);
+             Gizmos.DrawWireSphere(targetMidpoint, cameraSizeDist);
+            // Gizmos.DrawWireSphere(targetMidpoint, cam.orthographicSize);
+             //Gizmos.DrawWireSphere(targetMidpoint, cameraZoomRange);
+             //Gizmos.DrawWireCube(targetMidpoint, new Vector3((cam.orthographicSize*2*cam.aspect)*0.75f, cam.orthographicSize, 0));
+             Gizmos.DrawWireCube(targetMidpoint, cameraZoomRange);
+             //Gizmos.DrawLine(GetPlayerClosestToZoom(targets).position, )
+             foreach (Transform t in targets)
+             {
+                 if(Vector3.Distance(targetMidpoint, t.position)> cameraSizeDist)
+                 {
+                     Gizmos.color = Color.red;
+                 }
+                 else
+                 {
+                     Gizmos.color = Color.green;
+                 }
+                 Gizmos.DrawLine(t.position, targetMidpoint);
+                 Gizmos.color = Color.white;
+                 for (int i = 0; i<targets.Length; i++)
+                 {
+                     if(t != targets[i])
+                     {
+                         Gizmos.DrawLine(t.position, targets[i].position);
+                     }
+
+                 }
+
+             }
+         }*/
 
     }
 }
