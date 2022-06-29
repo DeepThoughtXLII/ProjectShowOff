@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 776339524365850483}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.9107766, y: 4.9107766, z: 4.9107766}
+  m_LocalScale: {x: 1.3834164, y: 1.3834164, z: 1.3834164}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5425440211871156248}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000000079473, y: 0.000000017385}
+  m_AnchoredPosition: {x: -0.00000015895, y: 0.000000037254}
   m_SizeDelta: {x: 2.22, y: 2.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &5212193859068804933
@@ -311,7 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damageSound: 
   targetColor: {r: 1, g: 1, b: 1, a: 1}
   enemyDeath: {fileID: 5252429346282490553, guid: 1d0b9a0041aac4049aa3617044eb59c9, type: 3}
   targetingManager: {fileID: 0}

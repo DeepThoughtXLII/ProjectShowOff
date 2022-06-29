@@ -60,7 +60,7 @@ public class honingBullet : MonoBehaviour, IProjectile
     void FixedUpdate()
     {
         FlyTowardTarget();
-    }
+    } 
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ public class honingBullet : MonoBehaviour, IProjectile
         {
             Destroy(gameObject);
             return;
-        }
+        } 
 
         
 
@@ -108,6 +108,8 @@ public class honingBullet : MonoBehaviour, IProjectile
 
         float distanceThisFrame = speed * Time.fixedDeltaTime;
 
+       
+
         if (dir.magnitude <= distanceThisFrame)
         {
             HitTarget(_target.GetComponent<IDamageable>());
@@ -116,6 +118,7 @@ public class honingBullet : MonoBehaviour, IProjectile
 
         rb.MovePosition(move);
         //transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+
     }
 
 

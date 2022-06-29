@@ -91,7 +91,7 @@ public class playerShooting : MonoBehaviour
             {
                 StartCoroutine(Shoot());
                 
-            }
+            } 
         }
         
     }
@@ -117,8 +117,8 @@ public class playerShooting : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public IEnumerator Shoot()
     {
-        if (target != null)
-        {
+        if (target != null){ 
+
             weapon.playShootAnimation();
             yield return new WaitForSeconds(weapon.getAnimationLength());
 
@@ -129,8 +129,12 @@ public class playerShooting : MonoBehaviour
             {
                 projectile.ReceiveTarget(target, dmg, player.Id);
             }
-        }
+
+        } 
+
     }
+
+   
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

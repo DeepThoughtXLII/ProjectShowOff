@@ -130,17 +130,17 @@ public class PlayerMovement : MonoBehaviour
             direction += (moveDirection);
             direction.Normalize();
 
-            FindObjectOfType<SoundManager>().Play("playerWalk");
+            
 
         }
         if (direction != Vector2.zero)
         {
-            FindObjectOfType<SoundManager>().Play("playerWalk");
+            
             isMoving = true;
         }
         else
         {
-            FindObjectOfType<SoundManager>().Play("playerWalk");
+            
             isMoving = false;
         }
         move = rb.position + direction * speed * Time.fixedDeltaTime;
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             move = context.ReadValue<Vector2>() * speed * Time.fixedDeltaTime;
-            FindObjectOfType<SoundManager>().Play("playerWalk");
+            
         }
         transform.Translate(move, Space.World);
 
