@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private float invincibilityInSec = 1f;
     public ParticleSystem revivalState;
     public ParticleSystem resurrection;
+    private ParticleSystem clonedRevivalState;
 
 
 
@@ -119,7 +120,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                     manageRevivalState();
                     FindObjectOfType<SoundManager>().Play("playerDeath");
                     FindObjectOfType<SoundManager>().Play("playerDiesVO");
-                    Instantiate(revivalState, transform.position, transform.rotation);
+                    
                 }
                 else
                 {
@@ -138,11 +139,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     IEnumerator Invincible()
     {
         state = PlayerState.INVINCIBLE;
+        
         manageRevivalState();
         yield return new WaitForSeconds(invincibilityInSec); 
         state = PlayerState.ALIVE;                              //im not invincible anymore
-        Destroy(revivalState);
         FindObjectOfType<SoundManager>().Play("playerRevive");
+        
         Instantiate(resurrection, transform.position, transform.rotation);
         
     }
@@ -168,6 +170,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (state == PlayerState.ALIVE)
         {
+            clonedRevivalState = Instantiate(revivalState, transform.position, transform.rotation);
             state = PlayerState.REVIVING;
             reviveTimer = reviveCooldown;
             transform.GetComponent<BoxCollider2D>().enabled = false;
@@ -179,6 +182,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             transform.GetComponent<BoxCollider2D>().enabled = true;
             health = maxHealth;
+            Destroy(clonedRevivalState, 1.0f);
             //SetColour(health);
         }
     }

@@ -78,7 +78,7 @@ public class Levelable : MonoBehaviour, ILevelable
         level = lvl;
         nextLevelAt = lvl.xpNeeded;
         FindObjectOfType<SoundManager>().Play("playerLevelUp");
-        Instantiate(levelup, transform.position, transform.rotation);
+        levelup.Play();
 
     }
 

@@ -1426,6 +1426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
+  fixPositionTime: 2
   smoothSpeed: 1.27
   smoothZoomVelocity: 0
   distanceDamp: 0.52
@@ -1834,6 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets: []
+  fixPositionTime: 2
   smoothSpeed: 0.125
   smoothZoomVelocity: 0
   distanceDamp: 0.5

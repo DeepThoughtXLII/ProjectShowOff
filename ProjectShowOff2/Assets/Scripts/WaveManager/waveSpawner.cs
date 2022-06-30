@@ -15,7 +15,7 @@ public class waveSpawner : MonoBehaviour
 
     public Wave[] waves;
     public waveEnemy[] waveEnemies;
-    private int waveIndex = 0;
+    private int waveIndex = -1;
     private int currentWaveDangerLevel;
     private bool spawning = false;
 
@@ -43,6 +43,7 @@ public class waveSpawner : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
+        
         dangerLevels = new List<int>();
         spawnpoints = new List<Transform>();
         foreach(waveEnemy enemy in waveEnemies)
@@ -88,6 +89,11 @@ public class waveSpawner : MonoBehaviour
         {
             onBossWave();
         }
+
+        if(waveIndex >= 0)
+        {
+            FindObjectOfType<SoundManager>().Play("ingameMusic");
+        }
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,45 +101,55 @@ public class waveSpawner : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     IEnumerator spawnWave()
     {
-        Console.WriteLine("Wave Started");
-        FindObjectOfType<SoundManager>().Play("newWaveVO");
-        currentWaveDangerLevel = waves[waveIndex].waveDangerLevel;
-        while (currentWaveDangerLevel > 0)
+        if (waveIndex == -1)
         {
-            spawning = true;
-            bool repeat = true;
-            while(repeat)
+            yield return new WaitForSeconds(25);
+            waveIndex = 0;
+
+        } else {
+
+            Console.WriteLine("Wave Started");
+            FindObjectOfType<SoundManager>().Play("newWaveVO");
+            currentWaveDangerLevel = waves[waveIndex].waveDangerLevel;
+            while (currentWaveDangerLevel > 0)
             {
-                try
+                spawning = true;
+                bool repeat = true;
+                while (repeat)
                 {
-                    randomEnemy();
-                    if (currentWaveDangerLevel - currentEnemy.enemyDangerLevel >= 0)
+                    try
                     {
-                        currentWaveDangerLevel -= currentEnemy.enemyDangerLevel;
-                        Console.WriteLine("Current Remaining Danger Level:" + currentWaveDangerLevel);
+                        randomEnemy();
+                        if (currentWaveDangerLevel - currentEnemy.enemyDangerLevel >= 0)
+                        {
+                            currentWaveDangerLevel -= currentEnemy.enemyDangerLevel;
+                            Console.WriteLine("Current Remaining Danger Level:" + currentWaveDangerLevel);
+                        }
+                        else
+                        {
+                            throw new ArgumentOutOfRangeException();
+                        }
+
+                        repeat = false;
                     }
-                    else
+                    catch (Exception e)
                     {
-                        throw new ArgumentOutOfRangeException();
+                        Console.WriteLine("Enemy Danger Level Too High, Rolling again -------- " + e);
+                        repeat = true;
                     }
-                    
-                    repeat = false;
                 }
-                catch(Exception e)
-                {
-                    Console.WriteLine("Enemy Danger Level Too High, Rolling again -------- " + e);
-                    repeat = true;
-                }
+
+                SpawnEnemies(currentEnemy.enemyPrefab);
+                EnemiesAlive++;
+                Console.WriteLine("Current Enemies Alive: " + EnemiesAlive);
+                yield return new WaitForSeconds(waves[waveIndex].spawnRate);
             }
 
-            SpawnEnemies(currentEnemy.enemyPrefab);
-            EnemiesAlive++;
-            Console.WriteLine("Current Enemies Alive: " +EnemiesAlive);
-            yield return new WaitForSeconds(waves[waveIndex].spawnRate);
+            waveIndex++;
+            spawning = false;
         }
+
         
-        waveIndex++;
-        spawning = false;
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

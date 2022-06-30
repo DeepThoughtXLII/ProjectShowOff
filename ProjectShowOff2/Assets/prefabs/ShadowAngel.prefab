@@ -139,7 +139,7 @@ MonoBehaviour:
   pathing: 1
   playerTag: player
   rend: {fileID: 0}
-  speed: 3
+  speed: 40
   targetingManager: {fileID: 0}
   isMoving: 0
   movement: {x: 0, y: 0}
@@ -165,9 +165,9 @@ MonoBehaviour:
   charging: 0
   bulletDamage: 0
   MeleeRange: 2
-  EmergeDamage: 40
-  EmergeSpeed: 3
-  TimeBeforeDissapear: 3
+  EmergeDamage: 20
+  EmergeSpeed: 2
+  TimeBeforeDissapear: 4
   emerging: 0
   isAttacking: 0
 --- !u!50 &4239635615416892891
@@ -270,7 +270,6 @@ GameObject:
   - component: {fileID: 3408462513366770754}
   - component: {fileID: 1755137797475768805}
   - component: {fileID: 5997396379226694186}
-  - component: {fileID: 9015786669657068738}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
@@ -388,26 +387,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &9015786669657068738
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7065108406082411671}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 771519685c77f4021939ef8cf385a22d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6741412030773159154
 PrefabInstance:
   m_ObjectHideFlags: 0

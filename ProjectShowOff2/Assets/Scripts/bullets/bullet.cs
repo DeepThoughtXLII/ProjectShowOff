@@ -52,6 +52,8 @@ public class bullet : MonoBehaviour, IProjectile
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _target = null;
+
     }
 
 
@@ -126,9 +128,8 @@ public class bullet : MonoBehaviour, IProjectile
         Destroy(gameObject);
     }
 
-
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ///                                                                     RCEIVE DIRECTION()
+    ///                                                                     RECEIVE DIRECTION()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void ReceiveDirection(Vector3 direction, int dmg, int pOwnerId = -1)
     {
@@ -136,6 +137,7 @@ public class bullet : MonoBehaviour, IProjectile
         targetDirection = direction;
         damage = dmg;
         StartCoroutine(lifeTime());
+        isFlying = true;
     }
 
 

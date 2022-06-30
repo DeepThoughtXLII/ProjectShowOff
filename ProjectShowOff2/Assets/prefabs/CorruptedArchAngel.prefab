@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac39cb4e627cea24d904008eb83b8b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpGains: 2
+  xpGains: 20
 --- !u!114 &8032830822421680088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   pathing: 3
   playerTag: player
   rend: {fileID: 0}
-  speed: 3
+  speed: 5
   targetingManager: {fileID: 0}
   isMoving: 0
   movement: {x: 0, y: 0}

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac39cb4e627cea24d904008eb83b8b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpGains: 2
+  xpGains: 3
 --- !u!114 &8032830822421680088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,10 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21139638ec23b474baf8855a00b93775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooting: 2
+  shooting: 0
   target: {fileID: 0}
   range: 20
-  bulletPrefab: {fileID: 8569533747718512972, guid: b19e824b8c21846458f9039a4716fc0d, type: 3}
+  bulletPrefab: {fileID: 1640329167883588167, guid: 5c77c40d69f5f6b4d81563c25d30449a, type: 3}
   firepoint: {fileID: 6311797072188095194}
   firerate: 5
   damage: 20
@@ -166,7 +166,7 @@ MonoBehaviour:
   pathing: 0
   playerTag: player
   rend: {fileID: 0}
-  speed: 3
+  speed: 10
   targetingManager: {fileID: 0}
   isMoving: 0
   movement: {x: 0, y: 0}

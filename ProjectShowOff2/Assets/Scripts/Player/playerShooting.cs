@@ -19,6 +19,9 @@ public class playerShooting : MonoBehaviour
     public IProjectile bulletScriptPrefab;
     public Transform firepoint;
 
+    public GameObject bulletPrefabNormal;
+    public IProjectile bulletScriptPrefabNormal;
+
     public string enemyTag = "enemyTag";
 
     private GameObject tempEnemy = null;
@@ -67,8 +70,11 @@ public class playerShooting : MonoBehaviour
         playerHealth = player.GetPlayerHealth();
         //controls.Gameplay.shoot.performed += ctx => Shoot();
         bulletScriptPrefab = bulletPrefab.GetComponent<IProjectile>();
+        bulletScriptPrefabNormal = bulletPrefabNormal.GetComponent<IProjectile>();
         //dmg = bulletScriptPrefab.Damage;
         weapon = GetComponentInChildren<weaponAnimation>();
+
+        target = null;
 
         Levelable.onUpgradeChosen += checkDamageValues;
         pi = GetComponentInChildren<PlayerInput>();
@@ -117,7 +123,7 @@ public class playerShooting : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public IEnumerator Shoot()
     {
-        //if (target != null){ 
+        if (target != null){ 
 
             weapon.playShootAnimation();
             yield return new WaitForSeconds(weapon.getAnimationLength());
@@ -130,7 +136,21 @@ public class playerShooting : MonoBehaviour
                 projectile.ReceiveTarget(target, dmg, player.Id);
             }
 
-        //} 
+        } 
+
+        if (target == null)
+        {
+            weapon.playShootAnimation();
+            yield return new WaitForSeconds(weapon.getAnimationLength());
+
+            GameObject newProjectile = (GameObject)Instantiate(bulletPrefabNormal, firepoint.position, bulletPrefabNormal.transform.rotation);
+            IProjectile projectile = newProjectile.GetComponent<IProjectile>();
+            FindObjectOfType<SoundManager>().Play("playerShoot");
+            if (projectile != null)
+            {
+                projectile.ReceiveTarget(target, dmg, player.Id);
+            }
+        }
 
     }
 

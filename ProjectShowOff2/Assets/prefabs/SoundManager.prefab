@@ -47,21 +47,21 @@ MonoBehaviour:
   sounds:
   - name: bossMusic
     clip: {fileID: 8300000, guid: 163a40da7a6184d498333218d70c83d1, type: 3}
-    volume: 0.173
+    volume: 0.216
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: ingameMusic
     clip: {fileID: 8300000, guid: 0c56da6216bb7c241b26ee8ab0717583, type: 3}
-    volume: 0.142
+    volume: 0.229
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: playerWalk
     clip: {fileID: 8300000, guid: 634a27dd603ee75498e28abf22caad68, type: 3}
-    volume: 0.755
+    volume: 0.699
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: playerShoot
     clip: {fileID: 8300000, guid: f321e42350a7bb7468996703f97aa320, type: 3}
@@ -71,7 +71,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: playerRevive
     clip: {fileID: 8300000, guid: 627f73e4c11dfd94c9b4dc6b9aed7a3a, type: 3}
-    volume: 0.197
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -83,13 +83,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: playerDeath
     clip: {fileID: 8300000, guid: 7f94f1f36dffd594283e341ca7c93e41, type: 3}
-    volume: 0.155
+    volume: 0.326
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: playerLevelUp
     clip: {fileID: 8300000, guid: 524b4dfa8d044664b8143a02dffc15b2, type: 3}
-    volume: 0.13
+    volume: 0.633
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -125,55 +125,55 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: windAmbience
     clip: {fileID: 8300000, guid: 0f4205dbe3dc0a948b4dd1cbeba879c0, type: 3}
-    volume: 0.075
+    volume: 0.179
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: finalBossAmbience
     clip: {fileID: 8300000, guid: 445db914ac6f02948be4fc6263584bd1, type: 3}
-    volume: 0.234
+    volume: 0.27
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: playerLowHpVO
     clip: {fileID: 8300000, guid: f68cbedbe6eb3254995fc87b0b625e1b, type: 3}
-    volume: 0.234
+    volume: 0.593
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: corruptionStartsVO
     clip: {fileID: 8300000, guid: d5698fd41827e1f47af02c5f21e314a5, type: 3}
-    volume: 0.234
+    volume: 0.543
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: corruptionHighVO
     clip: {fileID: 8300000, guid: 68cfa17b9e0c24d45a76d00cef8f6385, type: 3}
-    volume: 0.234
+    volume: 0.479
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: finalBossTransitionVO
     clip: {fileID: 8300000, guid: 6ce7153df3bb03e45a634cc765d1afcb, type: 3}
-    volume: 0.234
+    volume: 0.529
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: gameOverVO
     clip: {fileID: 8300000, guid: dfb65f7d46941044f9989a11d194f184, type: 3}
-    volume: 0.234
+    volume: 0.465
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: playerDiesVO
     clip: {fileID: 8300000, guid: b9be19698c5742441b0f4fe68ddcadb8, type: 3}
-    volume: 0.234
+    volume: 0.522
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: newWaveVO
     clip: {fileID: 8300000, guid: 5a9fc6e3cf0c0a044a2139adde1e180f, type: 3}
-    volume: 0.234
+    volume: 0.584
     pitch: 1
     loop: 0
     source: {fileID: 0}

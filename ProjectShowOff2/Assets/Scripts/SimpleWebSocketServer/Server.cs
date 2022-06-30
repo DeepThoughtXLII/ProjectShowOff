@@ -159,6 +159,8 @@ public class Server : MonoBehaviour
         }
         else if (state == gameState.INGAME)
         {
+
+
             if (playerManager.PlayersAllDead() && !testing)
             {
                 state = gameState.GAMEOVER;
@@ -217,6 +219,8 @@ public class Server : MonoBehaviour
         Debug.Log("PLAYER BOSS");
         playerManager.HeavenFallsNextBoss();
         FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
+        FindObjectOfType<SoundManager>().Stop("ingameMusic");
+        FindObjectOfType<SoundManager>().Play("bossMusic");
     }
 
 
@@ -225,6 +229,8 @@ public class Server : MonoBehaviour
         Debug.Log("AI BOSS");
         playerManager.HeavenFallsNextBoss();
         FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
+        FindObjectOfType<SoundManager>().Stop("ingameMusic");
+        FindObjectOfType<SoundManager>().Play("bossMusic");
     }
 
 
@@ -248,6 +254,8 @@ public class Server : MonoBehaviour
 
     public void BackToLobby()
     {
+        FindObjectOfType<SoundManager>().Stop("ingameMusic");
+        FindObjectOfType<SoundManager>().Stop("bossMusic");
         changeScene("Lobby");
         controllerManager.ResetControllers();
         playerManager.PlayersReset();
@@ -289,6 +297,8 @@ public class Server : MonoBehaviour
             }
             
         }
+        FindObjectOfType<SoundManager>().Stop("ingameMusic");
+        FindObjectOfType<SoundManager>().Stop("bossMusic");
         state = gameState.LOBBY;
         body = null;
         //findLobbyPlayerUIComponents();
