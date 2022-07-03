@@ -90,10 +90,7 @@ public class waveSpawner : MonoBehaviour
             onBossWave();
         }
 
-        if(waveIndex >= 0)
-        {
-            FindObjectOfType<SoundManager>().Play("ingameMusic");
-        }
+        
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ public class Levelable : MonoBehaviour, ILevelable
     public static event Action onUpgradeChosen;
     public static event Action onLevelUp;
     public ParticleSystem levelup;
-
+    public ParticleSystem kill;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     FIELDS
@@ -78,7 +78,7 @@ public class Levelable : MonoBehaviour, ILevelable
         level = lvl;
         nextLevelAt = lvl.xpNeeded;
         FindObjectOfType<SoundManager>().Play("playerLevelUp");
-        levelup.Play();
+        Instantiate(levelup, transform.position, transform.rotation);
 
     }
 
@@ -89,7 +89,8 @@ public class Levelable : MonoBehaviour, ILevelable
     public void GainXP(int pXp)
     {
         xp += pXp;
-        if(xp >= nextLevelAt)
+        Instantiate(kill, transform.position, transform.rotation);
+        if (xp >= nextLevelAt)
         {
             //Debug.Log("LEVEL UP YAY!");
            

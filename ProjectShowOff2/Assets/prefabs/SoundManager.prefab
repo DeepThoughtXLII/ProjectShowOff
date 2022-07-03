@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2059556446646124747
 Transform:
   m_ObjectHideFlags: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ingameMusic
     clip: {fileID: 8300000, guid: 0c56da6216bb7c241b26ee8ab0717583, type: 3}
-    volume: 0.229
+    volume: 0.111
     pitch: 1
     loop: 1
     source: {fileID: 0}

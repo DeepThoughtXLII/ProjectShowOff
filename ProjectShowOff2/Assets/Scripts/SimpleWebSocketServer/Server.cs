@@ -219,8 +219,6 @@ public class Server : MonoBehaviour
         Debug.Log("PLAYER BOSS");
         playerManager.HeavenFallsNextBoss();
         FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
-        FindObjectOfType<SoundManager>().Stop("ingameMusic");
-        FindObjectOfType<SoundManager>().Play("bossMusic");
     }
 
 
@@ -229,8 +227,6 @@ public class Server : MonoBehaviour
         Debug.Log("AI BOSS");
         playerManager.HeavenFallsNextBoss();
         FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
-        FindObjectOfType<SoundManager>().Stop("ingameMusic");
-        FindObjectOfType<SoundManager>().Play("bossMusic");
     }
 
 

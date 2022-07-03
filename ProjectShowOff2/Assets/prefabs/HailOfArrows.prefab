@@ -453,7 +453,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4220672868280776166}
   serializedVersion: 8
   lengthInSec: 0.58
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -5467,7 +5467,7 @@ ParticleSystem:
   m_GameObject: {fileID: 5656225508179796392}
   serializedVersion: 8
   lengthInSec: 0.58
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -10362,7 +10362,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7600687276308638069}
   serializedVersion: 8
   lengthInSec: 0.58
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -15174,7 +15174,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7746530869889640700}
   serializedVersion: 8
   lengthInSec: 0.58
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -19986,7 +19986,7 @@ ParticleSystem:
   m_GameObject: {fileID: 8033087901836094805}
   serializedVersion: 8
   lengthInSec: 0.58
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -24806,5 +24806,5 @@ MonoBehaviour:
   attackArea: {fileID: 3044047244070621632}
   maximumDeviation: 10
   chargeTime: 4
-  attackDuration: 5
-  damage: 50
+  attackDuration: 6
+  damage: 20
