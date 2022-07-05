@@ -85,7 +85,7 @@ public class waveSpawner : MonoBehaviour
 
         timeTillNextWave -= Time.deltaTime;
 
-        if(waveIndex >= 1) //waves.Length)
+        if(waveIndex >= waves.Length)
         {
             onBossWave();
         }

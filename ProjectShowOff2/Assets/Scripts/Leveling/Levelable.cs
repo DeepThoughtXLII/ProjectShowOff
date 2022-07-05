@@ -97,7 +97,7 @@ public class Levelable : MonoBehaviour, ILevelable
             LevelUp(lvlManager.GetNextLevel(level));
             if (level.hasUpgrade && player.GetPlayerMovement().IsUsingInput == Controls.ONLINE)
             {
-                _pUI.p_UI.sprite = _pUI.yeslvlup;
+                //_pUI.p_UI.sprite = _pUI.yeslvlup;
                 UpgradesToTake.Add(level.upgrade);
                 upgradesAvailable = true;
                 Debug.Log("upgrade booyaaa");

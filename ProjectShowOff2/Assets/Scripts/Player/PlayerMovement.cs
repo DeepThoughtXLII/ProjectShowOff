@@ -135,12 +135,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (direction != Vector2.zero)
         {
-            
+           
             isMoving = true;
         }
         else
         {
-            
+           
             isMoving = false;
         }
         move = rb.position + direction * speed * Time.fixedDeltaTime;

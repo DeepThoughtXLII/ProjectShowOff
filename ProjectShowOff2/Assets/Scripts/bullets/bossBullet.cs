@@ -29,6 +29,8 @@ public class bossBullet : MonoBehaviour, IProjectile
 
     Rigidbody2D rb;
 
+    [SerializeField]string opponentTag = "Player";
+
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET() AND SET()
@@ -78,9 +80,10 @@ public class bossBullet : MonoBehaviour, IProjectile
     public void ReceiveTarget(Transform target, int dmg, int pOwnerId = -1)
     {
         ownerId = pOwnerId;
-        _target = target;
-        //damage = dmg;
+        targetDirection = target.position - transform.position;
+        damage = dmg;
         StartCoroutine(lifeTime());
+        isFlying = true;
     }
 
 
@@ -119,9 +122,12 @@ public class bossBullet : MonoBehaviour, IProjectile
         target.takeDamage(damage);
         if (target.Health <= damage)
         {
-            if (_target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
+            if (_target != null)
             {
-                toBeDead.SetKiller(ownerId);
+                if (_target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
+                {
+                    toBeDead.SetKiller(ownerId);
+                }
             }
         }
         Destroy(effectIns, 2f);
@@ -150,7 +156,7 @@ public class bossBullet : MonoBehaviour, IProjectile
         {
             HitObstacle();
         }
-        else if (collision.gameObject.tag == "Player")
+        else if (collision.gameObject.tag == opponentTag)
         {
             HitTarget(collision.gameObject.GetComponent<IDamageable>());
         }
@@ -162,7 +168,7 @@ public class bossBullet : MonoBehaviour, IProjectile
         {
             HitObstacle();
         }
-        else if (collision.gameObject.tag == "Player")
+        else if (collision.gameObject.tag == opponentTag)
         {
             HitTarget(collision.gameObject.GetComponent<IDamageable>());
         }

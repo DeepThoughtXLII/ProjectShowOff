@@ -36,6 +36,8 @@ public class playerShooting : MonoBehaviour
 
     public weaponAnimation weapon;
 
+    Vector3 randoDirection = Vector3.zero;
+    bool hasRandoDirection = false;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     AWAKE()
@@ -112,8 +114,8 @@ public class playerShooting : MonoBehaviour
         UpdateTarget();
         if(target != null)
         {
-            Vector2 direction = target.position - transform.position;
-            weapon.faceDirection(target.position);
+            
+            //weapon.faceDirection(target.position);
         }
     }
 
@@ -123,6 +125,32 @@ public class playerShooting : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public IEnumerator Shoot()
     {
+        weapon.playShootAnimation();
+        
+        yield return new WaitForSeconds(weapon.getAnimationLength());
+
+        GameObject newProjectile = (GameObject)Instantiate(bulletPrefabNormal, firepoint.position, bulletPrefabNormal.transform.rotation);
+        IProjectile projectile = newProjectile.GetComponent<IProjectile>();
+        FindObjectOfType<SoundManager>().Play("playerShoot");
+        if (projectile != null)
+        {
+            if(target != null)
+            {
+                projectile.ReceiveTarget(target, dmg, player.Id);
+
+            }
+            else
+            {
+                projectile.ReceiveDirection(randoDirection, dmg, player.Id);
+                hasRandoDirection = false;
+            }
+        }
+
+
+
+            
+        
+        /*
         if (target != null){ 
 
             weapon.playShootAnimation();
@@ -151,7 +179,7 @@ public class playerShooting : MonoBehaviour
                 projectile.ReceiveTarget(target, dmg, player.Id);
             }
         }
-
+        */
     }
 
    
@@ -237,6 +265,7 @@ public class playerShooting : MonoBehaviour
             {
                 ITargetable oldEnemy = target.GetComponent<ITargetable>();
                 oldEnemy.loseTarget();
+                weapon.setDirection(target);
             }
             target = nearestEnemy.transform;
             ITargetable newEnemy = target.GetComponent<ITargetable>();
@@ -246,6 +275,12 @@ public class playerShooting : MonoBehaviour
         else
         {
             target = null;
+            if (!hasRandoDirection)
+            {
+                randoDirection = Random.insideUnitCircle;
+                weapon.setDirection(randoDirection);
+                hasRandoDirection = true;
+            }
             if (tempEnemy != null)
             {
                 tempEnemy.GetComponent<ITargetable>().loseTarget();

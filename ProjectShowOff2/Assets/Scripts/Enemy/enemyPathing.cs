@@ -165,7 +165,7 @@ public class enemyPathing : MonoBehaviour
             Vector2 direction = player.transform.position - transform.position;
             Vector2 attackMinus = new Vector2(_enemyShooting.range - 1, 0);
             attackMinus = rotateVector(attackMinus, angleBetweenVectors((Vector2)player.transform.position, (Vector2)gameObject.transform.position));
-            Console.WriteLine("Attack angle: " + angleBetweenVectors((Vector2)player.transform.position, (Vector2)gameObject.transform.position));
+            //Console.WriteLine("Attack angle: " + angleBetweenVectors((Vector2)player.transform.position, (Vector2)gameObject.transform.position));
             direction += attackMinus;
             direction.Normalize();
             Vector2 inputVector = Vector2.ClampMagnitude(direction, 1);

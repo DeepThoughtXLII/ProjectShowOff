@@ -80,7 +80,10 @@ public class honingBullet : MonoBehaviour, IProjectile
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void ReceiveDirection(Vector3 direction, int dmg, int pOwnerId = -1)
     {
-       
+        ownerId = pOwnerId;
+        damage = dmg;
+        StartCoroutine(lifeTime());
+        _target.position = direction;
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

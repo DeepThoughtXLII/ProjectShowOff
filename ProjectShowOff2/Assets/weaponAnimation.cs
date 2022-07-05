@@ -28,7 +28,22 @@ public class weaponAnimation : MonoBehaviour
 
     private void Update()
     {
-        
+        if(direction != null)
+        {
+            faceDirection(direction);
+        }
+    }
+
+
+    public void setDirection(Vector3 direction)
+    {
+        this.direction = direction;
+    }
+
+public void setDirection(Transform target)
+    {
+        Vector3 direct = target.position - transform.parent.position;
+        this.direction = direct;
     }
 
 
@@ -49,47 +64,65 @@ public class weaponAnimation : MonoBehaviour
     //if angle that it should be is smaller than the current, we substract
     //otherwise we add
     //move the difference between thses angles
-    public void faceDirection(Vector3 position)
+    public void faceDirection(Vector3 direct)
+    {
+        direction = direct;
+        direction.Normalize();
+        this.position = direction;
+        Vector3 currentDirection = transform.position - transform.parent.position;
+        currentDirection.Normalize();
+       
+        float angleToMove = Vector3.SignedAngle(currentDirection, direction, new Vector3(0, 0, 1));
+        float currentAngle = Vector3.Angle(new Vector3(1, 0, 0), currentDirection);
+        float angle = Mathf.Lerp(0f, angleToMove, Time.deltaTime * 5);
+
+        // Debug.Log($"angleItShouldBe: {angleItShouldBe} currentAngle: {currentAngle} und dann angleToMove:{angleToMove} ");
+        //transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), -angleToMove);
+
+
+        transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), angle);
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        if (Vector3.Angle())
+        {
+            transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), angle);
+        }
+        else
+        {
+            transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), -angle);
+        }*/
+
+
+        //transform.rotation = Quaternion.LookRotation(direction);
+    }
+
+    public void faceTarget(Vector3 position)
     {
         direction = position - transform.parent.position;
         direction.Normalize();
         this.position = position;
         Vector3 currentDirection = transform.position - transform.parent.position;
         currentDirection.Normalize();
-        Debug.Log(currentDirection);
-        float angleToMove = Vector3.SignedAngle(currentDirection, direction, new Vector3(0,0,1));
+        float angleToMove = Vector3.SignedAngle(currentDirection, direction, new Vector3(0, 0, 1));
         float currentAngle = Vector3.Angle(new Vector3(1, 0, 0), currentDirection);
-        float angle = Mathf.Lerp(0f, angleToMove, Time.deltaTime * 0.5f);
-       
-       // Debug.Log($"angleItShouldBe: {angleItShouldBe} currentAngle: {currentAngle} und dann angleToMove:{angleToMove} ");
+        float angle = Mathf.Lerp(0f, angleToMove, Time.deltaTime * 5);
+
+        // Debug.Log($"angleItShouldBe: {angleItShouldBe} currentAngle: {currentAngle} und dann angleToMove:{angleToMove} ");
         //transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), -angleToMove);
-       
-        
-        transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), angleToMove);
-         
-
-         
 
 
-
-
-
-
-
-
-
-          /*
-          if (Vector3.Angle())
-          {
-              transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), angle);
-          }
-          else
-          {
-              transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), -angle);
-          }*/
-
-
-        //transform.rotation = Quaternion.LookRotation(direction);
+        transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), angle);
     }
 
     public Vector2 rotateVector(Vector2 v, float degrees)

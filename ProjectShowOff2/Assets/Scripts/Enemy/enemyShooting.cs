@@ -130,6 +130,7 @@ public class enemyShooting : MonoBehaviour
             IProjectile projectile = newProjectile.GetComponent<IProjectile>();
             if (projectile != null)
             {
+               
                 projectile.ReceiveTarget(target, bulletDamage);
             }
         }

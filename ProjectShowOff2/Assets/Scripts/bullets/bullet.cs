@@ -83,6 +83,9 @@ public class bullet : MonoBehaviour, IProjectile
     {
         ownerId = pOwnerId;
         _target = target;
+        targetDirection = _target.position - transform.position;
+
+        isFlying = true;
         damage = dmg;
         StartCoroutine(lifeTime());
     }
@@ -93,6 +96,7 @@ public class bullet : MonoBehaviour, IProjectile
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void FlyTowardTarget()
     {
+        
         targetDirection = _target.position - transform.position;
 
         isFlying = true;
@@ -108,7 +112,7 @@ public class bullet : MonoBehaviour, IProjectile
         target.takeDamage(damage);
         if(target.Health <= damage)
         {
-            if(_target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
+            if(_target != null && _target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
             {
                 toBeDead.SetKiller(ownerId);
             }

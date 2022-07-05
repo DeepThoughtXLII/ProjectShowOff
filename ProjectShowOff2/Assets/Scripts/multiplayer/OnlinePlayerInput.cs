@@ -70,8 +70,12 @@ public class OnlinePlayerInput : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void Connected()
     {
-        anim.SetBool("Player_Joined", true);
-        anim.SetBool("Player_Left", false);
+        if(anim != null)
+        {
+            anim.SetBool("Player_Joined", true);
+            anim.SetBool("Player_Left", false);
+        }
+
        
         /*bg.color = Color.white;
         character.enabled = true;*/

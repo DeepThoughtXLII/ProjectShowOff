@@ -102,6 +102,7 @@ public class Server : MonoBehaviour
 
         waveSpawner.onBossWave += bossFight;
         PlayerHealth.onBossDeath += BossDied;
+        LoadMenu.onGameEnd += BackToLobby;
     }
 
 

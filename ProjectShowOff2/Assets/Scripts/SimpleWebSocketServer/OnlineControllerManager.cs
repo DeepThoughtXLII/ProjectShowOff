@@ -124,7 +124,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
     {
 
         string text = Encoding.UTF8.GetString(packet.Data);
-        Console.WriteLine("Received a packet: {0}", text);
+        //Console.WriteLine("Received a packet: {0}", text);
 
         parseCommand(text, clients2[connection]);
 
@@ -298,7 +298,7 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
             }
         }
-        else if (server.State == Server.gameState.INGAME)
+        else if (server.State == Server.gameState.INGAME || server.State == Server.gameState.BOSS)
         {
             if (text.Contains("newInput"))
             {

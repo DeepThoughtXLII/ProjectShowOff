@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class LoadMenu : MonoBehaviour
 {
+
+    public static event Action onGameEnd;
+
     private void OnEnable()
     {
-        Server server = GameObject.FindGameObjectWithTag("server").GetComponent<Server>();
-        server.BackToLobby();
+        onGameEnd();
         //SceneManager.LoadScene(0);
     }
 }

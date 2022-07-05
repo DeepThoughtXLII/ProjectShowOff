@@ -54,7 +54,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Final Game/Game.unity
     guid: c843a55438a919246976f94871622880
   - enabled: 1
-    path: Assets/Scenes/Final Game/Boss Transition Scene.unity
+    path: Assets/Scenes/Final Game/BossTransition.unity
     guid: 81d63fda74863274ea6cd48cc2e37f73
   - enabled: 1
     path: Assets/Scenes/Final Game/Hell.unity

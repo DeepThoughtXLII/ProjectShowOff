@@ -20,12 +20,20 @@ public class TargetingManager : MonoBehaviour
     private void Awake()
     {
         players = new List<Player>();
-        PlayerManager server = GameObject.FindGameObjectWithTag("server").GetComponent<PlayerManager>();
-        for (int i = 0; i < server.GetPlayerCount(); i++)
+        try
         {
-            players.Add(server.GetPlayer(i));
-            Debug.Log("added player");
+            if (GameObject.FindGameObjectWithTag("server").TryGetComponent<PlayerManager>(out PlayerManager pm))
+            {
+                PlayerManager server = pm;
+                for (int i = 0; i < server.GetPlayerCount(); i++)
+                {
+                    players.Add(server.GetPlayer(i));
+                    Debug.Log("added player");
+                }
+            }
         }
+        catch { }
+
     }
 
 
@@ -38,12 +46,17 @@ public class TargetingManager : MonoBehaviour
     {
         if (players.Count <= 0)
         {
+            if (players.Count <= 0)
+            {
+                players.Add(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>());
+            }
+            /*
             PlayerManager server = GameObject.FindGameObjectWithTag("server").GetComponent<PlayerManager>();
             for (int i = 0; i < server.GetPlayerCount(); i++)
             {
                 players.Add(server.GetPlayer(i));
 
-            }
+            }*/
         }
     }
 
