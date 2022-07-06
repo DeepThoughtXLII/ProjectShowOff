@@ -154,6 +154,6 @@ public class ControllerManager : MonoBehaviour, IControllerManager
 
     public void endGame()
     {
-
+        Debug.Log("player left");
     }
 }

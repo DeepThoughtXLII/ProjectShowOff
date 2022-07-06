@@ -7,6 +7,6 @@ public class LoadBoss : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene(4);
+        GameObject.FindGameObjectWithTag("server").GetComponent<Server>().changeScene("Hell");
     }
 }

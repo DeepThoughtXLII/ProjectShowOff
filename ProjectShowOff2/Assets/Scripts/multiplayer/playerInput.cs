@@ -92,7 +92,7 @@ public class playerInput : MonoBehaviour
 
     private void OnEnable()
     {
-        if (gameOverScreen)
+       if (gameOverScreen)
         {
             controls.GameOver.Enable();
             controls.GameOver.backToLobby.performed += ctx => GetComponentInParent<Server>().BackToLobby();

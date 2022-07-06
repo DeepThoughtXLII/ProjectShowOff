@@ -7,6 +7,6 @@ public class LoadGame : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene(2);
+        GameObject.FindGameObjectWithTag("server").GetComponent<Server>().changeScene("Game");
     }
 }

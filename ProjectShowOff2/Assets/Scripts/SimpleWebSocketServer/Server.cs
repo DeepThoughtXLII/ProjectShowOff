@@ -19,10 +19,10 @@ public class Server : MonoBehaviour
     public static event Action onGameOver;
 
     public enum gameState { LOBBY, INGAME, BOSS, GAMEOVER }
-    [SerializeField]gameState state;
+    [SerializeField] gameState state;
 
-    
-    public enum endingType { DeathPreBoss, DeathDuringBoss, Won}
+
+    public enum endingType { DeathPreBoss, DeathDuringBoss, Won }
     public endingType ending;
 
     [SerializeField]
@@ -32,7 +32,7 @@ public class Server : MonoBehaviour
     public Image body;
 
     private int GameOverScreenTime = 10;
-   
+
 
     PlayerManager playerManager;
 
@@ -44,7 +44,7 @@ public class Server : MonoBehaviour
     public bool testing = true;
     public int numberOfPlayersToTestWith = 4;
 
-    public string[] scenes = { "Lobby", "Introduction", "Game", "HellTransition", "Hell", "GameOver" };
+    public string[] scenes = { "Lobby", "Introduction", "Game", "BossTransition", "Hell", "GameOver" };
     public bool cutscenesOn = false;
 
 
@@ -72,11 +72,12 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
-            
-        } else
+
+        }
+        else
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -86,14 +87,15 @@ public class Server : MonoBehaviour
         {
             state = gameState.LOBBY;
         }
-        
-        
+
+
         if (usesControls == Controls.ONLINE)
         {
             controllerManager = GetComponent<OnlineControllerManager>();
             GetComponent<OnlineControllerManager>().enabled = true;
             GetComponent<ControllerManager>().enabled = false;
-        } else
+        }
+        else
         {
             controllerManager = GetComponent<ControllerManager>();
             GetComponent<OnlineControllerManager>().enabled = false;
@@ -112,7 +114,7 @@ public class Server : MonoBehaviour
     private void Start()
     {
         transform.position = Vector3.zero;
-       if(controllerManager == null)
+        if (controllerManager == null)
         {
             throw new Exception("no controllerManager found. players cannot join.");
         }
@@ -123,16 +125,16 @@ public class Server : MonoBehaviour
         findLobbyPlayerUIComponents();
     }
 
- 
+
 
     public void testingWithPlayers()
     {
-        
-            for (int i = 0; i < numberOfPlayersToTestWith; i++)
-            {
-                playerManager.AddPlayer(i);
-            }
-        
+
+        for (int i = 0; i < numberOfPlayersToTestWith; i++)
+        {
+            playerManager.AddPlayer(i);
+        }
+
     }
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     FIND LOBBY �LAYER UI COMPONENTS()
@@ -156,7 +158,7 @@ public class Server : MonoBehaviour
     {
         if (state == gameState.LOBBY)
         {
-           
+
         }
         else if (state == gameState.INGAME)
         {
@@ -170,20 +172,20 @@ public class Server : MonoBehaviour
                 GameOver();
             }
         }
-        else if(state == gameState.BOSS)
+        else if (state == gameState.BOSS)
         {
-            if(playerManager.PlayersAllDead() && !testing)
+            if (playerManager.PlayersAllDead() && !testing)
             {
                 state = gameState.GAMEOVER;
                 ending = endingType.DeathDuringBoss;
                 FindObjectOfType<SoundManager>().Play("gameOverVO");
                 GameOver();
-               
+
             }
 
-            
+
         }
-        else if(state == gameState.GAMEOVER)
+        else if (state == gameState.GAMEOVER)
         {
 
             //Destroy(this);
@@ -199,8 +201,8 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void bossFight()
     {
-        //changeScene("HellTransition");
-        SceneManager.LoadScene(4);
+        changeScene("BossTransition");
+        //SceneManager.LoadScene(4);
         state = gameState.BOSS;
 
         playerManager.ReviveAllPlayers();
@@ -235,17 +237,31 @@ public class Server : MonoBehaviour
     ///                                                                     BACK TO LOBBY()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void changeScene(string Scene)
+    public void changeScene(string Scene)
     {
-        int index = Array.IndexOf(scenes, Scene);
-        if (!cutscenesOn)
+        //int index = Array.IndexOf(scenes, Scene);
+        string sceneToLoad = Scene;
+        Debug.Log($"attemot to load scene: {Scene}");
+        if (Scene == "Introduction" || Scene == "BossTransition")
         {
-            if(Scene == "Introduction" || Scene == "HellTransition")
+            if (!cutscenesOn)
             {
-                index++;               
+                sceneToLoad = scenes[Array.IndexOf(scenes, Scene) + 1];
             }
+            else
+            {
+                playerManager.playerCutsceneMode(true);
+            }
+        } else
+        {
+            playerManager.playerCutsceneMode(false);
         }
-       SceneManager.LoadScene(scenes[index]);
+        SceneManager.LoadScene(Scene);
+    }
+
+    void cutSceneMode()
+    {
+
     }
 
 
@@ -286,13 +302,14 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void ResetServer()
     {
-        for(int i = 0; i < transform.childCount; i++){
+        for (int i = 0; i < transform.childCount; i++)
+        {
             Transform child = transform.GetChild(i);
-            if(child.name != "LevelManager")
+            if (child.name != "LevelManager")
             {
                 Destroy(child);
             }
-            
+
         }
         FindObjectOfType<SoundManager>().Stop("ingameMusic");
         FindObjectOfType<SoundManager>().Stop("bossMusic");
@@ -322,17 +339,18 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public Image GetPlayerUILobby(int id)
     {
-        if(body == null)
+        if (body == null)
         {
             findLobbyPlayerUIComponents();
         }
-        if(id < 4 && id > -1)
+        if (id < 4 && id > -1)
         {
             return playerUIs[id];
-        } else
+        }
+        else
         {
-            throw new Exception("Player ID out of range");           
-        }     
+            throw new Exception("Player ID out of range");
+        }
     }
 
     /*
@@ -355,19 +373,18 @@ public class Server : MonoBehaviour
     {
         Debug.Log("start game");
         if (state == gameState.LOBBY && controllerManager.GetControllerCount() >= minAmountOfPlayers)
-        {
+        {           
             changeScene("Introduction");
             Debug.Log("change Scene");
             state = gameState.INGAME;
             controllerManager.OnGameStart();
-            
+
 
         }
     }
 
-   
 
 
-  
+
+
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

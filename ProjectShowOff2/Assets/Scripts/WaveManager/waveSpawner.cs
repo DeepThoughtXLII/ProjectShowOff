@@ -85,7 +85,7 @@ public class waveSpawner : MonoBehaviour
 
         timeTillNextWave -= Time.deltaTime;
 
-        if(waveIndex >= waves.Length)
+        if(waveIndex >= 1)//waves.Length)
         {
             onBossWave();
         }
@@ -105,7 +105,7 @@ public class waveSpawner : MonoBehaviour
 
         } else {
 
-            Console.WriteLine("Wave Started");
+            //Console.WriteLine("Wave Started");
             FindObjectOfType<SoundManager>().Play("newWaveVO");
             currentWaveDangerLevel = waves[waveIndex].waveDangerLevel;
             while (currentWaveDangerLevel > 0)
@@ -120,7 +120,7 @@ public class waveSpawner : MonoBehaviour
                         if (currentWaveDangerLevel - currentEnemy.enemyDangerLevel >= 0)
                         {
                             currentWaveDangerLevel -= currentEnemy.enemyDangerLevel;
-                            Console.WriteLine("Current Remaining Danger Level:" + currentWaveDangerLevel);
+                            //Console.WriteLine("Current Remaining Danger Level:" + currentWaveDangerLevel);
                         }
                         else
                         {
@@ -131,14 +131,14 @@ public class waveSpawner : MonoBehaviour
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Enemy Danger Level Too High, Rolling again -------- " + e);
+                        //Console.WriteLine("Enemy Danger Level Too High, Rolling again -------- " + e);
                         repeat = true;
                     }
                 }
 
                 SpawnEnemies(currentEnemy.enemyPrefab);
                 EnemiesAlive++;
-                Console.WriteLine("Current Enemies Alive: " + EnemiesAlive);
+                //Console.WriteLine("Current Enemies Alive: " + EnemiesAlive);
                 yield return new WaitForSeconds(waves[waveIndex].spawnRate);
             }
 
@@ -167,7 +167,7 @@ public class waveSpawner : MonoBehaviour
     {
         int randnum = UnityEngine.Random.Range(0, differentEnemies);
         currentEnemy = waveEnemies[randnum];
-        Console.WriteLine("Random number generated: " + randnum);
+        //Console.WriteLine("Random number generated: " + randnum);
     }
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

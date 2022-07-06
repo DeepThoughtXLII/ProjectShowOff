@@ -33,6 +33,7 @@ public class Player : MonoBehaviour  //, IDamageable
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     ON ENABLE()
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   /*
     private void OnEnable()
     {
         ShootingScript = GetComponent<playerShooting>();
@@ -41,7 +42,34 @@ public class Player : MonoBehaviour  //, IDamageable
         LevelScript = GetComponent<Levelable>();
     }
 
+    */
 
+
+    public void DisableAll()
+    {
+        ShootingScript.enabled = false;
+        MovementScript.enabled = false;
+        HealthScript.enabled = false;
+        LevelScript.enabled = false;
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        foreach(SpriteRenderer rend in GetComponentsInChildren<SpriteRenderer>())
+        {
+            rend.enabled = false;
+        }
+    }
+
+    public void EnableAll()
+    {
+        ShootingScript.enabled = true;
+        MovementScript.enabled = true;
+        HealthScript.enabled = true;
+        LevelScript.enabled = true;
+        this.GetComponent<SpriteRenderer>().enabled = true;
+        foreach (SpriteRenderer rend in GetComponentsInChildren<SpriteRenderer>())
+        {
+            rend.enabled = true;
+        }
+    }
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     AWAKE
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -50,6 +78,7 @@ public class Player : MonoBehaviour  //, IDamageable
         ShootingScript = GetComponent<playerShooting>();
         MovementScript = GetComponent<PlayerMovement>();
         HealthScript = GetComponent<PlayerHealth>();
+        LevelScript = GetComponent<Levelable>();
     }
 
 
@@ -69,7 +98,6 @@ public class Player : MonoBehaviour  //, IDamageable
     {
         return MovementScript;
     }
-
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     GET PLAYER HEALTH()

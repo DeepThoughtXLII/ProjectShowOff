@@ -31,6 +31,8 @@ public class PlayerManager : MonoBehaviour
     public Transform[] spawnpoints;
     public GameObject spawn;
 
+    bool shouldBeInCutscene = false;
+
     Server server;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -66,12 +68,19 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if(server.State == Server.gameState.INGAME && spawn == null)
+        if(server.State == Server.gameState.INGAME)
         {
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(Array.IndexOf(server.scenes, "Game")))
+            if (shouldBeInCutscene)
             {
-                Debug.Log("scene lodaded");
-                SpawnPlayers();
+                playerCutsceneMode(true);
+            }
+            if (spawn == null)
+            {
+                if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(Array.IndexOf(server.scenes, "Game")))
+                {
+                    Debug.Log("scene lodaded");
+                    SpawnPlayers();
+                }
             }
         }
     }
@@ -335,18 +344,24 @@ public class PlayerManager : MonoBehaviour
         playerList.Clear();
     }
 
-    public void disablePlayerInput()
+    public void playerCutsceneMode(bool turnOn)
     {
+        if (playerList.Count <= 0 && turnOn)
+        {
+            shouldBeInCutscene = true;
+        }
         foreach(KeyValuePair<int, Player> player in playerList)
         {
-            if(server.UsesControls == Controls.ONLINE)
+            if (turnOn)
             {
-
+                player.Value.DisableAll();
+                shouldBeInCutscene = false;
             }
             else
             {
-
+                player.Value.EnableAll();
             }
+
         }
     }
 
