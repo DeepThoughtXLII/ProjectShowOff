@@ -214,14 +214,17 @@ public class Server : MonoBehaviour
         {
             startBossAIFight();
         }
-        playerManager.SpawnPlayers();
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("BossTransition")){
+            playerManager.SpawnPlayers();
+
+        }
     }
 
     private void startPlayerBossFight()
     {
         Debug.Log("PLAYER BOSS");
         playerManager.HeavenFallsNextBoss();
-        FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
+        //FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
     }
 
 
@@ -229,7 +232,7 @@ public class Server : MonoBehaviour
     {
         Debug.Log("AI BOSS");
         playerManager.HeavenFallsNextBoss();
-        FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
+        //FindObjectOfType<SoundManager>().Play("finalBossTransitionVO");
     }
 
 
@@ -252,11 +255,58 @@ public class Server : MonoBehaviour
             {
                 playerManager.playerCutsceneMode(true);
             }
-        } else
+        } else 
         {
             playerManager.playerCutsceneMode(false);
         }
-        SceneManager.LoadScene(Scene);
+
+            SceneManager.LoadScene(sceneToLoad);
+        
+        
+    }
+
+    public void LoadSceneWithLoadingScreen(string Scene, Slider slide)
+    {
+        //int index = Array.IndexOf(scenes, Scene);
+        string sceneToLoad = Scene;
+        Debug.Log($"attemot to load scene: {Scene}");
+        if (Scene == "Introduction" || Scene == "BossTransition")
+        {
+            if (!cutscenesOn)
+            {
+                sceneToLoad = scenes[Array.IndexOf(scenes, Scene) + 1];
+            }
+            else
+            {
+                playerManager.playerCutsceneMode(true);
+            }
+        }
+        else
+        {
+            playerManager.playerCutsceneMode(false);
+        }
+
+        StartCoroutine(AsynchronousLoad(sceneToLoad, slide));
+    }
+
+    IEnumerator AsynchronousLoad(string scene, Slider slide)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
+        while (!operation.isDone)
+        {
+            // [0, 0.9] > [0, 1]
+            //float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            Debug.Log("Loading progress: " + (operation.progress * 100) + "%");
+            slide.value = operation.progress/0.9f;
+            if(operation.progress == 0.9f)
+            {
+                slide.value = 1;
+                operation.allowSceneActivation = true;
+            }
+            // Loading completed
+
+            yield return null;
+        }
     }
 
     void cutSceneMode()
@@ -267,8 +317,8 @@ public class Server : MonoBehaviour
 
     public void BackToLobby()
     {
-        FindObjectOfType<SoundManager>().Stop("ingameMusic");
-        FindObjectOfType<SoundManager>().Stop("bossMusic");
+        //FindObjectOfType<SoundManager>().Stop("ingameMusic");
+        //FindObjectOfType<SoundManager>().Stop("bossMusic");
         changeScene("Lobby");
         controllerManager.ResetControllers();
         playerManager.PlayersReset();

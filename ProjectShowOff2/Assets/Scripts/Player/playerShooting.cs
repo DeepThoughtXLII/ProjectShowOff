@@ -104,6 +104,21 @@ public class playerShooting : MonoBehaviour
         
     }
 
+    private void OnDisable()
+    {
+        if (pi != null)
+        {
+            pi.onActionTriggered -= OnAction;
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (pi != null)
+        {
+            pi.onActionTriggered += OnAction;
+        }
+    }
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations;
 
 
 public class PlayerManager : MonoBehaviour
@@ -34,6 +35,8 @@ public class PlayerManager : MonoBehaviour
     bool shouldBeInCutscene = false;
 
     Server server;
+
+    public AnimatorOverrideController bossController;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     START()
@@ -292,6 +295,8 @@ public class PlayerManager : MonoBehaviour
         Boss.bossMode();
         Boss.gameObject.GetComponent<playerShooting>().enabled = false;
         BossShoot.bulletPrefab = bossBulletPrefab;
+        Boss.gameObject.GetComponent<Animator>().runtimeAnimatorController = bossController;
+        
         //playerList.Remove(potentialBoss);
     }
 

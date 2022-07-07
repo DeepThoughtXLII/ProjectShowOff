@@ -555,6 +555,17 @@ PlayableDirector:
     value: {fileID: 154789581}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &219609260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8414478469655773435, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+  m_PrefabInstance: {fileID: 882421473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de54dbc418ebe848b04ba2d308e585f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &285475927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,11 +1855,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: testing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: cutscenesOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: usesControls
@@ -1861,6 +1872,38 @@ PrefabInstance:
     - target: {fileID: 8414478469655773314, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: playerUIs.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773316, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: bossController
+      value: 
+      objectReference: {fileID: 22100000, guid: ae7a8b53589909240877dddcc999ca15, type: 2}
+    - target: {fileID: 8414478469655773318, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773318, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773318, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 219609260}
+    - target: {fileID: 8414478469655773318, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773318, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: endGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773318, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ControllerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414478469655773318, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
+      propertyPath: m_PlayerLeftEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8414478469655773319, guid: 326bcce7714acc14bb10d85a460d5d99, type: 3}
       propertyPath: m_RootOrder

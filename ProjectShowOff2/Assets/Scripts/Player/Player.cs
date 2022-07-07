@@ -60,7 +60,6 @@ public class Player : MonoBehaviour  //, IDamageable
 
     public void EnableAll()
     {
-        ShootingScript.enabled = true;
         MovementScript.enabled = true;
         HealthScript.enabled = true;
         LevelScript.enabled = true;
@@ -68,6 +67,10 @@ public class Player : MonoBehaviour  //, IDamageable
         foreach (SpriteRenderer rend in GetComponentsInChildren<SpriteRenderer>())
         {
             rend.enabled = true;
+        }
+        if (HealthScript.State != PlayerHealth.PlayerState.BOSS)
+        {
+            ShootingScript.enabled = true;
         }
     }
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -150,10 +153,14 @@ public class Player : MonoBehaviour  //, IDamageable
         Debug.Log("boosmOde");
         gameObject.tag = "enemy";
         HealthScript.State = PlayerHealth.PlayerState.BOSS;
-        transform.localScale *= 2;
+        //transform.localScale *= 2;
         HealthScript.MaxHealth *= 2;
         HealthScript.Health = HealthScript.MaxHealth;
         MovementScript.speed *= 1.5f;
+        ShootingScript.enabled = false;
+        transform.GetChild(1).gameObject.SetActive(false);
+        GetComponent<BoxCollider2D>().size *= 2;
+        
     }
 
     public override string ToString()
