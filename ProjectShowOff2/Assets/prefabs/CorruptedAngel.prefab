@@ -142,7 +142,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1640329167883588167, guid: 5c77c40d69f5f6b4d81563c25d30449a, type: 3}
   firepoint: {fileID: 6311797072188095194}
   firerate: 1.25
-  damage: 40
+  damage: 10
   charging: 0
   bulletDamage: 40
   MeleeRange: 0
