@@ -351,7 +351,7 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void GameOver()
     {
-        onGameOver();
+        //onGameOver();
         changeScene("GameOver");
         playerManager.removeAllPlayers();
         controllerManager.endGame();
