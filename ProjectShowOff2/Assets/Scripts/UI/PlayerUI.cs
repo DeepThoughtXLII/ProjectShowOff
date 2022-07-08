@@ -40,6 +40,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] public Sprite nolvlup;
     [SerializeField] public Sprite yeslvlup;
 
+    public GameObject particles;
     public ParticleSystem lvlEffect;
 
 
@@ -227,10 +228,10 @@ public class PlayerUI : MonoBehaviour
 
     IEnumerator LevelUpEffect()
     {
-        lvlEffect.gameObject.SetActive(true);
+        particles.gameObject.SetActive(true);
         lvlEffect.Play();
         yield return new WaitForSeconds(lvlEffect.main.duration);
-        lvlEffect.gameObject.SetActive(false);
+        particles.gameObject.SetActive(false);
 
     }
 
