@@ -132,7 +132,7 @@ public class Boss : MonoBehaviour, ITargetable
 
     public void CanShoot()
     {
-        if (readyToShoot)
+        if (readyToShoot && this.enabled)
         {
             StartCoroutine(Shoot());
         }

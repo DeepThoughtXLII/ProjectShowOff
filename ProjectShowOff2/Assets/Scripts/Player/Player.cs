@@ -47,6 +47,10 @@ public class Player : MonoBehaviour  //, IDamageable
 
     public void DisableAll()
     {
+        if(HealthScript.State == PlayerHealth.PlayerState.BOSS)
+        {
+            GetComponent<Boss>().enabled = false;
+        }
         ShootingScript.enabled = false;
         MovementScript.enabled = false;
         HealthScript.enabled = false;
@@ -68,10 +72,11 @@ public class Player : MonoBehaviour  //, IDamageable
         {
             rend.enabled = true;
         }
-        if (HealthScript.State != PlayerHealth.PlayerState.BOSS)
+        if (HealthScript.State == PlayerHealth.PlayerState.BOSS)
         {
-            ShootingScript.enabled = true;
+            GetComponent<Boss>().enabled = true;
         }
+        else { ShootingScript.enabled = true; }
     }
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     AWAKE

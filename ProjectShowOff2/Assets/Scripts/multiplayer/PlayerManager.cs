@@ -218,9 +218,13 @@ public class PlayerManager : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void PlayerShoot(int id)
     {
+        
         if(GetPlayer(id).GetPlayerHealth().State != PlayerHealth.PlayerState.BOSS)
         {
-            StartCoroutine(playerList[id].GetPlayerShooting().Shoot());
+            if (playerList[id].GetPlayerShooting().enabled)
+            {
+                StartCoroutine(playerList[id].GetPlayerShooting().Shoot());
+            }
         } else
         {
            
@@ -296,7 +300,10 @@ public class PlayerManager : MonoBehaviour
         Boss.gameObject.GetComponent<playerShooting>().enabled = false;
         BossShoot.bulletPrefab = bossBulletPrefab;
         Boss.gameObject.GetComponent<Animator>().runtimeAnimatorController = bossController;
-        
+        if(server.State == Server.gameState.CUTSCENE)
+        {
+            BossShoot.enabled = false;
+        }
         //playerList.Remove(potentialBoss);
     }
 

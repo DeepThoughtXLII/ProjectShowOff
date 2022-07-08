@@ -18,7 +18,7 @@ public class Server : MonoBehaviour
 
     public static event Action onGameOver;
 
-    public enum gameState { LOBBY, INGAME, BOSS, GAMEOVER }
+    public enum gameState { LOBBY, INGAME, BOSS, GAMEOVER, CUTSCENE }
     [SerializeField] gameState state;
 
 
@@ -199,9 +199,10 @@ public class Server : MonoBehaviour
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     private void bossFight()
     {
+        state = gameState.BOSS;
         changeScene("BossTransition");
         //SceneManager.LoadScene(4);
-        state = gameState.BOSS;
+       
 
         playerManager.ReviveAllPlayers();
         if (playerManager.IsAPlayerCorrupted())
@@ -252,9 +253,18 @@ public class Server : MonoBehaviour
             else
             {
                 playerManager.playerCutsceneMode(true);
+                state = gameState.CUTSCENE;
             }
         } else 
         {
+            if (Scene == "Game")
+            {
+                state = gameState.INGAME;
+            }
+            else if (Scene == "Hell")
+            {
+                state = gameState.BOSS;
+            }
             playerManager.playerCutsceneMode(false);
         }
 
@@ -277,10 +287,18 @@ public class Server : MonoBehaviour
             else
             {
                 playerManager.playerCutsceneMode(true);
+                state = gameState.CUTSCENE;
             }
         }
         else
         {
+            if(Scene == "Game")
+            {
+                state = gameState.INGAME;
+            }else if (Scene == "Hell")
+            {
+                state = gameState.BOSS;
+            }
             playerManager.playerCutsceneMode(false);
         }
 
