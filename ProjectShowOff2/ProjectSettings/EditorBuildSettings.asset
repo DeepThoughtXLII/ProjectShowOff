@@ -45,7 +45,7 @@ EditorBuildSettings:
     path: Assets/Scenes/serverDemoTabea/Hell.unity
     guid: 9e3bdb5609ab57047a62e847f43480e0
   - enabled: 1
-    path: Assets/Scenes/Final Game/LobbyP.unity
+    path: Assets/Scenes/Final Game/Lobby.unity
     guid: 65df8ed0592af564e87973d62808c5ea
   - enabled: 1
     path: Assets/Scenes/Final Game/Introduction.unity

@@ -44,7 +44,6 @@ public class OnlineControllerManager : MonoBehaviour, IControllerManager
 
     int[] ids = new int[4];
 
-    [SerializeField] int GameCount = 0;
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -29,7 +29,6 @@ public class cameraFollow : MonoBehaviour
 
     Camera cam;
 
-    float offset = 15;
 
     float cameraSizeDist;
 
@@ -40,7 +39,6 @@ public class cameraFollow : MonoBehaviour
 
     public bool zoomOut = false;
 
-    Vector3 closestPointOnZoomBox;
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ///                                                                     START()

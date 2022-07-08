@@ -31,7 +31,6 @@ public class Server : MonoBehaviour
     [SerializeField] Image[] playerUIs;
     public Image body;
 
-    private int GameOverScreenTime = 10;
 
 
     PlayerManager playerManager;
@@ -48,7 +47,6 @@ public class Server : MonoBehaviour
     public bool cutscenesOn = false;
 
 
-    bool bossSpawned = false;
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -168,7 +166,7 @@ public class Server : MonoBehaviour
             {
                 state = gameState.GAMEOVER;
                 ending = endingType.DeathPreBoss;
-                FindObjectOfType<SoundManager>().Play("gameOverVO");
+                //FindObjectOfType<SoundManager>().Play("gameOverVO");
                 GameOver();
             }
         }
@@ -178,7 +176,7 @@ public class Server : MonoBehaviour
             {
                 state = gameState.GAMEOVER;
                 ending = endingType.DeathDuringBoss;
-                FindObjectOfType<SoundManager>().Play("gameOverVO");
+                //FindObjectOfType<SoundManager>().Play("gameOverVO");
                 GameOver();
 
             }
@@ -269,7 +267,7 @@ public class Server : MonoBehaviour
     {
         //int index = Array.IndexOf(scenes, Scene);
         string sceneToLoad = Scene;
-        Debug.Log($"attemot to load scene: {Scene}");
+        Debug.Log($"attempt to load scene: {Scene}");
         if (Scene == "Introduction" || Scene == "BossTransition")
         {
             if (!cutscenesOn)
@@ -317,11 +315,14 @@ public class Server : MonoBehaviour
 
     public void BackToLobby()
     {
-        
-        changeScene("Lobby");
+        //FindObjectOfType<SoundManager>().Stop("ingameMusic");
+        //FindObjectOfType<SoundManager>().Stop("bossMusic");
+
         controllerManager.ResetControllers();
         playerManager.PlayersReset();
         ResetServer();
+        Destroy(GameObject.Find("SoundManager"));
+        changeScene("Lobby");
         //end boss fight back to lobby
         //state = gameState.GAMEOVER;
 
@@ -356,10 +357,12 @@ public class Server : MonoBehaviour
             Transform child = transform.GetChild(i);
             if (child.name != "LevelManager")
             {
-                Destroy(child);
+                Destroy(child.gameObject);
             }
 
         }
+        //FindObjectOfType<SoundManager>().Stop("ingameMusic");
+        //FindObjectOfType<SoundManager>().Stop("bossMusic");
         state = gameState.LOBBY;
         body = null;
         //findLobbyPlayerUIComponents();

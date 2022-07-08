@@ -79,6 +79,7 @@ public class bossBullet : MonoBehaviour, IProjectile
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void ReceiveTarget(Transform target, int dmg, int pOwnerId = -1)
     {
+        _target = target;
         ownerId = pOwnerId;
         targetDirection = target.position - transform.position;
         damage = dmg;
@@ -126,6 +127,7 @@ public class bossBullet : MonoBehaviour, IProjectile
             {
                 if (_target.TryGetComponent<XpCarrier>(out XpCarrier toBeDead))
                 {
+                    Debug.Log("found xp carrier. added xp");
                     toBeDead.SetKiller(ownerId);
                 }
             }
@@ -158,6 +160,7 @@ public class bossBullet : MonoBehaviour, IProjectile
         }
         else if (collision.gameObject.tag == opponentTag)
         {
+            Debug.Log($"hit enemy {collision.gameObject} with tag {collision.gameObject.tag}");
             HitTarget(collision.gameObject.GetComponent<IDamageable>());
         }
     }
@@ -170,6 +173,7 @@ public class bossBullet : MonoBehaviour, IProjectile
         }
         else if (collision.gameObject.tag == opponentTag)
         {
+            Debug.Log($"hit enemy {collision.gameObject} with tag {collision.gameObject.tag}");
             HitTarget(collision.gameObject.GetComponent<IDamageable>());
         }
     }

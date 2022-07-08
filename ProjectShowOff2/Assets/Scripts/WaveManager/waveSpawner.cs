@@ -129,7 +129,7 @@ public class waveSpawner : MonoBehaviour
 
                         repeat = false;
                     }
-                    catch (Exception e)
+                    catch
                     {
                         //Console.WriteLine("Enemy Danger Level Too High, Rolling again -------- " + e);
                         repeat = true;

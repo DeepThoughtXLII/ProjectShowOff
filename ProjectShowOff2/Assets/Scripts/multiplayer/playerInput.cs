@@ -22,7 +22,6 @@ public class playerInput : MonoBehaviour
 
     static Animator anim;
 
-    bool gameOverScreen = false;
 
 
     ///--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,7 +63,7 @@ public class playerInput : MonoBehaviour
         anim.SetBool("Player_Joined", true);
         anim.SetBool("Player_Left", false);
 
-        Server.onGameOver += gameOverControls;
+
 
         controls.Lobby.startGame.performed += ctx => GetComponentInParent<Server>().StartGame();
 
@@ -85,25 +84,15 @@ public class playerInput : MonoBehaviour
         controls.Lobby.Disable();
     }
 
-    void gameOverControls()
-    {
-        gameOverScreen = true;
-    }
 
     private void OnEnable()
     {
-       if (gameOverScreen)
-        {
-            controls.GameOver.Enable();
-            controls.GameOver.backToLobby.performed += ctx => GetComponentInParent<Server>().BackToLobby();
-            controls.GameOver.playAgain.performed += ctx => GetComponentInParent<Server>().BackToLobby();
-        }
+
 
     }
 
     private void OnDestroy()
     {
-        Server.onGameOver -= gameOverControls;
     }
 
 
