@@ -80,7 +80,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (player.GetPlayerHealth().MaxHealth > currentMaxHealth)
         {
-            p_Mat.color = Color.red;
+            p_Mat.color = Color.white;
             MaxHpRecalc();
         }
         int hp = player.GetPlayerHealth().Health;
