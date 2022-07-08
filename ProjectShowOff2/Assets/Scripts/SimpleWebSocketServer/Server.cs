@@ -317,8 +317,7 @@ public class Server : MonoBehaviour
 
     public void BackToLobby()
     {
-        //FindObjectOfType<SoundManager>().Stop("ingameMusic");
-        //FindObjectOfType<SoundManager>().Stop("bossMusic");
+        
         changeScene("Lobby");
         controllerManager.ResetControllers();
         playerManager.PlayersReset();
@@ -361,8 +360,6 @@ public class Server : MonoBehaviour
             }
 
         }
-        FindObjectOfType<SoundManager>().Stop("ingameMusic");
-        FindObjectOfType<SoundManager>().Stop("bossMusic");
         state = gameState.LOBBY;
         body = null;
         //findLobbyPlayerUIComponents();
