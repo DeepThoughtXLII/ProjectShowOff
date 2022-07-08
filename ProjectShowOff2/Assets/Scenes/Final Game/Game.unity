@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.566
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32133472, g: 0.34525988, b: 0.36218974, a: 0.566}
+  m_IndirectSpecularColor: {r: 0.32133427, g: 0.34525922, b: 0.36218905, a: 0.566}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2269,6 +2269,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1696245401450145184, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
+      propertyPath: lvlEffect
+      value: 
+      objectReference: {fileID: 8038344524183138615, guid: 0277167a12290af47801444830a2be97, type: 3}
     - target: {fileID: 1696245401904819659, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
       propertyPath: m_margin.w
       value: -36.73951
@@ -2305,6 +2309,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1696245402137282833, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
+      propertyPath: lvlEffect
+      value: 
+      objectReference: {fileID: 8038344524183138615, guid: 0277167a12290af47801444830a2be97, type: 3}
     - target: {fileID: 1696245402426703925, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
       propertyPath: m_margin.w
       value: -31.564201
@@ -2369,6 +2377,10 @@ PrefabInstance:
       propertyPath: m_CullTransparentMesh
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1696245402898038648, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
+      propertyPath: lvlEffect
+      value: 
+      objectReference: {fileID: 8038344524183138615, guid: 0277167a12290af47801444830a2be97, type: 3}
     - target: {fileID: 1696245402904509916, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2393,6 +2405,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1696245402904509917, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
+      propertyPath: lvlEffect
+      value: 
+      objectReference: {fileID: 8038344524183138615, guid: 0277167a12290af47801444830a2be97, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e338fed72ea394fde8c8e46c270f3989, type: 3}
 --- !u!1 &1087920135 stripped
